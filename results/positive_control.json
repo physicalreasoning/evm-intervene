@@ -1,0 +1,52 @@
+{
+  "copy_obs_val_loss": 0.5805,
+  "baselines_cliff_price_rmse_bps": {
+    "local_linear": 499.3,
+    "single_tick_xyk": 499.51,
+    "amm_only_exact": 186.46,
+    "random_encoder_ridge": 445.14
+  },
+  "models": {
+    "mlp_direct": {
+      "matched_obs_val_loss": 0.240456,
+      "best_obs_val_loss": 0.213331,
+      "beats_copy_on_obs": true,
+      "matched_within_5pct_of_conservation": true,
+      "cliff_intervention_loss": 341.9659,
+      "cliff_price_rmse_bps": 536.87
+    },
+    "seq_transformer": {
+      "matched_obs_val_loss": 0.347153,
+      "best_obs_val_loss": 0.347153,
+      "beats_copy_on_obs": true,
+      "matched_within_5pct_of_conservation": false,
+      "cliff_intervention_loss": 369.4459,
+      "cliff_price_rmse_bps": 548.32
+    },
+    "latent_jepa": {
+      "matched_obs_val_loss": 0.437834,
+      "best_obs_val_loss": 0.437834,
+      "beats_copy_on_obs": true,
+      "matched_within_5pct_of_conservation": false,
+      "cliff_intervention_loss": 382.4936,
+      "cliff_price_rmse_bps": 542.7
+    },
+    "conservation_wm": {
+      "matched_obs_val_loss": 0.240193,
+      "best_obs_val_loss": 0.240193,
+      "beats_copy_on_obs": true,
+      "matched_within_5pct_of_conservation": true,
+      "cliff_intervention_loss": 23.5593,
+      "cliff_price_rmse_bps": 167.31
+    }
+  },
+  "mlp_vs_conservation_cliff_gap": {
+    "gap": 318.4066821885641,
+    "ci_low": 212.3850397334714,
+    "ci_high": 433.8161117764298,
+    "rel_gap": 13.515144888445079,
+    "p_two_sided": 0.0009995002498750624
+  },
+  "runtime_seconds": 14.93,
+  "positive_control_pass": true
+}
