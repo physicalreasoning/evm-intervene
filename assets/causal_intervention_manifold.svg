@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680">
+<defs>
+  <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0b0f19"/><stop offset="100%" stop-color="#111827"/></linearGradient>
+  <linearGradient id="cliffGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ef4444" stop-opacity="0.25"/><stop offset="100%" stop-color="#ef4444" stop-opacity="0.02"/></linearGradient>
+  <linearGradient id="safeGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#10b981" stop-opacity="0.20"/><stop offset="100%" stop-color="#10b981" stop-opacity="0.02"/></linearGradient>
+  <filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
+</defs>
+<rect width="1200" height="680" fill="url(#bgGrad)"/>
+<!-- Title block -->
+<text x="60" y="55" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto" font-size="24" font-weight="800" fill="#f8fafc" letter-spacing="-0.5">Causal Intervention Manifold: Shock Magnitude vs. Post-State Price Error</text>
+<text x="60" y="82" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto" font-size="14" fill="#94a3b8">Counterfactual swap volume (in units of active pool capacity C?) across 1,488 held-out Mainnet states</text>
+<rect x="100" y="120" width="1020" height="480" rx="12" fill="#131c2e" stroke="#1e293b" stroke-width="1.5"/>
+<rect x="100" y="120" width="357" height="480" fill="url(#safeGrad)"/>
+<rect x="457" y="120" width="377" height="480" fill="url(#cliffGrad)"/>
+<rect x="834" y="120" width="286" height="480" fill="#ef4444" fill-opacity="0.12"/>
+<line x1="457" y1="120" x2="457" y2="600" stroke="#10b981" stroke-width="2" stroke-dasharray="6 6"/>
+<line x1="834" y1="120" x2="834" y2="600" stroke="#ef4444" stroke-width="2" stroke-dasharray="6 6"/>
+<text x="120" y="155" font-family="sans-serif" font-size="13" font-weight="bold" fill="#10b981">REGIME I: IN-TICK SMOOTH</text>
+<text x="120" y="173" font-family="sans-serif" font-size="11" fill="#6ee7b7">Observational Support (|a| &lt; C?)</text>
+<text x="477" y="155" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f59e0b">REGIME II: TICK-CLIFF CROSSING</text>
+<text x="477" y="173" font-family="sans-serif" font-size="11" fill="#fcd34d">Unseen multi-tick depletion (1.5x - 6.0x C?)</text>
+<text x="854" y="155" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ef4444">REGIME III: AAVE CASCADE</text>
+<text x="854" y="173" font-family="sans-serif" font-size="11" fill="#fca5a5">Endogenous liquidations (HF &lt; 1.0)</text>
+<line x1="100" y1="570.0" x2="1120" y2="570.0" stroke="#334155" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="85" y="574.0" text-anchor="end" font-family="monospace" font-size="11" fill="#64748b">1 bps</text>
+<line x1="100" y1="463.5" x2="1120" y2="463.5" stroke="#334155" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="85" y="467.5" text-anchor="end" font-family="monospace" font-size="11" fill="#64748b">10 bps</text>
+<line x1="100" y1="357.0" x2="1120" y2="357.0" stroke="#334155" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="85" y="361.0" text-anchor="end" font-family="monospace" font-size="11" fill="#64748b">100 bps</text>
+<line x1="100" y1="250.5" x2="1120" y2="250.5" stroke="#334155" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="85" y="254.5" text-anchor="end" font-family="monospace" font-size="11" fill="#64748b">1,000 bps</text>
+<line x1="100" y1="176.1" x2="1120" y2="176.1" stroke="#334155" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="85" y="180.1" text-anchor="end" font-family="monospace" font-size="11" fill="#64748b">5,000 bps</text>
+<polyline points="171.4,554.4 314.2,535.7 457.0,500.4 532.4,415.9 683.2,391.0 834.0,386.8 941.2,268.4 1048.5,207.0" fill="none" stroke="#10b981" stroke-width="4.5" filter="url(#glow)"/>
+<polyline points="171.4,516.2 314.2,488.7 457.0,436.3 532.4,333.9 683.2,330.3 834.0,329.6 941.2,233.3 1048.5,187.1" fill="none" stroke="#8b5cf6" stroke-width="3" stroke-dasharray="5 3"/>
+<polyline points="171.4,504.7 314.2,483.4 457.0,427.0 532.4,327.8 683.2,325.2 834.0,323.3 941.2,228.2 1048.5,185.6" fill="none" stroke="#3b82f6" stroke-width="2.5"/>
+<polyline points="171.4,446.3 314.2,397.1 457.0,348.6 532.4,268.4 683.2,258.6 834.0,255.8 941.2,196.7 1048.5,164.3" fill="none" stroke="#ef4444" stroke-width="3.5" filter="url(#glow)"/>
+<circle cx="834.0" cy="386.8" r="7" fill="#10b981" stroke="#f8fafc" stroke-width="2"/>
+<circle cx="834.0" cy="255.8" r="7" fill="#ef4444" stroke="#f8fafc" stroke-width="2"/>
+<text x="822.0" y="372.8142040528721" font-family="monospace" font-size="12" font-weight="bold" fill="#10b981">50.8 bps (Conservation)</text>
+<text x="822.0" y="241.78974905863413" font-family="monospace" font-size="12" font-weight="bold" fill="#ef4444">892.3 bps (7.6B Foundation)</text>
+<rect x="130" y="470" width="420" height="110" rx="8" fill="#0f172a" fill-opacity="0.9" stroke="#334155" stroke-width="1.2"/>
+<line x1="150" y1="495" x2="185" y2="495" stroke="#10b981" stroke-width="4"/>
+<text x="198" y="499" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f8fafc">Conservation World Model (2,549 params) - Preserves Physics</text>
+<line x1="150" y1="520" x2="185" y2="520" stroke="#8b5cf6" stroke-width="3" stroke-dasharray="5 3"/>
+<text x="198" y="524" font-family="sans-serif" font-size="12" fill="#cbd5e1">Cross-Attention Transformer (85M params) - Plateaus</text>
+<line x1="150" y1="545" x2="185" y2="545" stroke="#3b82f6" stroke-width="2.5"/>
+<text x="198" y="549" font-family="sans-serif" font-size="12" fill="#cbd5e1">Direct MLP (85M params) - Linear extrapolation error</text>
+<line x1="150" y1="568" x2="185" y2="568" stroke="#ef4444" stroke-width="3.5"/>
+<text x="198" y="572" font-family="sans-serif" font-size="12" font-weight="bold" fill="#fca5a5">Qwen2.5-7B Foundation (7,615,000,000 params) - Catastrophic error</text>
+</svg>

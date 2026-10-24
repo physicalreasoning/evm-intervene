@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="520" viewBox="0 0 1100 520">
+<style>
+text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #17242b; }
+.title { font-family: Georgia, serif; font-size: 28px; font-weight: 700; }
+.subtitle { font-size: 14px; fill: #627078; }
+.axis { font-size: 13px; font-weight: 600; }
+.tick { font-family: ui-monospace, SFMono-Regular, monospace; font-size: 11.5px; fill: #627078; }
+.legend { font-size: 13px; font-weight: 600; }
+</style>
+<rect width="100%" height="100%" fill="#f7f4eb" rx="24"/>
+<text x="52" y="54" class="title">Observational Validation Loss vs. Counterfactual Cliff Error</text>
+<text x="52" y="80" class="subtitle">20 trained world models (4 architectures x 5 seeds) · Lower observational loss does not imply lower intervention error</text>
+<rect x="110.0" y="110.0" width="660.0" height="330.0" rx="12" fill="#efeadd" stroke="#cdc6b4" stroke-width="1.5"/>
+<line x1="110.0" y1="110.0" x2="110.0" y2="440.0" stroke="#ded8c8" stroke-dasharray="4 4"/>
+<text x="110.0" y="462.0" text-anchor="middle" class="tick">3.386</text>
+<line x1="275.0" y1="110.0" x2="275.0" y2="440.0" stroke="#ded8c8" stroke-dasharray="4 4"/>
+<text x="275.0" y="462.0" text-anchor="middle" class="tick">4.603</text>
+<line x1="440.0" y1="110.0" x2="440.0" y2="440.0" stroke="#ded8c8" stroke-dasharray="4 4"/>
+<text x="440.0" y="462.0" text-anchor="middle" class="tick">5.820</text>
+<line x1="605.0" y1="110.0" x2="605.0" y2="440.0" stroke="#ded8c8" stroke-dasharray="4 4"/>
+<text x="605.0" y="462.0" text-anchor="middle" class="tick">7.037</text>
+<line x1="770.0" y1="110.0" x2="770.0" y2="440.0" stroke="#ded8c8" stroke-dasharray="4 4"/>
+<text x="770.0" y="462.0" text-anchor="middle" class="tick">8.254</text>
+<line x1="110.0" y1="440.0" x2="770.0" y2="440.0" stroke="#ded8c8" stroke-dasharray="4 4"/>
+<text x="98.0" y="444.0" text-anchor="end" class="tick">14869.6</text>
+<line x1="110.0" y1="357.5" x2="770.0" y2="357.5" stroke="#ded8c8" stroke-dasharray="4 4"/>
+<text x="98.0" y="361.5" text-anchor="end" class="tick">29779.2</text>
+<line x1="110.0" y1="275.0" x2="770.0" y2="275.0" stroke="#ded8c8" stroke-dasharray="4 4"/>
+<text x="98.0" y="279.0" text-anchor="end" class="tick">59638.6</text>
+<line x1="110.0" y1="192.5" x2="770.0" y2="192.5" stroke="#ded8c8" stroke-dasharray="4 4"/>
+<text x="98.0" y="196.5" text-anchor="end" class="tick">119437.6</text>
+<line x1="110.0" y1="110.0" x2="770.0" y2="110.0" stroke="#ded8c8" stroke-dasharray="4 4"/>
+<text x="98.0" y="114.0" text-anchor="end" class="tick">239196.5</text>
+<text x="440.0" y="492.0" text-anchor="middle" class="axis">Observational Validation Standardized MSE (L_obs)</text>
+<text x="34" y="275.0" text-anchor="middle" transform="rotate(-90 34 275.0)" class="axis">Regime II+III Intervention Error (log scale)</text>
+<circle cx="548.26" cy="159.29" r="7.5" fill="#b0522f" fill-opacity="0.88" stroke="#17242b" stroke-width="1.2"/>
+<circle cx="548.12" cy="159.34" r="7.5" fill="#b0522f" fill-opacity="0.88" stroke="#17242b" stroke-width="1.2"/>
+<circle cx="545.52" cy="159.24" r="7.5" fill="#b0522f" fill-opacity="0.88" stroke="#17242b" stroke-width="1.2"/>
+<circle cx="544.51" cy="159.29" r="7.5" fill="#b0522f" fill-opacity="0.88" stroke="#17242b" stroke-width="1.2"/>
+<circle cx="536.73" cy="159.27" r="7.5" fill="#b0522f" fill-opacity="0.88" stroke="#17242b" stroke-width="1.2"/>
+<circle cx="665.49" cy="159.71" r="7.5" fill="#dda12c" fill-opacity="0.88" stroke="#17242b" stroke-width="1.2"/>
+<circle cx="686.14" cy="159.63" r="7.5" fill="#dda12c" fill-opacity="0.88" stroke="#17242b" stroke-width="1.2"/>
+<circle cx="668.97" cy="159.68" r="7.5" fill="#dda12c" fill-opacity="0.88" stroke="#17242b" stroke-width="1.2"/>
+<circle cx="706.65" cy="159.55" r="7.5" fill="#dda12c" fill-opacity="0.88" stroke="#17242b" stroke-width="1.2"/>
+<circle cx="683.85" cy="159.67" r="7.5" fill="#dda12c" fill-opacity="0.88" stroke="#17242b" stroke-width="1.2"/>
+<circle cx="589.69" cy="159.98" r="7.5" fill="#5c4d7d" fill-opacity="0.88" stroke="#17242b" stroke-width="1.2"/>
+<circle cx="590.79" cy="159.97" r="7.5" fill="#5c4d7d" fill-opacity="0.88" stroke="#17242b" stroke-width="1.2"/>
+<circle cx="593.43" cy="159.95" r="7.5" fill="#5c4d7d" fill-opacity="0.88" stroke="#17242b" stroke-width="1.2"/>
+<circle cx="588.85" cy="159.99" r="7.5" fill="#5c4d7d" fill-opacity="0.88" stroke="#17242b" stroke-width="1.2"/>
+<circle cx="584.21" cy="160.00" r="7.5" fill="#5c4d7d" fill-opacity="0.88" stroke="#17242b" stroke-width="1.2"/>
+<circle cx="150.15" cy="389.88" r="7.5" fill="#0b6d73" fill-opacity="0.88" stroke="#17242b" stroke-width="1.2"/>
+<circle cx="153.06" cy="390.69" r="7.5" fill="#0b6d73" fill-opacity="0.88" stroke="#17242b" stroke-width="1.2"/>
+<circle cx="152.87" cy="390.76" r="7.5" fill="#0b6d73" fill-opacity="0.88" stroke="#17242b" stroke-width="1.2"/>
+<circle cx="153.40" cy="390.49" r="7.5" fill="#0b6d73" fill-opacity="0.88" stroke="#17242b" stroke-width="1.2"/>
+<circle cx="149.92" cy="389.49" r="7.5" fill="#0b6d73" fill-opacity="0.88" stroke="#17242b" stroke-width="1.2"/>
+<rect x="800" y="130" width="252" height="220" rx="14" fill="#efeadd" stroke="#cdc6b4" stroke-width="1.5"/>
+<text x="820" y="162" class="axis">World-Model Families</text>
+<circle cx="828" cy="189" r="7" fill="#0b6d73" stroke="#17242b" stroke-width="1"/>
+<text x="846" y="194" class="legend">Conservation WM (learned)</text>
+<circle cx="828" cy="223" r="7" fill="#b0522f" stroke="#17242b" stroke-width="1"/>
+<text x="846" y="228" class="legend">Direct MLP</text>
+<circle cx="828" cy="257" r="7" fill="#dda12c" stroke="#17242b" stroke-width="1"/>
+<text x="846" y="262" class="legend">Sequence Transformer</text>
+<circle cx="828" cy="291" r="7" fill="#5c4d7d" stroke="#17242b" stroke-width="1"/>
+<text x="846" y="296" class="legend">Latent JEPA + Probe</text>
+<text x="820" y="328" class="tick">Spearman rho = +0.388 [-0.18, +0.77]</text>
+</svg>

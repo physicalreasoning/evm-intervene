@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620">
+<style>
+text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #17242b; }
+.title { font-family: Georgia, serif; font-size: 28px; font-weight: 700; }
+.subtitle { font-size: 14px; fill: #627078; }
+.panel-title { font-size: 15px; font-weight: 700; }
+.label { font-size: 12.5px; font-weight: 600; }
+.value { font-family: ui-monospace, SFMono-Regular, monospace; font-size: 12px; }
+</style>
+<rect width="100%" height="100%" fill="#f7f4eb" rx="24"/>
+<text x="48" y="52" class="title">Matched on Routine Swaps, Divergent Across Cliffs</text>
+<text x="48" y="78" class="subtitle">Log-price RMSE in basis points (bps, lower is better) · 5-seed matched observational checkpoints on Ethereum Mainnet</text>
+<rect x="48" y="108" width="486" height="210" rx="16" fill="#efeadd" stroke="#ded8c8" stroke-width="1.5"/>
+<text x="68" y="138" class="panel-title">Observational Val (Routine Swaps)</text>
+<text x="68" y="172" class="label">Conservation WM (learned)</text>
+<rect x="253" y="158" width="225.0" height="18" rx="9" fill="#e2ddd0"/>
+<rect x="253" y="158" width="41.75" height="18" rx="9" fill="#0b6d73"/>
+<text x="488.0" y="172" class="value">0.91 bps</text>
+<text x="68" y="202" class="label">Direct MLP</text>
+<rect x="253" y="188" width="225.0" height="18" rx="9" fill="#e2ddd0"/>
+<rect x="253" y="188" width="205.98" height="18" rx="9" fill="#b0522f"/>
+<text x="488.0" y="202" class="value">4.49 bps</text>
+<text x="68" y="232" class="label">Sequence Transformer</text>
+<rect x="253" y="218" width="225.0" height="18" rx="9" fill="#e2ddd0"/>
+<rect x="253" y="218" width="225.00" height="18" rx="9" fill="#dda12c"/>
+<text x="488.0" y="232" class="value">4.91 bps</text>
+<text x="68" y="262" class="label">Latent JEPA + Probe</text>
+<rect x="253" y="248" width="225.0" height="18" rx="9" fill="#e2ddd0"/>
+<rect x="253" y="248" width="210.70" height="18" rx="9" fill="#5c4d7d"/>
+<text x="488.0" y="262" class="value">4.60 bps</text>
+<text x="68" y="292" class="label">Single-Tick x*y=k</text>
+<rect x="253" y="278" width="225.0" height="18" rx="9" fill="#e2ddd0"/>
+<rect x="253" y="278" width="2.00" height="18" rx="9" fill="#627078"/>
+<text x="488.0" y="292" class="value">0.00 bps</text>
+<rect x="566" y="108" width="486" height="210" rx="16" fill="#efeadd" stroke="#ded8c8" stroke-width="1.5"/>
+<text x="586" y="138" class="panel-title">Regime I: In-Tick Convex</text>
+<text x="586" y="172" class="label">Conservation WM (learned)</text>
+<rect x="771" y="158" width="225.0" height="18" rx="9" fill="#e2ddd0"/>
+<rect x="771" y="158" width="70.79" height="18" rx="9" fill="#0b6d73"/>
+<text x="1006.0" y="172" class="value">1.12 bps</text>
+<text x="586" y="202" class="label">Direct MLP</text>
+<rect x="771" y="188" width="225.0" height="18" rx="9" fill="#e2ddd0"/>
+<rect x="771" y="188" width="225.00" height="18" rx="9" fill="#b0522f"/>
+<text x="1006.0" y="202" class="value">3.56 bps</text>
+<text x="586" y="232" class="label">Sequence Transformer</text>
+<rect x="771" y="218" width="225.0" height="18" rx="9" fill="#e2ddd0"/>
+<rect x="771" y="218" width="158.64" height="18" rx="9" fill="#dda12c"/>
+<text x="1006.0" y="232" class="value">2.51 bps</text>
+<text x="586" y="262" class="label">Latent JEPA + Probe</text>
+<rect x="771" y="248" width="225.0" height="18" rx="9" fill="#e2ddd0"/>
+<rect x="771" y="248" width="117.56" height="18" rx="9" fill="#5c4d7d"/>
+<text x="1006.0" y="262" class="value">1.86 bps</text>
+<text x="586" y="292" class="label">Single-Tick x*y=k</text>
+<rect x="771" y="278" width="225.0" height="18" rx="9" fill="#e2ddd0"/>
+<rect x="771" y="278" width="2.00" height="18" rx="9" fill="#627078"/>
+<text x="1006.0" y="292" class="value">0.00 bps</text>
+<rect x="48" y="342" width="486" height="210" rx="16" fill="#efeadd" stroke="#ded8c8" stroke-width="1.5"/>
+<text x="68" y="372" class="panel-title">Regime II: Tick-Cliff Crossing</text>
+<text x="68" y="406" class="label">Conservation WM (learned)</text>
+<rect x="253" y="392" width="225.0" height="18" rx="9" fill="#e2ddd0"/>
+<rect x="253" y="392" width="34.59" height="18" rx="9" fill="#0b6d73"/>
+<text x="488.0" y="406" class="value">35.9 bps</text>
+<text x="68" y="436" class="label">Direct MLP</text>
+<rect x="253" y="422" width="225.0" height="18" rx="9" fill="#e2ddd0"/>
+<rect x="253" y="422" width="213.13" height="18" rx="9" fill="#b0522f"/>
+<text x="488.0" y="436" class="value">221.2 bps</text>
+<text x="68" y="466" class="label">Sequence Transformer</text>
+<rect x="253" y="452" width="225.0" height="18" rx="9" fill="#e2ddd0"/>
+<rect x="253" y="452" width="212.38" height="18" rx="9" fill="#dda12c"/>
+<text x="488.0" y="466" class="value">220.5 bps</text>
+<text x="68" y="496" class="label">Latent JEPA + Probe</text>
+<rect x="253" y="482" width="225.0" height="18" rx="9" fill="#e2ddd0"/>
+<rect x="253" y="482" width="210.47" height="18" rx="9" fill="#5c4d7d"/>
+<text x="488.0" y="496" class="value">218.5 bps</text>
+<text x="68" y="526" class="label">Single-Tick x*y=k</text>
+<rect x="253" y="512" width="225.0" height="18" rx="9" fill="#e2ddd0"/>
+<rect x="253" y="512" width="225.00" height="18" rx="9" fill="#627078"/>
+<text x="488.0" y="526" class="value">233.6 bps</text>
+<rect x="566" y="342" width="486" height="210" rx="16" fill="#efeadd" stroke="#ded8c8" stroke-width="1.5"/>
+<text x="586" y="372" class="panel-title">Regime III: Aave Cascade</text>
+<text x="586" y="406" class="label">Conservation WM (learned)</text>
+<rect x="771" y="392" width="225.0" height="18" rx="9" fill="#e2ddd0"/>
+<rect x="771" y="392" width="88.11" height="18" rx="9" fill="#0b6d73"/>
+<text x="1006.0" y="406" class="value">1600.8 bps</text>
+<text x="586" y="436" class="label">Direct MLP</text>
+<rect x="771" y="422" width="225.0" height="18" rx="9" fill="#e2ddd0"/>
+<rect x="771" y="422" width="225.00" height="18" rx="9" fill="#b0522f"/>
+<text x="1006.0" y="436" class="value">4088.0 bps</text>
+<text x="586" y="466" class="label">Sequence Transformer</text>
+<rect x="771" y="452" width="225.0" height="18" rx="9" fill="#e2ddd0"/>
+<rect x="771" y="452" width="224.73" height="18" rx="9" fill="#dda12c"/>
+<text x="1006.0" y="466" class="value">4083.1 bps</text>
+<text x="586" y="496" class="label">Latent JEPA + Probe</text>
+<rect x="771" y="482" width="225.0" height="18" rx="9" fill="#e2ddd0"/>
+<rect x="771" y="482" width="224.54" height="18" rx="9" fill="#5c4d7d"/>
+<text x="1006.0" y="496" class="value">4079.6 bps</text>
+<text x="586" y="526" class="label">Single-Tick x*y=k</text>
+<rect x="771" y="512" width="225.0" height="18" rx="9" fill="#e2ddd0"/>
+<rect x="771" y="512" width="186.61" height="18" rx="9" fill="#627078"/>
+<text x="1006.0" y="526" class="value">3390.5 bps</text>
+<rect x="48" y="566" width="1004" height="38" rx="12" fill="#dcefed" stroke="#0b6d73" stroke-width="1.5"/>
+<text x="68" y="590" class="label" fill="#0b6d73">Gate G1 (5%-Matched Separation): FAIL · Gate G2 Spearman rho(L_obs, E_cliff) = +0.388</text>
+</svg>
