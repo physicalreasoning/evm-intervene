@@ -1,0 +1,38 @@
+{
+  "pool_address": "0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640",
+  "aave_v3_pool": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+  "windows": {
+    "calm_june_2024": [
+      20000000,
+      20008000
+    ],
+    "crash_aug5_2024": [
+      20458000,
+      20468000
+    ],
+    "autumn_oct_2024": [
+      21000000,
+      21008000
+    ]
+  },
+  "counts": {
+    "swaps_by_window": {
+      "calm_june_2024": 5566,
+      "crash_aug5_2024": 23014,
+      "autumn_oct_2024": 3008
+    },
+    "total_swaps": 31588,
+    "checkpoints_by_window": {
+      "calm_june_2024": 60,
+      "crash_aug5_2024": 60,
+      "autumn_oct_2024": 60
+    },
+    "aave_near_threshold_borrowers": 185
+  },
+  "sha256": {
+    "mainnet_swaps.json": "bc2cd24ee4a8fa8d2fd534800b4534c4b5e83c73bd07fe035b1c644a98587006",
+    "mainnet_checkpoints.json": "6a798a715a913269fb3f5bfaf415ad683e2718b6863209d14f12418d2d861293",
+    "aave_v3_borrowers.json": "d253f2c73395276518f739a35f19b9919c757dfe1bd5b41feece102dd5a45745"
+  },
+  "download_wall_seconds": 33.41
+}

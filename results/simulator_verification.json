@@ -1,0 +1,11 @@
+{
+  "n_mainnet_swaps_verified": 31283,
+  "n_tick_crossing_swaps": 9783,
+  "median_price_error_bps": 4.440892098500625e-12,
+  "p95_price_error_bps": 2.7825408643915843e-08,
+  "p99_price_error_bps": 23.853287580301338,
+  "mean_price_error_bps": 1.8061206268280179,
+  "median_tick_crossing_price_error_bps": 3.0864200084578876e-10,
+  "liquidity_exact_match_rate": 0.955151,
+  "gate_g0_median_lt_0_05_bps_pass": true
+}
