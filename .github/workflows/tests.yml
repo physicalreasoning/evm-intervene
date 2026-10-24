@@ -1,0 +1,34 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: uv sync --locked --no-config --default-index https://pypi.org/simple
+      - run: uv run ruff check src scripts tests
+      - run: uv run ruff format --check src scripts tests
+      - run: uv run pytest tests/test_simulator.py tests/test_baselines_and_metrics.py -q
+
+  model-unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.11"
+      - run: uv sync --locked --extra models --no-config --default-index https://pypi.org/simple
+      - run: uv run --extra models pytest -q

@@ -1,0 +1,13 @@
+# Downloaded archive RPC data (never committed; verified via results/data_manifest.json)
+data/
+
+# Python / uv environments & build artifacts
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
