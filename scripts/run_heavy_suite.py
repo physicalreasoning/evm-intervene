@@ -56,7 +56,23 @@ from evm_intervene.state import (
     encode_state_action,
 )
 
-OUT_DIR = Path("results/heavy_suite")
+import os
+
+OUT_DIR = Path(os.environ.get("EVM_INTERVENE_OUT_DIR", "results/heavy_suite"))
+LOCAL_MIRROR_DIR = Path("results/heavy_suite")
+
+
+def _write_checkpoint(filename: str, payload: dict[str, Any]) -> None:
+    """Write JSON atomically to OUT_DIR (e.g. Google Drive) and mirror to local results/heavy_suite."""
+    text = json.dumps(payload, indent=2)
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    target = OUT_DIR / filename
+    tmp = OUT_DIR / f"{filename}.tmp"
+    tmp.write_text(text, encoding="utf-8")
+    tmp.replace(target)
+    if OUT_DIR.resolve() != LOCAL_MIRROR_DIR.resolve():
+        LOCAL_MIRROR_DIR.mkdir(parents=True, exist_ok=True)
+        (LOCAL_MIRROR_DIR / filename).write_text(text, encoding="utf-8")
 HORIZONS: tuple[int, ...] = (1, 2, 3, 5, 8, 12)
 MAX_H = max(HORIZONS)
 BUDGETS_BPS: tuple[float, ...] = (25.0, 50.0, 100.0, 200.0, 400.0)
@@ -538,7 +554,7 @@ def run_rollout_and_planner(
                 "mean_horizons": mean_h,
                 "runs": r_runs,
             }
-            rollout_path.write_text(json.dumps(rollout_res, indent=2), encoding="utf-8")
+            _write_checkpoint("rollout.json", rollout_res)
 
         if do_planner and p_runs:
             mean_b: dict[str, Any] = {}
@@ -566,7 +582,7 @@ def run_rollout_and_planner(
                 "by_budget_mean": mean_b,
                 "runs": p_runs,
             }
-            planner_path.write_text(json.dumps(planner_res, indent=2), encoding="utf-8")
+            _write_checkpoint("planner.json", planner_res)
 
     return {"rollout": rollout_res, "planner": planner_res}
 
@@ -760,11 +776,11 @@ def run_llm_ladder(
                 "planner_overall": plan["overall"],
                 "planner_by_budget": plan["by_budget"],
             }
-            out_path.write_text(json.dumps(existing, indent=2), encoding="utf-8")
+            _write_checkpoint("llm_ladder.json", existing)
             print(
                 f"  [{tag}] DONE in {dt}s | obs={best_val:.4f} | cliff={h_single['cliff_bps']:.2f}bps "
                 f"| rollout_h12={roll['h12']['cum_price_rmse_bps']:.1f}bps "
-                f"| planner_viol={plan['overall']['violation_rate_pct']:.1f}%",
+                f"| planner_viol={plan['overall']['violation_rate_pct']:.1f}% -> saved to {OUT_DIR}",
                 flush=True,
             )
             del model, backbone, opt
@@ -775,12 +791,13 @@ def run_llm_ladder(
         except Exception as e:  # noqa: BLE001
             print(f"[llm_ladder] {tag} failed: {type(e).__name__}: {e}", file=sys.stderr, flush=True)
             existing["runs"][tag] = {**spec, "error": f"{type(e).__name__}: {e}"}
-            out_path.write_text(json.dumps(existing, indent=2), encoding="utf-8")
+            _write_checkpoint("llm_ladder.json", existing)
 
     return existing
 
 
 def main() -> None:
+    global OUT_DIR
     ap = argparse.ArgumentParser()
     ap.add_argument(
         "--which",
@@ -788,11 +805,17 @@ def main() -> None:
         default="all",
     )
     ap.add_argument("--data-dir", type=Path, default=Path("data"))
+    ap.add_argument("--out-dir", type=Path, default=None)
     ap.add_argument("--device", type=str, default=None)
     ap.add_argument("--epochs", type=int, default=45)
     ap.add_argument("--seeds", type=int, nargs="+", default=[101, 202, 303])
     ap.add_argument("--llm-epochs", type=int, default=4)
     args = ap.parse_args()
+
+    if args.out_dir is not None:
+        OUT_DIR = args.out_dir
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    print(f"Checkpoints & results will be saved to: {OUT_DIR.resolve()}", flush=True)
 
     device = torch.device(args.device) if args.device else default_torch_device()
     print(f"Using device: {device}", flush=True)
