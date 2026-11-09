@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="460" viewBox="0 0 1120 460">
+<style>text{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;fill:#1f2937}</style>
+<rect width="1120" height="460" fill="#ffffff"/>
+<text x="75" y="34" font-size="18" font-weight="700">Structural ablations and training-support coverage sweep</text>
+<text x="75" y="56" font-size="12" fill="#4b5563">Mean over 3 seeds (45 epochs) on 1,145 held-out Regime II cliff interventions</text>
+<rect x="75" y="82" width="430" height="310" fill="#f9fafb" stroke="#d1d5db"/>
+<text x="75" y="72" font-size="13" font-weight="600">A. conservation_wm structural ablations (cliff RMSE, bps)</text>
+<text x="89" y="110" font-size="12" font-weight="600">Raw TickLens profile (no bin_net)</text>
+<rect x="89" y="118" width="63.7" height="22" rx="4" fill="#059669"/>
+<text x="160.7" y="134" font-size="11.5" fill="#111827">34.0 bps (obs MSE 1.05)</text>
+<text x="89" y="178" font-size="12" font-weight="600">No Aave coupling (beta_liq = 0)</text>
+<rect x="89" y="186" width="94.3" height="22" rx="4" fill="#0d9488"/>
+<text x="191.3" y="202" font-size="11.5" fill="#111827">50.3 bps (obs MSE 0.51)</text>
+<text x="89" y="246" font-size="12" font-weight="600">Full conservation_wm (+ bin_net)</text>
+<rect x="89" y="254" width="94.4" height="22" rx="4" fill="#2563eb"/>
+<text x="191.4" y="270" font-size="11.5" fill="#111827">50.3 bps (obs MSE 0.51)</text>
+<text x="89" y="314" font-size="12" font-weight="600">Uniform profile (erase TickLens)</text>
+<rect x="89" y="322" width="251.1" height="22" rx="4" fill="#dc2626"/>
+<text x="348.1" y="338" font-size="11.5" fill="#111827">133.9 bps (obs MSE 0.55)</text>
+<rect x="615" y="82" width="430" height="310" fill="#f9fafb" stroke="#d1d5db"/>
+<text x="615" y="72" font-size="13" font-weight="600">B. Cliff RMSE vs. fraction of simulated cliff swaps in training</text>
+<line x1="650.0" y1="82" x2="650.0" y2="392" stroke="#e5e7eb"/>
+<text x="650.0" y="410" font-size="11" text-anchor="middle" fill="#6b7280">0% (+0)</text>
+<line x1="770.0" y1="82" x2="770.0" y2="392" stroke="#e5e7eb"/>
+<text x="770.0" y="410" font-size="11" text-anchor="middle" fill="#6b7280">1% (+133)</text>
+<line x1="890.0" y1="82" x2="890.0" y2="392" stroke="#e5e7eb"/>
+<text x="890.0" y="410" font-size="11" text-anchor="middle" fill="#6b7280">5% (+692)</text>
+<line x1="1010.0" y1="82" x2="1010.0" y2="392" stroke="#e5e7eb"/>
+<text x="1010.0" y="410" font-size="11" text-anchor="middle" fill="#6b7280">15% (+2320)</text>
+<line x1="615" y1="392.0" x2="1045" y2="392.0" stroke="#e5e7eb"/>
+<text x="607" y="396.0" font-size="11" text-anchor="end" fill="#6b7280">0</text>
+<line x1="615" y1="321.5" x2="1045" y2="321.5" stroke="#e5e7eb"/>
+<text x="607" y="325.5" font-size="11" text-anchor="end" fill="#6b7280">50</text>
+<line x1="615" y1="251.1" x2="1045" y2="251.1" stroke="#e5e7eb"/>
+<text x="607" y="255.1" font-size="11" text-anchor="end" fill="#6b7280">100</text>
+<line x1="615" y1="180.6" x2="1045" y2="180.6" stroke="#e5e7eb"/>
+<text x="607" y="184.6" font-size="11" text-anchor="end" fill="#6b7280">150</text>
+<line x1="615" y1="110.2" x2="1045" y2="110.2" stroke="#e5e7eb"/>
+<text x="607" y="114.2" font-size="11" text-anchor="end" fill="#6b7280">200</text>
+<text x="830.0" y="432" font-size="12" text-anchor="middle">Simulated cliff-crossing share of training set</text>
+<polyline points="650.0,108.4 770.0,182.7 890.0,194.2 1010.0,204.2" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<circle cx="650.0" cy="108.4" r="4.5" fill="#2563eb"/>
+<text x="656.0" y="102.4" font-size="10.5" fill="#2563eb">201.3</text>
+<circle cx="770.0" cy="182.7" r="4.5" fill="#2563eb"/>
+<text x="776.0" y="176.7" font-size="10.5" fill="#2563eb">148.6</text>
+<circle cx="890.0" cy="194.2" r="4.5" fill="#2563eb"/>
+<text x="896.0" y="188.2" font-size="10.5" fill="#2563eb">140.4</text>
+<circle cx="1010.0" cy="204.2" r="4.5" fill="#2563eb"/>
+<text x="1016.0" y="198.2" font-size="10.5" fill="#2563eb">133.3</text>
+<polyline points="650.0,153.1 770.0,164.1 890.0,172.1 1010.0,184.4" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+<circle cx="650.0" cy="153.1" r="4.5" fill="#7c3aed"/>
+<text x="656.0" y="147.1" font-size="10.5" fill="#7c3aed">169.5</text>
+<circle cx="770.0" cy="164.1" r="4.5" fill="#7c3aed"/>
+<text x="776.0" y="158.1" font-size="10.5" fill="#7c3aed">161.7</text>
+<circle cx="890.0" cy="172.1" r="4.5" fill="#7c3aed"/>
+<text x="896.0" y="166.1" font-size="10.5" fill="#7c3aed">156.1</text>
+<circle cx="1010.0" cy="184.4" r="4.5" fill="#7c3aed"/>
+<text x="1016.0" y="178.4" font-size="10.5" fill="#7c3aed">147.3</text>
+<polyline points="650.0,321.1 770.0,320.2 890.0,334.0 1010.0,356.9" fill="none" stroke="#059669" stroke-width="2.5"/>
+<circle cx="650.0" cy="321.1" r="4.5" fill="#059669"/>
+<text x="656.0" y="315.1" font-size="10.5" fill="#059669">50.3</text>
+<circle cx="770.0" cy="320.2" r="4.5" fill="#059669"/>
+<text x="776.0" y="314.2" font-size="10.5" fill="#059669">51.0</text>
+<circle cx="890.0" cy="334.0" r="4.5" fill="#059669"/>
+<text x="896.0" y="328.0" font-size="10.5" fill="#059669">41.2</text>
+<circle cx="1010.0" cy="356.9" r="4.5" fill="#059669"/>
+<text x="1016.0" y="350.9" font-size="10.5" fill="#059669">24.9</text>
+<rect x="615" y="433" width="14" height="4" fill="#2563eb"/>
+<text x="633" y="439" font-size="11">mlp_direct (3.4M)</text>
+<rect x="765" y="433" width="14" height="4" fill="#7c3aed"/>
+<text x="783" y="439" font-size="11">seq_transformer (1.8M)</text>
+<rect x="915" y="433" width="14" height="4" fill="#059669"/>
+<text x="933" y="439" font-size="11">conservation_wm (2.5k)</text>
+</svg>

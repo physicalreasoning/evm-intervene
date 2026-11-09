@@ -1,0 +1,171 @@
+{
+  "runs": [
+    {
+      "model_id": "Qwen/Qwen2.5-0.5B",
+      "random_init": false,
+      "error": "ImportError: Found an incompatible version of torchao. Found version 0.10.0, but only versions above 0.16.0 are supported"
+    },
+    {
+      "model_id": "Qwen/Qwen2.5-1.5B",
+      "random_init": false,
+      "error": "ImportError: Found an incompatible version of torchao. Found version 0.10.0, but only versions above 0.16.0 are supported"
+    },
+    {
+      "model_id": "Qwen/Qwen2.5-3B",
+      "random_init": false,
+      "load_4bit": true,
+      "seed": 101,
+      "backbone_params": 3085938688,
+      "trainable_params": 8020995,
+      "lora_r": 16,
+      "epochs": 4,
+      "obs_val_std_mse": 0.22601643750414796,
+      "copy_obs_val_std_mse": 0.6834179025314884,
+      "valid_beats_copy": true,
+      "val_curve": [
+        0.3681567478170144,
+        0.24638626617690002,
+        0.22605143531069452,
+        0.22601643750414796
+      ],
+      "train_seconds": 324.3,
+      "in_tick_bps": 1.73,
+      "cliff_bps": 164.5,
+      "cascade_bps": 3892.75,
+      "cliff_std_mse": 48.5725,
+      "regimes": {
+        "all": {
+          "n": 1488,
+          "std_mse": 362.5372,
+          "std_mse_ci95": [
+            141.7572,
+            646.5861
+          ],
+          "price_rmse_bps": 654.35,
+          "liquidity_rmse": 0.6741
+        },
+        "regime_1_smooth": {
+          "n": 303,
+          "std_mse": 0.0185,
+          "std_mse_ci95": [
+            0.0092,
+            0.0307
+          ],
+          "price_rmse_bps": 1.73,
+          "liquidity_rmse": 0.0758
+        },
+        "regime_2_cliff": {
+          "n": 1145,
+          "std_mse": 48.5725,
+          "std_mse_ci95": [
+            34.5578,
+            63.1072
+          ],
+          "price_rmse_bps": 164.5,
+          "liquidity_rmse": 0.681
+        },
+        "regime_3_cascade": {
+          "n": 40,
+          "std_mse": 12095.8564,
+          "std_mse_ci95": [
+            9494.5272,
+            15391.896
+          ],
+          "price_rmse_bps": 3892.75,
+          "liquidity_rmse": 1.8936
+        },
+        "cliff_and_cascade": {
+          "n": 1185,
+          "std_mse": 455.2319,
+          "std_mse_ci95": [
+            180.178,
+            805.0327
+          ],
+          "price_rmse_bps": 733.25,
+          "liquidity_rmse": 0.7544
+        }
+      }
+    },
+    {
+      "model_id": "Qwen/Qwen2.5-7B",
+      "random_init": false,
+      "load_4bit": true,
+      "seed": 101,
+      "backbone_params": 7070619136,
+      "trainable_params": 11226115,
+      "lora_r": 16,
+      "epochs": 4,
+      "obs_val_std_mse": 0.21670969307935956,
+      "copy_obs_val_std_mse": 0.6834179025314884,
+      "valid_beats_copy": true,
+      "val_curve": [
+        0.33360556486208054,
+        0.27497129058303293,
+        0.21670969307935956,
+        0.2343212559895908
+      ],
+      "train_seconds": 420.2,
+      "in_tick_bps": 2.06,
+      "cliff_bps": 174.95,
+      "cascade_bps": 3951.21,
+      "cliff_std_mse": 53.0141,
+      "regimes": {
+        "all": {
+          "n": 1488,
+          "std_mse": 377.3458,
+          "std_mse_ci95": [
+            149.3154,
+            671.799
+          ],
+          "price_rmse_bps": 665.76,
+          "liquidity_rmse": 0.557
+        },
+        "regime_1_smooth": {
+          "n": 303,
+          "std_mse": 0.0093,
+          "std_mse_ci95": [
+            0.0032,
+            0.0173
+          ],
+          "price_rmse_bps": 2.06,
+          "liquidity_rmse": 0.0202
+        },
+        "regime_2_cliff": {
+          "n": 1145,
+          "std_mse": 53.0141,
+          "std_mse_ci95": [
+            37.8597,
+            68.4845
+          ],
+          "price_rmse_bps": 174.95,
+          "liquidity_rmse": 0.5979
+        },
+        "regime_3_cascade": {
+          "n": 40,
+          "std_mse": 12519.6659,
+          "std_mse_ci95": [
+            9749.6104,
+            16030.1763
+          ],
+          "price_rmse_bps": 3951.21,
+          "liquidity_rmse": 1.1424
+        },
+        "cliff_and_cascade": {
+          "n": 1185,
+          "std_mse": 473.8293,
+          "std_mse_ci95": [
+            188.2829,
+            833.7106
+          ],
+          "price_rmse_bps": 746.03,
+          "liquidity_rmse": 0.6241
+        }
+      }
+    },
+    {
+      "model_id": "Qwen/Qwen2.5-0.5B",
+      "random_init": true,
+      "error": "ImportError: Found an incompatible version of torchao. Found version 0.10.0, but only versions above 0.16.0 are supported"
+    }
+  ]
+}

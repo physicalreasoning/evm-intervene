@@ -552,66 +552,6 @@
       }
     }
   },
-  "foundation_7b_model": {
-    "family": "foundation_7b_qwen2.5",
-    "model_id": "Qwen/Qwen2.5-7B",
-    "params": 7615000000,
-    "obs_val_std_mse": 199.68198,
-    "cliff_rmse_bps": 892.33,
-    "cliff_std_mse": 1422.7111,
-    "regimes": {
-      "all": {
-        "n": 1488,
-        "std_mse": 2290.4905,
-        "std_mse_ci95": [
-          1119.8234,
-          3681.3133
-        ],
-        "price_rmse_bps": 1355.58,
-        "liquidity_rmse": 0.629
-      },
-      "regime_1_smooth": {
-        "n": 303,
-        "std_mse": 887.0472,
-        "std_mse_ci95": [
-          316.1025,
-          1651.2056
-        ],
-        "price_rmse_bps": 717.95,
-        "liquidity_rmse": 0.1028
-      },
-      "regime_2_cliff": {
-        "n": 1145,
-        "std_mse": 1422.7111,
-        "std_mse_ci95": [
-          927.1319,
-          1980.0785
-        ],
-        "price_rmse_bps": 892.33,
-        "liquidity_rmse": 0.6818
-      },
-      "regime_3_cascade": {
-        "n": 40,
-        "std_mse": 37761.7597,
-        "std_mse_ci95": [
-          25555.9527,
-          46841.9491
-        ],
-        "price_rmse_bps": 6454.58,
-        "liquidity_rmse": 1.1544
-      },
-      "cliff_and_cascade": {
-        "n": 1185,
-        "std_mse": 2649.3456,
-        "std_mse_ci95": [
-          1316.7133,
-          4242.8471
-        ],
-        "price_rmse_bps": 1475.02,
-        "liquidity_rmse": 0.7029
-      }
-    }
-  },
   "tabpfn_v2_baseline": null,
   "chronos_bolt_small_baseline": null,
   "global_spearman_obs_vs_cliff_rmse": {

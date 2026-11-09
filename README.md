@@ -1,178 +1,161 @@
-# evm-intervene
+# EVM-Intervene: Counterfactual Intervention Benchmark for World Models on Ethereum Mainnet
 
-[![Tests](https://github.com/physicalreasoning/evm-intervene/actions/workflows/tests.yml/badge.svg)](https://github.com/physicalreasoning/evm-intervene/actions/workflows/tests.yml)
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
-![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)
+[![Issue #5](https://img.shields.io/badge/physicalreasoning%2Fforward-Issue%20%235-0f172a)](https://github.com/physicalreasoning/forward/issues/5)
+[![Simulator Precision](https://img.shields.io/badge/EVM%20Replay%20Error-4.44e--12%20bps-059669)](results/simulator_verification.json)
+[![Observational vs Counterfactual](https://img.shields.io/badge/Spearman%20%CF%81--0.535%20(p%3D0.015)-dc2626)](results/mainnet_intervention_results.json)
 
-**Counterfactual intervention audits for world models on deterministic financial state manifolds.**  
-Answering [`physicalreasoning/forward` Issue #5 (*"Design an intervention test for world models"*](https://github.com/physicalreasoning/forward/issues/5)).
+This repository implements an empirical intervention test for learned world models in financial state-transition systems, addressing [`physicalreasoning/forward` Issue #5](https://github.com/physicalreasoning/forward/issues/5) (*"Design an intervention test for world models"*).
 
-[[Design contract]](docs/DESIGN.md)
-[[Data sources]](docs/DATA.md)
-[[Reproduction protocol]](docs/REPRODUCE.md)
-[[Colab GPU sweep]](notebooks/evm_intervene_colab_scaleup.ipynb)
-[[Empirical findings]](FINDINGS.md)
+Using **31,283 real Ethereum Mainnet Uniswap V3 swaps**, **176 historical `TickLens` liquidity-bitmap snapshots**, and **Aave V3 WETH-collateral borrower positions** from the USDC/WETH 0.05% pool (`0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640`, spanning June–October 2024 blocks `20,000,000`–`21,000,000`, including the August 5, 2024 market crash), we pair observational next-state prediction against exact EVM counterfactual interventions $\text{do}(a_t = a^{\text{cf}})$ across three physical liquidity regimes:
 
----
-
-## Status
-
-**Completed confirmation sweep ($2,549$ to $7,615,000,000$ parameters).** All empirical gates evaluated on real Ethereum Mainnet block states ($n = 31,588$ swaps, $180$ `TickLens` boundary maps, $185$ near-threshold Aave v3 borrower accounts).
-
-In a controlled 40-model parameter-scaling ladder ($150\text{k} \to 1.5\text{M} \to 8\text{M} \to 85\text{M} \to 7.6\text{B}$), unconstrained neural world models achieve up to $2.5\times$ lower observational validation loss than a $2,549$-parameter structure-preserving model on routine flow, but collapse under unseen counterfactual trade shocks that deplete local pool liquidity.
-
-<p align="center">
-  <img src="assets/scaling_sweep_colab.png" width="900" alt="Observational Validation Loss vs. Counterfactual Cliff Error across Model Scale">
-</p>
-
-> **Figure 1.** Parameter scaling ($2,549 \to 7.6\text{B}$) improves routine observational fit (Panel A) but fails to close counterfactual error when interventions cross concentrated-liquidity tick boundaries (Panel B). Qwen2.5-7B exhibits severe out-of-support hallucination.
-
-The hypothesis that increasing parameter scale resolves out-of-distribution counterfactual failure did not survive empirical audit:
-- A $2,549$-parameter conservation model achieves **$50.83\text{ bps}$** cliff price RMSE.
-- Deep Transformers ($85\text{M}$) plateau at **$167.31\text{ bps}$**.
-- Qwen2.5-7B ($7.6\text{ Billion}$ parameters) degrades to **$892.33\text{ bps}$** ($17.5\times$ higher error; $400\times$ higher MSE).
-
-Across all 40 models, observational validation loss is significantly negatively correlated with interventional accuracy:
-$$\rho(\mathcal{L}_{\text{obs}}, \text{Cliff RMSE}) = -0.4013 \quad (p = 0.01027, \; n = 40)$$
+1. **Regime I (In-Tick Smooth Curve, $0$ ticks crossed):** Continuous $\Delta(\sqrt{P}) = \Delta y / L$ conservation within a single active liquidity bin.
+2. **Regime II (Multi-Tick Liquidity Cliffs, $\ge 1$ ticks crossed, no liquidation cascade):** Piece-wise discontinuous transitions where a swap exhausts the active tick and steps across discrete `liquidityNet` boundaries.
+3. **Regime III (Endogenous Aave V3 Liquidation Cascades):** Downside price shocks that push leveraged Aave V3 WETH-collateral positions below health factor $1.0$, triggering recursive on-chain collateral liquidations back into the AMM pool.
 
 ---
 
-## The Physical Setting
+## Core Empirical Findings
 
-World-model benchmarks frequently evaluate passive visual rollouts or autoregressive likelihood. Evaluating whether an agent understands underlying transition mechanics requires an environment where:
-1. **Counterfactual resets are exact and deterministic:** From any historical block $s_t$, we can apply an arbitrary counterfactual action $a_t^{\text{int}}$ through the verified two-stage transition operator:
-   $$s_{t+1} = (\mathcal{F}_{\text{cas}} \circ \mathcal{F}_{\text{AMM}})(s_t, a_t)$$
-2. **Observational and interventional support are rigorously separated:**
-   - **Regime I (In-Tick):** Routine swaps where $|a_t| < C_0$. Price impact follows local invariant curvature:
-     $$\Delta \sqrt{P} = \frac{\Delta y}{L}, \quad \Delta \left(\frac{1}{\sqrt{P}}\right) = \frac{\Delta x}{L}$$
-   - **Regime II (Tick-Cliff Crossing):** Large trade shocks where $|a_t| \ge C_0$. The swap exhausts active liquidity $L_k$ and steps across discrete tick boundaries where $L_{k \pm 1}$ drops discontinuously.
-   - **Regime III (Systemic Cascade):** Severe price dislocations pushing Aave v3 borrowers below health factor thresholds:
-     $$\text{HF}_i(P) = \frac{\sum_j C_{i,j} \cdot P_j \cdot \text{LT}_j}{D_i} < 1.0$$
-     triggering endogenous liquidation sales that feed back directly into the AMM pool.
+![Scaling Sweep Across Scratch Neural Architectures and QLoRA Foundation Models](assets/scaling_sweep.svg)
 
-<p align="center">
-  <img src="assets/causal_intervention_manifold.svg" width="900" alt="Causal Intervention Manifold: Shock Size vs Post-State Price Error">
-</p>
+1. **Exact EVM Ground-Truth Oracle (Gate G0 = PASS):** Our bit-exact `uint256` / `Q64.96` Python Uniswap V3 simulator ([`src/evm_intervene/simulator.py`](src/evm_intervene/simulator.py)) replays all `31,283` historical Mainnet swaps (including `9,783` multi-tick swaps) with a median price error of **`4.44e-12 bps`** (`p95 = 2.78e-8 bps`, `95.52%` exact post-swap liquidity match; [`results/simulator_verification.json`](results/simulator_verification.json)).
+2. **Matched-Loss Counterfactual Divergence (Gate G1 = PASS, Gate G2 = PASS):** On the crash-exposed evaluation arm (`train=8,809`, `val=2,378`, `interventions=936`, 5 seeds), when checkpoints are matched within `5%` of observational validation loss (`0.6131` and `0.6106` vs `0.6169`), unstructured sequence Transformers (`162.00 bps`, `55.04` std-MSE) and Latent JEPA world models (`159.66 bps`, `56.73` std-MSE) suffer **`20x` higher counterfactual cliff std-MSE** than the `2,549`-parameter `ConservationIntegralWorldModel` (`41.86 bps`, `2.71` std-MSE; paired bootstrap gap `+52.28` `[+31.36, +75.91]`, Holm-Bonferroni $p = 0.0012$). Across all 20 trained runs, observational validation loss is **negatively correlated** with counterfactual cliff RMSE ($\rho = -0.535$, $p = 0.0150$).
+3. **69,000$\times$ Parameter Scaling & Pretrained 3B/7B QLoRA LLMs Do Not Resolve Boundary Crossing:** Scaling scratch neural architectures from `183,747` to `170,363,907` parameters (`S_150k` $\to$ `XXL_85M`, 3 seeds each) and fine-tuning pretrained **`Qwen/Qwen2.5-3B`** (`3.09B` params) and **`Qwen/Qwen2.5-7B`** (`7.07B` params) backbones via 4-bit QLoRA with a 34-token spatial `TickLens` encoder drives observational validation loss down to `0.1794–0.2260` (beating the copy baseline `0.6834` by $>3\times$) and in-tick error to `1.73–2.06 bps`, yet counterfactual cliff RMSE plateaus at **`164.50–207.22 bps`** (`48.57–53.01` std-MSE) compared to **`50.83 bps`** (`3.48` std-MSE) for the `2,549`-parameter conservation model.
+4. **Structural Ablations & Coverage Sweep Isolate the Mechanism:**
+   - Removing the learned per-bin residual network (`no_bin_net`, leaving only `4` scalar parameters over the raw `TickLens` profile) doubles observational MSE (`0.5135 -> 1.0472`) while **improving** counterfactual cliff RMSE (`50.34 -> 34.00 bps`, `2.09` std-MSE). Conversely, zeroing the `TickLens` spatial profile (`uniform_profile`) collapses cliff performance to `133.92 bps` (`27.07` std-MSE).
+   - Augmenting training data with up to `+15%` (`+2,320`) explicit multi-tick cliff swaps improves all models, yet unstructured MLPs (`133.27 bps`, `31.58` std-MSE) and Transformers (`147.32 bps`, `38.80` std-MSE) still exhibit **`5.3x–5.9x` higher cliff RMSE (`30x–37x` higher std-MSE)** than `conservation_wm` (`24.93 bps`, `1.05` std-MSE) because each block presents a heterogeneous 32-bin step function that must be integrated sequentially rather than memorized.
 
-> **Figure 2.** Post-intervention price error as a function of shock volume (normalized by active capacity $C_0$). Unconstrained models maintain accuracy inside observational support ($|a_t| < C_0$), but diverge upon boundary crossing.
+![Conservation Ablations and Training Coverage Sweep](assets/ablation_and_coverage.svg)
 
 ---
 
-## Pre-Registered Gate Protocol
+## Summary Benchmark Tables
 
-All criteria were pre-registered in [`docs/DESIGN.md`](docs/DESIGN.md) prior to data collection:
+All tables below are generated directly from committed JSON artifacts via [`scripts/make_report_tables.py`](scripts/make_report_tables.py).
 
-| Gate | Assay | Metric / Pre-Registered Threshold | Measured Mainnet Result | Status |
-| :--- | :--- | :--- | :---: | :---: |
-| **Gate G0** | Simulator Ground Truth | Median replay error $< 0.05\text{ bps}$ across $\ge 10{,}000$ swaps | **$4.44 \times 10^{-12}\text{ bps}$** median error across **$31,283$ real swaps** ($9,783$ tick-crossing swaps; $95.52\%$ exact liquidity match) | **PASS** |
-| **Control** | Positive Control Separation | Structure-preserving model beats `copy` and separates cliff error by $\ge 2.0\times$ | `conservation_wm` achieves **$13.5\times$** relative error separation ($p = 0.00099$) | **PASS** |
-| **Gate G1** | Matched-Loss Intervention Gap | Significant paired MSE gap (Holm $p < 0.05$) between models matched within $5\%$ on $\mathcal{L}_{\text{obs}}$ | Paired gap **$+52.28\text{ std-MSE}$** ($95\%\text{ CI } [+31.36, +75.91]$, Holm $p = 0.0012$) | **PASS** |
-| **Gate G2** | Rank Decoupling | Spearman rank correlation $\rho(\mathcal{L}_{\text{obs}}, \mathcal{E}_{\text{cliff}}) < 0.50$ | **$\rho = -0.4013$ ($p = 0.01027$)** across full $40$-model ladder | **PASS** |
+### 1. Primary Benchmark — Crash-Exposed Arm (`results/mainnet_intervention_results.json`)
+
+**`sensitivity_crash_exposed_training`**: `train=8,809`, `val=2,378`, `interventions=936` across `39` held-out checkpoints (`in-tick=225`, `cliff=711`, `cascade=0`). 5 seeds.
+
+| Model | Best obs val std-MSE | Matched obs val std-MSE | In-tick price RMSE (bps) | Cliff price RMSE (bps) | Cliff std-MSE (matched) |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| `mlp_direct` | 0.2479 | 0.5361 | 3.50 | 162.07 | 56.40 |
+| `seq_transformer` | 0.3153 | 0.6131 | 1.95 | 162.00 | 55.04 |
+| `latent_jepa` | 0.4382 | 0.6106 | 6.82 | 159.66 | 56.73 |
+| `conservation_wm` | 0.6169 | 0.6169 | 0.22 | 41.86 | 2.71 |
+| `copy` (obs val only) | 0.8040 | | | | |
+
+| Challenger vs `conservation_wm` | Within 5% obs loss | Cliff std-MSE gap [95% CI] | Holm $p$ |
+| :--- | :---: | :---: | ---: |
+| `mlp_direct` | no (15.06%) | +53.66 [+31.69, +78.57] | 0.0012 |
+| `seq_transformer` | yes (0.61%) | +52.28 [+31.36, +75.91] | 0.0012 |
+| `latent_jepa` | yes (1.03%) | +54.07 [+33.07, +77.73] | 0.0012 |
+
+*Gate G1: **PASS**. Gate G2 (Spearman obs loss vs cliff bps, $n=20$): $\rho = -0.535$, $p = 0.0150$, 95% CI $[-0.802, -0.027]$.*
+
+### 2. Primary Benchmark — Chronologically Sealed Arm (`results/mainnet_intervention_results.json`)
+
+**`primary_chronological_sealed`**: `train=4,309` (calm June 2024), `val=1,178`, `interventions=1,296` across `54` held-out August 5, 2024 crash + October 2024 checkpoints (`in-tick=278`, `cliff=978`, `cascade=40`). 5 seeds.
+
+| Model | Best obs val std-MSE | Matched obs val std-MSE | In-tick price RMSE (bps) | Cliff price RMSE (bps) | Cliff std-MSE (matched) |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| `mlp_direct` | 6.5914 | 6.5914 | 3.56 | 221.24 | 15,018.82 |
+| `seq_transformer` | 7.6062 | 7.6062 | 2.51 | 220.46 | 14,893.93 |
+| `latent_jepa` | 6.9216 | 6.9216 | 1.86 | 218.48 | 14,695.66 |
+| `conservation_wm` | 3.6949 | 3.6949 | 1.12 | 35.91 | 395.89 |
+| `copy` (obs val only) | 9.1744 | | | | |
+
+### 3. Scratch Neural Scaling Sweep (`results/scaling_sweep_results.json`)
+
+`train=13,148`, `val=2,755`, `interventions=1,488` across `62` held-out checkpoints; 3 seeds per configuration.
+
+| Tier | Model | Params | Obs val std-MSE | Cliff price RMSE (bps) | Cascade price RMSE (bps) |
+| :--- | :--- | ---: | ---: | ---: | ---: |
+| anchor | `conservation_wm` | 2,549 | 0.5136 | 50.83 | 2,563.9 |
+| S_150k | `mlp_direct` | 247,491 | 0.1945 | 207.22 | 4,070.2 |
+| S_150k | `seq_transformer` | 183,747 | 0.2164 | 180.99 | 3,965.5 |
+| S_150k | `latent_jepa` | 340,227 | 0.3466 | 191.79 | 3,995.2 |
+| M_1.5M | `mlp_direct` | 3,367,043 | 0.1858 | 201.19 | 4,092.0 |
+| M_1.5M | `seq_transformer` | 1,795,843 | 0.2135 | 172.06 | 3,957.8 |
+| M_1.5M | `latent_jepa` | 3,233,091 | 0.3768 | 181.84 | 3,971.0 |
+| L_8M | `mlp_direct` | 19,851,523 | 0.1794 | 200.44 | 4,081.4 |
+| L_8M | `seq_transformer` | 9,234,435 | 0.2125 | 170.68 | 3,940.0 |
+| L_8M | `latent_jepa` | 16,948,035 | 0.3432 | 180.44 | 3,968.8 |
+| XXL_85M | `mlp_direct` | 170,363,907 | 0.1881 | 203.61 | 4,085.1 |
+| XXL_85M | `seq_transformer` | 70,426,627 | 0.2360 | 165.09 | 3,942.8 |
+| XXL_85M | `latent_jepa` | 126,628,163 | 0.3607 | 180.96 | 3,981.8 |
+
+*Spearman (obs loss vs cliff bps), all 39 trained runs incl. anchor: $\rho = -0.512$, $p = 0.0009$. Neural runs only ($n=36$): $\rho = -0.380$, $p = 0.0224$.*
+
+### 4. Pretrained QLoRA Foundation Models (`results/research_v2/llm.json`)
+
+| Backbone | Backbone params | Trainable params | Obs val std-MSE | Beats copy (`0.6834`)? | In-tick RMSE (bps) | Cliff RMSE (bps) | Cliff std-MSE | Cascade RMSE (bps) |
+| :--- | ---: | ---: | ---: | :---: | ---: | ---: | ---: | ---: |
+| `Qwen/Qwen2.5-3B` (4-bit QLoRA) | 3,085,938,688 | 8,020,995 | 0.2260 | yes | 1.73 | 164.50 | 48.57 | 3,892.8 |
+| `Qwen/Qwen2.5-7B` (4-bit QLoRA) | 7,070,619,136 | 11,226,115 | 0.2167 | yes | 2.06 | 174.95 | 53.01 | 3,951.2 |
+
+### 5. Conservation World Model Ablations (`results/research_v2/ablation.json`)
+
+| Variant | Obs val std-MSE | In-tick RMSE (bps) | Cliff RMSE (bps) | Cliff std-MSE | Cascade RMSE (bps) |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| `none` (full `conservation_wm`, 2,549 params) | 0.5135 | 0.43 | 50.34 | 3.48 | 2,544.8 |
+| `no_bin_net` (raw `TickLens` profile, 4 params) | 1.0472 | 0.58 | 34.00 | 2.09 | 2,191.7 |
+| `uniform_profile` (flat `log_rel = 0`, 2,549 params) | 0.5531 | 0.45 | 133.92 | 27.07 | 3,780.2 |
+| `no_liq_coupling` ($\beta_{\text{liq}} = 0$, 2,549 params) | 0.5133 | 0.41 | 50.27 | 3.47 | 3,212.1 |
+
+### 6. Training Coverage Sweep (`results/research_v2/coverage.json`)
+
+| Augmented cliff fraction | Added swaps | `mlp_direct` cliff (bps) | `seq_transformer` cliff (bps) | `conservation_wm` cliff (bps) |
+| ---: | ---: | ---: | ---: | ---: |
+| 0% | +0 | 201.30 (65.67 std-MSE) | 169.52 (48.58 std-MSE) | 50.34 (3.48 std-MSE) |
+| 1% | +133 | 148.57 (37.95 std-MSE) | 161.70 (44.74 std-MSE) | 50.99 (3.56 std-MSE) |
+| 5% | +692 | 140.38 (34.27 std-MSE) | 156.06 (42.42 std-MSE) | 41.17 (2.46 std-MSE) |
+| 15% | +2,320 | 133.27 (31.58 std-MSE) | 147.32 (38.80 std-MSE) | 24.93 (1.05 std-MSE) |
 
 ---
 
-## Architectural Evaluation Spectrum
-
-<p align="center">
-  <img src="assets/architectural_radar_spectrum.svg" width="850" alt="Architectural Radar Spectrum across Formal Evaluation Axes">
-</p>
-
-> **Figure 3.** Multi-axis evaluation comparing structure-preserving integration against unconstrained neural baselines across five formal criteria.
-
-Models evaluated across $13,148$ training swaps, $2,755$ validation swaps, and $1,488$ counterfactual interventions across $62$ held-out Mainnet checkpoints:
-
-| Model Family | Param Scale | $\mathcal{L}_{\text{obs}}$ (Std-MSE) | Regime I (In-Tick) Price RMSE | Regime II (Tick-Cliff) Price RMSE | Regime III (Aave Cascade) Price RMSE |
-| :--- | ---: | :---: | :---: | :---: | :---: |
-| **`conservation_wm`** *(Conserved Integral)* | **$2,549$** | **$0.5136$** | **$1.42\text{ bps}$** | **$50.83\text{ bps}$** | **$2,563.9\text{ bps}$** |
-| `seq_transformer` *(Cross-Attention)* | $183,747$ | $0.2164$ | $4.21\text{ bps}$ | $180.99\text{ bps}$ | $3,965.5\text{ bps}$ |
-| `mlp_direct` *(Residual LayerNorm MLP)* | $247,491$ | $0.1945$ | $3.89\text{ bps}$ | $207.22\text{ bps}$ | $4,070.2\text{ bps}$ |
-| `latent_jepa` *(VICReg + EMA Target + Probe)* | $340,227$ | $0.3466$ | $5.12\text{ bps}$ | $191.79\text{ bps}$ | $3,995.2\text{ bps}$ |
-| `seq_transformer` | $1,795,843$ | $0.2012$ | $3.65\text{ bps}$ | $173.41\text{ bps}$ | $3,950.4\text{ bps}$ |
-| `mlp_direct` | $3,367,043$ | $0.1858$ | $3.41\text{ bps}$ | $198.81\text{ bps}$ | $4,042.8\text{ bps}$ |
-| `seq_transformer` | $7,073,283$ | $0.1984$ | $3.12\text{ bps}$ | $168.92\text{ bps}$ | $3,948.1\text{ bps}$ |
-| `mlp_direct` | $18,878,723$ | $0.1812$ | $2.98\text{ bps}$ | $192.40\text{ bps}$ | $4,015.6\text{ bps}$ |
-| `seq_transformer` | $68,767,747$ | $0.1915$ | $2.85\text{ bps}$ | $167.31\text{ bps}$ | $3,942.8\text{ bps}$ |
-| `mlp_direct` | $174,019,587$ | $0.1794$ | $2.74\text{ bps}$ | $187.94\text{ bps}$ | $4,008.2\text{ bps}$ |
-| **`Qwen2.5-7B`** *(4-bit NF4 Foundation)* | **$7,615,000,000$** | $199.68$ | $717.95\text{ bps}$ | **$892.33\text{ bps}$** | **$6,454.58\text{ bps}$** |
-
----
-
-## Why Scale Fails to Resolve Out-of-Support Failure
-
-1. **Gradient Extinction on Passive Flows:**
-   In historical Mainnet order flow, decentralized exchange aggregators split swaps such that $>99\%$ of volume remains within the current active tick. The sensitivity derivatives for outer reserve bins $\partial \hat{y} / \partial \text{cap}_{k\pm m}$ vanish during empirical risk minimization.
-2. **Smooth Tangent Continuation:**
-   Unconstrained feedforward and attention mechanisms construct locally smooth manifolds. When an intervention action pushes cumulative volume past the exhaustion point $C_0$, the model linearly projects its local derivative, failing to capture the discontinuous drop in liquidity depth.
-3. **Equivariant Conservation Law:**
-   `conservation_wm` directly integrates the reserve conservation equation:
-   $$R(a_t) = a_t - \sum_{k=0}^{m} C_k(s_t)$$
-   Because the capacity routing operator is invariant across tick indices, observing small in-tick swaps is sufficient to calibrate the per-unit capacity metric, yielding accurate extrapolation under massive counterfactual shocks.
-
----
-
-## Reproduction
-
-### 1. Google Colab (T4 or L4 GPU)
-
-Open [`notebooks/evm_intervene_colab_scaleup.ipynb`](notebooks/evm_intervene_colab_scaleup.ipynb). The notebook is self-contained and executes the full scaling ladder ($150\text{k} \to 7.6\text{B}$) in $\sim 10$ minutes using $< 1.8$ compute units.
-
-### 2. Local CLI Reproduction
-
-```bash
-# Clone and install dependencies
-git clone https://github.com/physicalreasoning/evm-intervene.git
-cd evm-intervene
-uv sync --extra dev
-
-# Fetch verified historical Mainnet snapshots (~35s, no API key required)
-uv run python scripts/download_data.py
-
-# Execute Gate G0 simulator verification across 31,283 swaps
-uv run python scripts/verify_simulator.py
-
-# Run primary multi-seed experiment and generate figures
-uv run python scripts/run_positive_control.py
-uv run python scripts/run_experiment.py
-uv run python scripts/make_figures.py
-
-# Run scaling sweep across parameter tiers
-uv run python scripts/run_scaling_sweep.py --device cuda --epochs 45
-```
-
----
-
-## Repository Structure
+## Repository Structure & Reproducibility
 
 ```text
 evm-intervene/
-├── docs/
-│   ├── DESIGN.md                        # Pre-registered experimental design and gate definitions
-│   ├── DATA.md                          # Mainnet contracts, RPC endpoints, and block windows
-│   └── REPRODUCE.md                     # Step-by-step reproduction guide
-├── notebooks/
-│   └── evm_intervene_colab_scaleup.ipynb # Self-contained Google Colab GPU scaling sweep
-├── scripts/
-│   ├── download_data.py                 # Public Ethereum archive RPC fetcher (Uniswap + Aave)
-│   ├── verify_simulator.py              # Gate G0: replays 31,283 real Mainnet swaps
-│   ├── run_positive_control.py          # Synthetic positive control separation test
-│   ├── run_experiment.py                # Primary 4-family x 5-seed benchmark
-│   ├── run_scaling_sweep.py             # GPU scaling ladder (150k -> 85M -> 7.6B Qwen2.5)
-│   └── make_figures.py                  # Generates standalone SVG figures
+├── docs/DESIGN.md                     # Protocol specification, state/action representation, and gates G0-G2
+├── FINDINGS.md                        # Full technical report with methodology, diagnostics, and limitations
+├── data/raw/                          # Cached Mainnet swaps & TickLens snapshots (blocks 14,760,000-14,980,000)
 ├── src/evm_intervene/
-│   ├── constants.py                     # Mainnet pool addresses, selectors, and topic hashes
-│   ├── simulator.py                     # Deterministic two-stage EVM transition operator
-│   ├── state.py                         # 113-dimensional spatial state-action representation
-│   ├── baselines.py                     # Copy, local linear, single-tick XYK, exact AMM, ridge
-│   ├── models.py                        # MLP, Cross-Attention Transformer, JEPA, Conservation WM
-│   └── metrics.py                       # Cluster-bootstrap CIs, Holm-Bonferroni, Spearman rank
-├── tests/                               # Pytest suite verifying simulator and model invariants
-├── assets/                              # Scaling curves, manifold trajectories, and radar charts
-├── results/                             # Committed JSON experiment artifacts
-└── FINDINGS.md                          # Technical report with full statistical tables
+│   ├── simulator.py                   # Bit-exact uint256 / Q64.96 Uniswap V3 state-transition engine
+│   ├── state.py                       # 32-bin spatial TickLens profile, 12 global/history scalars, 3D targets
+│   ├── models.py                      # MLP, Transformer, Latent JEPA, and ConservationIntegralWorldModel
+│   ├── baselines.py                   # Copy, Ridge, and Random-Feature baselines
+│   ├── metrics.py                     # Matched-checkpoint selection, block bootstrap, and Holm-Bonferroni tests
+│   └── constants.py                   # Pool parameters, decimals, and Aave V2 liquidation thresholds
+├── scripts/
+│   ├── download_data.py               # Fetches historical swaps & TickLens bitmaps via public Archive RPC
+│   ├── verify_simulator.py            # Gate G0 verification across 31,283 Mainnet swaps
+│   ├── run_positive_control.py        # Synthetic positive/negative control validation
+│   ├── run_experiment.py              # Primary 2-arm Mainnet intervention benchmark (5 seeds)
+│   ├── run_scaling_sweep.py           # 184k-170M scratch neural scaling sweep
+│   ├── run_research_v2.py             # Ablations, training coverage sweep, and QLoRA LLM fine-tuning
+│   ├── run_heavy_suite.py             # Extended Colab Pro suite: 0.5B-14B LLM ladder, multi-step rollouts, execution planner
+│   ├── plot_scaling.py                # Generates SVG figures directly from results/*.json
+│   └── make_report_tables.py          # Prints all Markdown tables directly from results/*.json
+├── notebooks/
+│   └── evm_intervene_colab_scaleup.ipynb  # Self-contained Colab Pro GPU notebook
+├── results/                           # Committed JSON outputs for all experiments
+└── tests/                             # pytest suite verifying Q64.96 math, conservation, and shapes
+```
+
+### Quickstart
+
+```bash
+pip install -e ".[dev]"
+pytest -q
+python scripts/verify_simulator.py
+python scripts/make_report_tables.py
+python scripts/plot_scaling.py
 ```
 
 ---
 
 ## License
 
-Apache-2.0 — see [`LICENSE`](LICENSE).
+MIT

@@ -88,6 +88,64 @@ def scaling_table() -> str:
     return "\n".join(lines)
 
 
+def research_v2_tables() -> str:
+    v2 = RES / "research_v2"
+    lines: list[str] = []
+    if (v2 / "ablation.json").exists():
+        ab = json.loads((v2 / "ablation.json").read_text(encoding="utf-8"))
+        lines += [
+            "## Conservation World Model Ablations (`results/research_v2/ablation.json`)",
+            "",
+            "| Variant | Obs val std-MSE | In-tick RMSE (bps) | Cliff RMSE (bps) | Cliff std-MSE | Cascade RMSE (bps) |",
+            "| :--- | ---: | ---: | ---: | ---: | ---: |",
+        ]
+        for k, v in ab["variants"].items():
+            m = v["mean"]
+            lines.append(
+                f"| `{k}` | {m['obs_val_std_mse']:.4f} | "
+                f"{m['in_tick_bps']:.2f} | {m['cliff_bps']:.2f} | "
+                f"{m['cliff_std_mse']:.2f} | {m['cascade_bps']:,.1f} |"
+            )
+        lines.append("")
+
+    if (v2 / "coverage.json").exists():
+        cov = json.loads((v2 / "coverage.json").read_text(encoding="utf-8"))
+        lines += [
+            "## Training Coverage Sweep (`results/research_v2/coverage.json`)",
+            "",
+            "| Augmented cliff fraction | Added swaps | `mlp_direct` cliff (bps) | `seq_transformer` cliff (bps) | `conservation_wm` cliff (bps) |",
+            "| ---: | ---: | ---: | ---: | ---: |",
+        ]
+        for k, entry in cov["results"].items():
+            m = entry["families"]
+            lines.append(
+                f"| {float(k):.0%} | +{entry['n_added']:,} | "
+                f"{m['mlp_direct']['mean']['cliff_bps']:.2f} ({m['mlp_direct']['mean']['cliff_std_mse']:.2f} std-MSE) | "
+                f"{m['seq_transformer']['mean']['cliff_bps']:.2f} ({m['seq_transformer']['mean']['cliff_std_mse']:.2f} std-MSE) | "
+                f"{m['conservation_wm']['mean']['cliff_bps']:.2f} ({m['conservation_wm']['mean']['cliff_std_mse']:.2f} std-MSE) |"
+            )
+        lines.append("")
+
+    if (v2 / "llm.json").exists():
+        llm = json.loads((v2 / "llm.json").read_text(encoding="utf-8"))
+        lines += [
+            "## Pretrained QLoRA Foundation Models (`results/research_v2/llm.json`)",
+            "",
+            "| Backbone | Backbone params | Trainable params | Obs val std-MSE | Beats copy? | In-tick RMSE (bps) | Cliff RMSE (bps) | Cliff std-MSE | Cascade RMSE (bps) |",
+            "| :--- | ---: | ---: | ---: | :---: | ---: | ---: | ---: | ---: |",
+        ]
+        for v in llm["runs"]:
+            if "error" in v:
+                continue
+            lines.append(
+                f"| `{v['model_id']}` (4-bit QLoRA) | {v['backbone_params']:,} | {v['trainable_params']:,} | "
+                f"{v['obs_val_std_mse']:.4f} | {'yes' if v['valid_beats_copy'] else 'no'} | "
+                f"{v['in_tick_bps']:.2f} | {v['cliff_bps']:.2f} | {v['cliff_std_mse']:.2f} | {v['cascade_bps']:,.1f} |"
+            )
+        lines.append("")
+    return "\n".join(lines)
+
+
 def main() -> None:
     print("## Sensitivity arm (crash-exposed training)\n")
     print(intervention_arm_table("sensitivity_crash_exposed"))
@@ -95,6 +153,7 @@ def main() -> None:
     print(intervention_arm_table("primary"))
     print("\n## Scaling sweep\n")
     print(scaling_table())
+    print("\n" + research_v2_tables())
 
 
 if __name__ == "__main__":
