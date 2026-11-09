@@ -378,8 +378,16 @@ class ConservationIntegralWorldModel(nn.Module):
     solely from observational swaps, advancing action a_t via sequential reserve conservation.
     """
 
-    def __init__(self, hidden_dim: int = 48) -> None:
+    ABLATIONS = ("none", "no_bin_net", "uniform_profile", "no_liq_coupling")
+
+    def __init__(self, hidden_dim: int = 48, ablation: str = "none") -> None:
         super().__init__()
+        if ablation not in self.ABLATIONS:
+            raise ValueError(f"Unknown ablation {ablation!r}; expected one of {self.ABLATIONS}")
+        # "no_bin_net": per-bin capacity = raw relative liquidity (no learned correction).
+        # "uniform_profile": ignore the observed per-bin liquidity profile entirely.
+        # "no_liq_coupling": disable the learned Aave liquidation feedback term.
+        self.ablation = ablation
         self.bin_net = nn.Sequential(
             nn.Linear(2, hidden_dim),
             nn.SiLU(),
@@ -414,13 +422,20 @@ class ConservationIntegralWorldModel(nn.Module):
         )
 
         log_rel = torch.log(rel_liq.clamp(1e-4, 1e4))
+        if self.ablation == "uniform_profile":
+            log_rel = torch.zeros_like(log_rel)
         bin_in = torch.stack([log_rel, torch.abs(log_delta) * 20.0], dim=-1)  # (B, 16, 2)
         # Equivariant per-bin log-multiplier prediction across all 16 bins.
-        log_mult = (log_rel + self.bin_net(bin_in).squeeze(-1)).clamp(-7.0, 7.0)
+        if self.ablation == "no_bin_net":
+            log_mult = log_rel.clamp(-7.0, 7.0)
+        else:
+            log_mult = (log_rel + self.bin_net(bin_in).squeeze(-1)).clamp(-7.0, 7.0)
         eff_mult = torch.exp(log_mult)  # (B, 16)
 
         cap_scale = F.softplus(self.raw_cap_scale) + 1e-3
         liq_beta = F.softplus(self.raw_liq_coupling)
+        if self.ablation == "no_liq_coupling":
+            liq_beta = torch.zeros_like(liq_beta)
         fee_rate = F.softplus(self.raw_fee_bps) * 1e-4
 
         bin_cap = (cap_scale * unit_cap * eff_mult).clamp(min=1e-6)  # (B, 16)
