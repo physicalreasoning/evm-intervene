@@ -395,16 +395,18 @@ class OrderFlowTransformerForecaster(nn.Module):
 class LiquidityCoupledWorldForecaster(nn.Module):
     """Vectorized Coupled World-Model Forecaster: predicts future order flow AND integrates it across the TickLens book."""
 
-    def __init__(self, micro_dim: int = 38, d_model: int = 128) -> None:
+    def __init__(self, micro_dim: int = 38, d_model: int = 128, num_layers: int = 2) -> None:
         super().__init__()
-        self.seq_gru = nn.GRU(input_size=6, hidden_size=d_model, num_layers=2, batch_first=True, dropout=0.1)
+        self.seq_gru = nn.GRU(
+            input_size=6, hidden_size=d_model, num_layers=num_layers, batch_first=True, dropout=0.1
+        )
         self.bin_encoder = nn.Sequential(
-            nn.Linear(3, 64),
+            nn.Linear(3, d_model // 2),
             nn.SiLU(),
-            nn.Linear(64, 32),
+            nn.Linear(d_model // 2, d_model // 2),
         )
         self.fusion = nn.Sequential(
-            nn.Linear(micro_dim + d_model + 32, d_model),
+            nn.Linear(micro_dim + d_model + d_model // 2, d_model),
             nn.LayerNorm(d_model),
             nn.SiLU(),
             nn.Dropout(0.1),

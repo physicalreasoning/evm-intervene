@@ -115,11 +115,17 @@ def train_forecaster(
     micro_dim = int(train_t["micro"].shape[1])
 
     if model_kind == "orderflow_mlp":
-        model: nn.Module = OrderFlowMLPForecaster(in_dim=micro_dim).to(device)
+        model: nn.Module = OrderFlowMLPForecaster(in_dim=micro_dim, hidden_dim=192).to(device)
+    elif model_kind == "orderflow_mlp_xl":
+        model = OrderFlowMLPForecaster(in_dim=micro_dim, hidden_dim=512).to(device)
     elif model_kind == "orderflow_transformer":
-        model = OrderFlowTransformerForecaster(micro_dim=micro_dim).to(device)
+        model = OrderFlowTransformerForecaster(micro_dim=micro_dim, d_model=128, nhead=4, num_layers=3).to(device)
+    elif model_kind == "orderflow_transformer_xl":
+        model = OrderFlowTransformerForecaster(micro_dim=micro_dim, d_model=256, nhead=8, num_layers=6).to(device)
     elif model_kind == "liquidity_coupled_wm":
-        model = LiquidityCoupledWorldForecaster(micro_dim=micro_dim).to(device)
+        model = LiquidityCoupledWorldForecaster(micro_dim=micro_dim, d_model=128, num_layers=2).to(device)
+    elif model_kind == "liquidity_coupled_wm_xl":
+        model = LiquidityCoupledWorldForecaster(micro_dim=micro_dim, d_model=320, num_layers=3).to(device)
     else:
         raise ValueError(f"Unknown model_kind: {model_kind}")
 
@@ -522,6 +528,8 @@ def run_llm_forecaster_ladder(
         ("Qwen2.5-0.5B_LoRA", "Qwen/Qwen2.5-0.5B", False, 16),
         ("Qwen2.5-1.5B_QLoRA", "Qwen/Qwen2.5-1.5B", True, 16),
         ("Qwen2.5-3B_QLoRA", "Qwen/Qwen2.5-3B", True, 16),
+        ("Qwen2.5-7B_QLoRA_r16", "Qwen/Qwen2.5-7B", True, 16),
+        ("Qwen2.5-7B_QLoRA_r64", "Qwen/Qwen2.5-7B", True, 64),
     ]
 
     device = train_t["micro"].device
@@ -706,7 +714,15 @@ def main() -> None:
     saved_preds: dict[str, dict[str, np.ndarray]] = {}
     pred_flows_by_model: dict[str, np.ndarray] = {}
 
-    for kind in ("orderflow_mlp", "orderflow_transformer", "liquidity_coupled_wm"):
+    model_kinds = (
+        "orderflow_mlp",
+        "orderflow_mlp_xl",
+        "orderflow_transformer",
+        "orderflow_transformer_xl",
+        "liquidity_coupled_wm",
+        "liquidity_coupled_wm_xl",
+    )
+    for kind in model_kinds:
         t_m = time.time()
         flow_preds_seeds, ret_preds_seeds, crash_preds_seeds = [], [], []
         n_params = 0
