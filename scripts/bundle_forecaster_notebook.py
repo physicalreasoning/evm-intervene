@@ -1,13 +1,35 @@
 # ruff: noqa: E501
-"""Generate `notebooks/eth_price_orderflow_forecaster_colab.ipynb` with Google Drive live persistence."""
+"""Bundle the repo + cached Mainnet `data/` into self-contained `notebooks/eth_price_orderflow_forecaster_colab.ipynb`."""
 
 from __future__ import annotations
 
+import base64
+import io
 import json
 from pathlib import Path
+import tarfile
+
+INCLUDE_PATHS = (
+    "pyproject.toml",
+    "src",
+    "scripts",
+    "data",
+)
 
 
 def build_notebook() -> dict:
+    buf = io.BytesIO()
+    with tarfile.open(fileobj=buf, mode="w:xz", preset=6) as tf:
+        for p_str in INCLUDE_PATHS:
+            p = Path(p_str)
+            if p.exists():
+                tf.add(
+                    str(p),
+                    arcname=str(p),
+                    filter=lambda ti: None if "__pycache__" in ti.name else ti,
+                )
+    b64_payload = base64.b64encode(buf.getvalue()).decode("ascii")
+
     cells = [
         {
             "cell_type": "markdown",
@@ -15,7 +37,7 @@ def build_notebook() -> dict:
             "source": [
                 "# Next-N-Minutes ETH Price, Order-Flow & Flash-Crash Forecaster (Colab Pro GPU Suite)\n",
                 "\n",
-                "This notebook runs the complete **Multi-Horizon ETH Price & Order-Flow Forecasting Suite** on **31,283 real Ethereum Mainnet Uniswap V3 swaps** (including the **August 5, 2024 ETH crash** from `$2,748 -> $2,092` and October 2024):\n",
+                "This self-contained notebook unpacks the cached **31,283 real Ethereum Mainnet Uniswap V3 swaps**, **176 `TickLens` liquidity-book snapshots**, and **Aave V3 borrower positions** (`data/mainnet_swaps.json`, `data/mainnet_checkpoints.json`, `data/aave_v3_borrowers.json`) and runs the 4-part **ETH Price & Order-Flow Forecasting Suite**:\n",
                 "\n",
                 "1. **Experiment 1 — Multi-Horizon Unconditional Order-Flow & ETH Price Forecasting (`H = 10, 25, 50, 100` swaps / `~2.5 to 25 min` ahead):**\n",
                 "   - Compares `LastPrice_Naive`, `Momentum_Reversion_EWMA`, `OrderFlowMLPForecaster` (time-series only), `OrderFlowTransformerForecaster` (32-trade attention), and **`LiquidityCoupledWorldForecaster`** (order-flow sequence predictor + vectorized 32-bin `TickLens` liquidity-book price-impact integrator).\n",
@@ -34,27 +56,35 @@ def build_notebook() -> dict:
             "metadata": {},
             "outputs": [],
             "source": [
-                "# Cell 1: Mount Google Drive for live atomic checkpointing & clone/update repository\n",
-                "import os\n",
+                "# Cell 1: Mount Google Drive, Unpack Self-Contained Repo + Mainnet Data (`data/*.json`), and Install Dependencies\n",
+                "import base64, io, os, subprocess, sys, tarfile, torch\n",
                 "from pathlib import Path\n",
+                "\n",
+                "assert torch.cuda.is_available(), 'Please enable GPU in Colab: Runtime -> Change runtime type -> L4 / A100 / T4 GPU'\n",
+                "print(f'[gpu] {torch.cuda.get_device_name(0)} ({torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB VRAM)')\n",
                 "\n",
                 "try:\n",
                 "    from google.colab import drive\n",
-                "    drive.mount('/content/drive')\n",
+                "    drive.mount('/content/drive', force_remount=False)\n",
                 "    OUT_DIR = '/content/drive/MyDrive/evm_intervene_forecast'\n",
-                "    print(f'Google Drive mounted! Live outputs will be saved to: {OUT_DIR}')\n",
+                "    print(f'[drive] Mounted! Live outputs will be saved to: {OUT_DIR}')\n",
                 "except Exception as e:\n",
                 "    OUT_DIR = '/content/evm-intervene/results/forecast_suite'\n",
-                "    print(f'Running without Google Drive mount ({e}); saving to: {OUT_DIR}')\n",
+                "    print(f'[drive] Running without Google Drive mount ({e}); saving to: {OUT_DIR}')\n",
                 "\n",
                 "os.makedirs(OUT_DIR, exist_ok=True)\n",
                 "os.environ['OUT_DIR'] = OUT_DIR\n",
                 "\n",
-                "if not Path('/content/evm-intervene').exists():\n",
-                "    !git clone https://github.com/physicalreasoning/evm-intervene.git /content/evm-intervene\n",
-                "%cd /content/evm-intervene\n",
-                "!git pull origin main\n",
-                "!pip install -q -e . transformers peft accelerate bitsandbytes scipy\n"
+                f"REPO_TAR_XZ_B64 = '{b64_payload}'\n",
+                "os.makedirs('/content/evm-intervene', exist_ok=True)\n",
+                "os.chdir('/content/evm-intervene')\n",
+                "with tarfile.open(fileobj=io.BytesIO(base64.b64decode(REPO_TAR_XZ_B64)), mode='r:xz') as tf:\n",
+                "    tf.extractall('.')\n",
+                "print('[ok] Unpacked code + Mainnet data into /content/evm-intervene:', sorted(os.listdir('data')))\n",
+                "\n",
+                "subprocess.run([sys.executable, '-m', 'pip', 'uninstall', '-y', 'torchao'], check=False)\n",
+                "subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', '-e', '.', 'accelerate', 'bitsandbytes', 'peft', 'transformers', 'scipy'], check=True)\n",
+                "print('[ok] Environment ready!')\n"
             ],
         },
         {
@@ -63,13 +93,10 @@ def build_notebook() -> dict:
             "metadata": {},
             "outputs": [],
             "source": [
-                "# Cell 2: Verify GPU & existing Google Drive checkpoints\n",
-                "import torch, os, glob\n",
-                "print('PyTorch:', torch.__version__, '| CUDA available:', torch.cuda.is_available())\n",
-                "if torch.cuda.is_available():\n",
-                "    print('GPU:', torch.cuda.get_device_name(0), f'({torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB)')\n",
-                "existing = sorted(glob.glob(os.environ['OUT_DIR'] + '/*.json'))\n",
-                "print('Existing checkpoints in Google Drive:', existing)\n"
+                "# Cell 2: Verify Mainnet Data Files & Existing Google Drive Checkpoints\n",
+                "import os, glob\n",
+                "print('Mainnet data files:', sorted(glob.glob('/content/evm-intervene/data/*.json')))\n",
+                "print('Existing checkpoints in Google Drive:', sorted(glob.glob(os.environ['OUT_DIR'] + '/*.json')))\n"
             ],
         },
         {
@@ -79,7 +106,10 @@ def build_notebook() -> dict:
             "outputs": [],
             "source": [
                 "# Cell 3: Run Full ETH Price, Order-Flow & Qwen2.5 LoRA Forecasting Suite (auto-saves to Google Drive)\n",
-                "!python -u scripts/run_colab_forecaster_suite.py --out-dir \"$OUT_DIR\"\n"
+                "import os, subprocess, sys\n",
+                "out_dir = os.environ['OUT_DIR']\n",
+                "env = {**os.environ, 'PYTHONPATH': '.:src'}\n",
+                "subprocess.run([sys.executable, '-u', 'scripts/run_colab_forecaster_suite.py', '--out-dir', out_dir], env=env, check=True)\n"
             ],
         },
         {
@@ -89,7 +119,7 @@ def build_notebook() -> dict:
             "outputs": [],
             "source": [
                 "# Cell 4: Inspect Saved Results & Download JSON Artifacts\n",
-                "import json, os, glob\n",
+                "import os\n",
                 "from pathlib import Path\n",
                 "\n",
                 "out_dir = Path(os.environ['OUT_DIR'])\n",
@@ -111,7 +141,7 @@ def build_notebook() -> dict:
         "metadata": {
             "accelerator": "GPU",
             "colab": {"gpuType": "L4", "provenance": []},
-            "kernelspec": {"display_name": "Python 3", " language": "python", "name": "python3"},
+            "kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},
             "language_info": {"name": "python"},
         },
         "nbformat": 4,
@@ -124,7 +154,7 @@ def main() -> None:
     p1 = Path("notebooks/eth_price_orderflow_forecaster_colab.ipynb")
     p1.parent.mkdir(parents=True, exist_ok=True)
     p1.write_text(json.dumps(nb, indent=2), encoding="utf-8")
-    print(f"Wrote {p1}")
+    print(f"Wrote self-contained {p1} ({p1.stat().st_size / 1e6:.2f} MB)")
 
 
 if __name__ == "__main__":
