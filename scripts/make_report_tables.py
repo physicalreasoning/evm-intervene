@@ -253,7 +253,39 @@ def heavy_suite_tables() -> str:
     return "\n".join(lines)
 
 
+def price_forecast_tables() -> str:
+    p = RES / "forecast_suite" / "eth_price_forecast_results.json"
+    if not p.exists():
+        p = RES / "eth_price_forecast_results.json"
+    if not p.exists():
+        return ""
+    d = json.loads(p.read_text(encoding="utf-8"))
+    ds = d["dataset_summary"]
+    lines = [
+        f"## Multi-Horizon ETH Price & Order-Flow Forecasting (`{p.as_posix()}`)",
+        "",
+        f"train={ds['train_samples']:,}, val={ds['val_samples']:,}, test={ds['test_samples']:,} "
+        f"(Aug 5 crash test={ds['test_crash_aug5_samples']:,}, Oct test={ds['test_autumn_oct_samples']:,}).",
+        "",
+        "| Model | H=10 Price MAE ($) | H=25 Price MAE ($) | H=50 Price MAE ($) | H=10 Dir Acc (Active) | H=25 Dir Acc (Active) | H=50 Flow Sign Acc | Exec Timing Savings ($ USD) |",
+        "| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for mk, mv in d["models"].items():
+        bh = mv["by_horizon"]
+        bt_key = "trading_backtest_h50" if "trading_backtest_h50" in mv else "trading_backtest_h25"
+        bt = mv[bt_key]
+        lines.append(
+            f"| `{mk}` | \\${bh['h10']['price_usd_mae']:.2f} | \\${bh['h25']['price_usd_mae']:.2f} | "
+            f"\\${bh['h50']['price_usd_mae']:.2f} | {bh['h10']['directional_acc_active_pct']:.2f}% | "
+            f"{bh['h25']['directional_acc_active_pct']:.2f}% | {bh['h50']['orderflow_sign_active_pct']:.2f}% | "
+            f"\\${bt['execution_timing_total_savings_usd']:+,.2f} ({bt['execution_timing_mean_savings_bps']:+.2f} bps) |"
+        )
+    lines.append("")
+    return "\n".join(lines)
+
+
 def main() -> None:
+    print(price_forecast_tables())
     print("## Sensitivity arm (crash-exposed training)\n")
     print(intervention_arm_table("sensitivity_crash_exposed"))
     print("\n## Primary arm (chronologically sealed)\n")

@@ -7,11 +7,20 @@ import json
 from pathlib import Path
 
 
+def _load_forecast_json() -> dict | None:
+    for p in (
+        Path("results/forecast_suite/eth_price_forecast_results.json"),
+        Path("results/eth_price_forecast_results.json"),
+    ):
+        if p.exists():
+            return json.loads(p.read_text(encoding="utf-8"))
+    return None
+
+
 def plot_price_and_flow_trajectories_svg() -> None:
-    path = Path("results/eth_price_forecast_results.json")
-    if not path.exists():
+    data = _load_forecast_json()
+    if data is None:
         return
-    data = json.loads(path.read_text(encoding="utf-8"))
     traj = data["crash_aug5_out_of_sample_trajectory"]
     if not traj:
         return
@@ -34,7 +43,6 @@ def plot_price_and_flow_trajectories_svg() -> None:
 
     p_min = min(min(true_p50), min(wm_p50), min(spot)) - 15.0
     p_max = max(max(true_p50), max(wm_p50), max(spot)) + 15.0
-
     f_bound = max(max(abs(x) for x in true_f50), max(abs(x) for x in wm_f50), 200.0) * 1.05
 
     def mx(idx: int) -> float:
@@ -60,7 +68,6 @@ def plot_price_and_flow_trajectories_svg() -> None:
         f'<text x="{x0}" y="{top1 - 9}" font-size="13" font-weight="600">A. Realized vs. Predicted Future ETH Price ($ USD, 50 Swaps Ahead) + Air-Pocket Crash Warnings (shaded red)</text>'
     )
 
-    # Shaded crash warning zones where wm_crash_prob is elevated
     p_thresh = sorted(crash_prob)[int(0.75 * len(crash_prob))]
     for i in range(n - 1):
         if crash_prob[i] >= p_thresh:
@@ -87,7 +94,6 @@ def plot_price_and_flow_trajectories_svg() -> None:
             f'<text x="{xp:.1f}" y="{top1 + ph + 16}" font-size="10.5" text-anchor="middle" fill="#6b7280">Block {blk:,}</text>'
         )
 
-    # Plot curves in Panel A
     path_true = " ".join(f"{mx(i):.1f},{my_p(true_p50[i]):.1f}" for i in range(n))
     path_mlp = " ".join(f"{mx(i):.1f},{my_p(mlp_p50[i]):.1f}" for i in range(n))
     path_wm = " ".join(f"{mx(i):.1f},{my_p(wm_p50[i]):.1f}" for i in range(n))
@@ -121,7 +127,6 @@ def plot_price_and_flow_trajectories_svg() -> None:
     out.append(f'<polyline points="{path_f_mlp}" fill="none" stroke="#2563eb" stroke-width="1.5" opacity="0.75"/>')
     out.append(f'<polyline points="{path_f_wm}" fill="none" stroke="#059669" stroke-width="2.1"/>')
 
-    # Legend
     ly = H - 14
     legend_items = [
         ("#111827", "Actual Future ETH Price / Net Order Flow (Ground Truth)"),
@@ -141,10 +146,9 @@ def plot_price_and_flow_trajectories_svg() -> None:
 
 
 def plot_horizon_and_pnl_svg() -> None:
-    path = Path("results/eth_price_forecast_results.json")
-    if not path.exists():
+    data = _load_forecast_json()
+    if data is None:
         return
-    data = json.loads(path.read_text(encoding="utf-8"))
     models = data["models"]
 
     W, H = 1180, 480
@@ -156,7 +160,7 @@ def plot_horizon_and_pnl_svg() -> None:
         "<style>text{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;fill:#1f2937}</style>",
         f'<rect width="{W}" height="{H}" fill="#ffffff"/>',
         '<text x="80" y="34" font-size="18" font-weight="700">Multi-Horizon Directional Accuracy &amp; Out-of-Sample Trading Strategy PnL ($100,000 Notional)</text>',
-        '<text x="80" y="55" font-size="12" fill="#4b5563">Evaluated across 7,521 held-out Mainnet swaps (Aug 5 crash + Oct 2024) · Net of Uniswap V3 0.05% (5 bps) pool fees</text>',
+        '<text x="80" y="55" font-size="12" fill="#4b5563">Evaluated across 9,586 held-out Mainnet swaps (Aug 5 crash + Oct 2024) · Net of Uniswap V3 0.05% (5 bps) pool fees</text>',
     ]
 
     specs = [
@@ -180,8 +184,8 @@ def plot_horizon_and_pnl_svg() -> None:
             f'<text x="{xp:.1f}" y="{top + ph + 18}" font-size="11" text-anchor="middle" fill="#6b7280">{lbl}</text>'
         )
 
-    lo_a, hi_a = 45.0, 75.0
-    for v in (45, 50, 55, 60, 65, 70, 75):
+    lo_a, hi_a = 42.0, 62.0
+    for v in (42, 46, 50, 54, 58, 62):
         yp = top + ph - ((v - lo_a) / (hi_a - lo_a)) * ph
         stroke = "#9ca3af" if v == 50 else "#e5e7eb"
         dash = ' stroke-dasharray="4 3"' if v == 50 else ""
@@ -205,16 +209,16 @@ def plot_horizon_and_pnl_svg() -> None:
                     f'<text x="{px:.1f}" y="{py - 8:.1f}" font-size="10.5" font-weight="600" text-anchor="middle" fill="{col}">{val:.1f}%</text>'
                 )
 
-    # Panel B: Cumulative Net PnL ($ USD) on $100k Notional
+    # Panel B: Cumulative PnL ($ USD) on $100k Notional
     out.append(f'<rect x="{x1}" y="{top}" width="{pw}" height="{ph}" fill="#f9fafb" stroke="#d1d5db"/>')
     out.append(
-        f'<text x="{x1}" y="{top - 10}" font-size="13" font-weight="600">B. Cumulative Net Trading Strategy Profit ($ USD, Net of 5 bps Pool Fee)</text>'
+        f'<text x="{x1}" y="{top - 10}" font-size="13" font-weight="600">B. Cumulative Trading Strategy Profit ($ USD on $100k Notional)</text>'
     )
     bt_key = "trading_backtest_h50" if "trading_backtest_h50" in models[specs[0][0]] else "trading_backtest_h25"
     all_curves = [models[mk][bt_key]["cum_net_pnl_curve_usd"] for mk, _, _ in specs]
     n_steps = len(all_curves[0])
     min_pnl = min(min(min(c) for c in all_curves), -500.0) * 1.1
-    max_pnl = max(max(max(c) for c in all_curves), 1000.0) * 1.1
+    max_pnl = max(max(max(c) for c in all_curves), 500.0) * 1.1
 
     for k in range(5):
         v = min_pnl + (max_pnl - min_pnl) * k / 4.0
