@@ -262,25 +262,85 @@ def price_forecast_tables() -> str:
     d = json.loads(p.read_text(encoding="utf-8"))
     ds = d["dataset_summary"]
     lines = [
-        f"## Multi-Horizon ETH Price & Order-Flow Forecasting (`{p.as_posix()}`)",
+        f"## 1. Multi-Horizon ETH Price & Order-Flow Forecasting (`{p.as_posix()}`)",
         "",
         f"train={ds['train_samples']:,}, val={ds['val_samples']:,}, test={ds['test_samples']:,} "
         f"(Aug 5 crash test={ds['test_crash_aug5_samples']:,}, Oct test={ds['test_autumn_oct_samples']:,}).",
         "",
-        "| Model | H=10 Price MAE ($) | H=25 Price MAE ($) | H=50 Price MAE ($) | H=10 Dir Acc (Active) | H=25 Dir Acc (Active) | H=50 Flow Sign Acc | Exec Timing Savings ($ USD) |",
-        "| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+        "| Model | Params | H=10 Price MAE ($) | H=10 Price RMSE ($) | H=10 Dir Acc (Active) | H=25 Dir Acc (Active) | H=50 Dir Acc (Active) | H=100 Flow Spearman | Crash ROC-AUC | Exec Timing Savings ($ USD) |",
+        "| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
     for mk, mv in d["models"].items():
         bh = mv["by_horizon"]
         bt_key = "trading_backtest_h50" if "trading_backtest_h50" in mv else "trading_backtest_h25"
         bt = mv[bt_key]
+        params_str = f"{mv['params']:,}" if "params" in mv else "0"
+        auc = mv.get("crash_early_warning_50swaps", {}).get("roc_auc")
+        auc_str = f"{auc:.4f}" if auc is not None else "—"
         lines.append(
-            f"| `{mk}` | \\${bh['h10']['price_usd_mae']:.2f} | \\${bh['h25']['price_usd_mae']:.2f} | "
-            f"\\${bh['h50']['price_usd_mae']:.2f} | {bh['h10']['directional_acc_active_pct']:.2f}% | "
-            f"{bh['h25']['directional_acc_active_pct']:.2f}% | {bh['h50']['orderflow_sign_active_pct']:.2f}% | "
-            f"\\${bt['execution_timing_total_savings_usd']:+,.2f} ({bt['execution_timing_mean_savings_bps']:+.2f} bps) |"
+            f"| `{mk}` | {params_str} | \\${bh['h10']['price_usd_mae']:.2f} | \\${bh['h10']['price_usd_rmse']:.2f} | "
+            f"{bh['h10']['directional_acc_active_pct']:.2f}% | {bh['h25']['directional_acc_active_pct']:.2f}% | "
+            f"{bh['h50']['directional_acc_active_pct']:.2f}% | {bh['h100']['spearman_orderflow']:+.4f} | "
+            f"{auc_str} | \\${bt['execution_timing_total_savings_usd']:+,.2f} ({bt['execution_timing_mean_savings_bps']:+.2f} bps) |"
         )
     lines.append("")
+
+    llm_p = RES / "forecast_suite" / "llm_price_forecaster.json"
+    if llm_p.exists():
+        llm = json.loads(llm_p.read_text(encoding="utf-8"))
+        lines += [
+            f"## 2. Pretrained Foundation-Model (`Qwen2.5`) Price & Order-Flow Forecasters (`{llm_p.as_posix()}`)",
+            "",
+            "| Model | Backbone Params | Trainable Params | H=10 Dir Acc (Active) | H=25 Dir Acc (Active) | H=50 High-Conviction Acc | H=100 Return IC | H=100 Flow Spearman | Crash ROC-AUC | Exec Timing Savings ($ USD) |",
+            "| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+        ]
+        for k, r in llm["runs"].items():
+            if "error" in r:
+                lines.append(
+                    f"| `{k}` (`{r.get('model_id', k)}`) | — | — | OOM (22 GiB L4) | — | — | — | — | — | — |"
+                )
+                continue
+            bh = r["by_horizon"]
+            bt_key = "trading_backtest_h50" if "trading_backtest_h50" in r else "trading_backtest_h25"
+            bt = r[bt_key]
+            auc = r.get("crash_early_warning_50swaps", {}).get("roc_auc")
+            auc_str = f"{auc:.4f}" if auc is not None else "—"
+            lines.append(
+                f"| `{k}` (`{r['model_id']}`) | {r['total_params']:,} | {r['trainable_params']:,} | "
+                f"{bh['h10']['directional_acc_active_pct']:.2f}% | **{bh['h25']['directional_acc_active_pct']:.2f}%** | "
+                f"{bh['h50']['directional_acc_top30_confident_pct']:.2f}% | {bh['h100']['spearman_return_ic']:+.4f} | "
+                f"{bh['h100']['spearman_orderflow']:+.4f} | {auc_str} | "
+                f"**\\${bt['execution_timing_total_savings_usd']:+,.2f}** ({bt['execution_timing_mean_savings_bps']:+.2f} bps) |"
+            )
+        lines.append("")
+
+    fc_p = RES / "forecast_suite" / "flow_conditioned_forecast.json"
+    if fc_p.exists():
+        fc = json.loads(fc_p.read_text(encoding="utf-8"))
+        lines += [
+            f"## 3. Flow-Conditioned ETH Price Path Forecasting (`{fc_p.as_posix()}`)",
+            "",
+            "| Model & Conditioning Regime | H=10 Price MAE ($) | H=10 Dir Acc | H=25 Price MAE ($) | H=25 Dir Acc | H=50 Price MAE ($) | H=50 Dir Acc | H=100 Price MAE ($) | H=100 Dir Acc | H=100 Return IC |",
+            "| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+        ]
+        for mk, label in [
+            ("liquidity_coupled_ticklens_flow_to_price", "`liquidity_coupled_ticklens`"),
+            ("timeseries_mlp_flow_to_price", "`timeseries_mlp`"),
+        ]:
+            for cond_key, cond_lbl in [
+                ("conditioned_on_realized_orderflow", "Realized Flow"),
+                ("conditioned_on_predicted_orderflow", "Predicted Flow"),
+            ]:
+                bh = fc[mk][cond_key]
+                lines.append(
+                    f"| {label} ({cond_lbl}) | \\${bh['h10']['price_usd_mae']:.2f} | {bh['h10']['directional_acc_active_pct']:.2f}% | "
+                    f"\\${bh['h25']['price_usd_mae']:.2f} | {bh['h25']['directional_acc_active_pct']:.2f}% | "
+                    f"\\${bh['h50']['price_usd_mae']:.2f} | {bh['h50']['directional_acc_active_pct']:.2f}% | "
+                    f"\\${bh['h100']['price_usd_mae']:.2f} | {bh['h100']['directional_acc_active_pct']:.2f}% | "
+                    f"{bh['h100']['spearman_ic']:+.4f} |"
+                )
+        lines.append("")
+
     return "\n".join(lines)
 
 

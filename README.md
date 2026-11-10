@@ -25,22 +25,50 @@ In on-chain decentralized exchanges (Uniswap V3 + Aave V3), predicting where ETH
 
 ## Core Empirical Results
 
-### A. Multi-Horizon ETH Price (`$ USD`), Net Order-Flow (`ETH`), and Execution Timing (`results/eth_price_forecast_results.json`, `results/heavy_suite/forecast.json`)
+### A. Multi-Horizon ETH Price (`$ USD`), Net Order-Flow (`ETH`), and Execution Timing (`results/forecast_suite/`)
 
 1. **Unconditional Multi-Horizon Price & Order-Flow Forecasting ($H \in \{10, 25, 50, 100\}$ Swaps / `~2.5–25 Min` Ahead):**
-   - Evaluated out-of-sample across `9,586` held-out Mainnet swaps (the August 5, 2024 crash trough `\$2,520 -> \$2,092 -> \$2,509` and October 2024 rally), [`LiquidityCoupledWorldForecaster`](src/evm_intervene/forecaster.py) (which predicts upcoming net order flow from 32-trade sequences and integrates it across the live 32-bin `TickLens` book) achieves the highest active directional accuracy (`54.33%` at $H=10$, `52.98%` at $H=25$, `52.41%` at $H=50$), highest order-flow sign accuracy (`53.10%` at $H=10$, `52.76%` at $H=25$), and highest return Information Coefficient ($\text{IC} = +0.0882$ at $H=50$, $\rho_{\text{flow}} = +0.1139$ at $H=100$).
-   - **Smart Execution Timing Savings:** When used to time 100 ETH scheduled executions across 25-swap windows in the held-out crash + October test set, `LiquidityCoupledWorldForecaster` generates **`+\$2,756.60` (`+0.72 bps/trade`) in execution savings**, whereas time-series-only `OrderFlowMLPForecaster` (`-\$2,471.52`, `-0.64 bps`) and `EWMA` (`-\$6,140.10`, `-1.60 bps`) lose money when liquidity cliffs shift.
-2. **50-Swap Flow-Conditioned Mainnet Price Trajectory Forecasting (`results/heavy_suite/forecast.json`):**
-   - When forecasting `50` consecutive real Mainnet swaps open-loop across `250` held-out crash and October trajectories, our physics-coupled world model maintains **`90.67%` directional accuracy at $H=50$ swaps (`116.64 bps` RMSE, `4.33 bps` at $H=1$, `48.93 bps` at $H=20$)**, whereas unstructured MLPs lose track of pool liquidity and collapse to **`56.80–57.47%` directional accuracy (`857.89–1,130.37 bps` RMSE)**.
-   - In unconditional 20-swap lookahead (`n=15,016` held-out swaps), adding the spatial `TickLens` book profile boosts **20-swap liquidity-depletion rank correlation by `7.3x` ($\rho = +0.0198 \to +0.1440$)**.
+   - Evaluated out-of-sample across `9,586` held-out Mainnet swaps (`6,829` from the August 5, 2024 crash trough `\$2,520 -> \$2,092 -> \$2,509` and `2,757` from October 2024; `train=17,834`, `val=3,415`), [`LiquidityCoupledWorldForecaster`](src/evm_intervene/forecaster.py) (`203,493` params, which predicts upcoming net order flow from 32-trade sequences and integrates it across the live 32-bin `TickLens` book) achieves the **lowest 10-swap price RMSE (`\$4.13`, `16.75 bps`)**, highest short-horizon active directional hit rate (`53.93%` at $H=10$), and strong 100-swap order-flow rank correlation ($\rho_{\text{flow}} = +0.1000$, crash early-warning `ROC-AUC = 0.7137`).
+   - Scaling to `liquidity_coupled_wm_xl` (`1,846,917` params) boosts **Smart Execution Timing Savings from `+\$1,485.07` (`+0.39 bps/trade`) to `+\$3,800.60` (`+0.99 bps/trade`)**, whereas time-series-only `orderflow_mlp` (`-\$737.97`), `orderflow_transformer` (`-\$1,926.56`), `orderflow_transformer_xl` (`-\$2,813.06`), and `momentum_reversion_ewma` (`-\$6,140.10`) lose money when liquidity cliffs shift.
+2. **Pretrained Foundation-Model (`Qwen2.5`) Price & Order-Flow Forecasters (`results/forecast_suite/llm_price_forecaster.json`):**
+   - Coupling a LoRA/QLoRA-adapted `Qwen2.5` backbone (attending over the 32-trade causal sequence + 32-bin `TickLens` tokens) with our differentiable `TickLens` reserve-conservation layer (`QwenPriceOrderFlowForecaster`) unlocks the strongest medium- and long-horizon forecasting and execution timing performance:
+   - **`Qwen/Qwen2.5-1.5B` (4-bit QLoRA, `907M` params, `18.66M` trainable):** Achieves the **highest $H=25$ (`~6 min`) active directional accuracy (`54.37%`)**, highest order-flow sign accuracy (`53.86%` active at $H=25$, $\rho_{\text{flow}} = +0.1156$ at $H=50$, $+0.1115$ at $H=100$), and **highest Smart Execution Timing Savings of all evaluated models (`+\$5,467.71`, `+1.42 bps/trade`)**.
+   - **`Qwen/Qwen2.5-0.5B` (LoRA, `503M` params, `8.91M` trainable):** Achieves the **highest long-horizon high-conviction directional accuracy (`55.88%` at $H=50$, `55.11%` at $H=100$)**, highest 100-swap return Information Coefficient ($\text{IC} = +0.1392$) and order-flow Spearman ($\rho_{\text{flow}} = +0.1416$), `ROC-AUC = 0.7129` on 50-swap crash warnings, and `+\$851.75` execution timing savings.
+3. **Flow-Conditioned & 50-Swap Open-Loop Mainnet Price Trajectory Forecasting (`results/forecast_suite/flow_conditioned_forecast.json`, `results/heavy_suite/forecast.json`):**
+   - Conditioned on realized net order flow, `liquidity_coupled_ticklens` achieves **`99.50%` directional accuracy (`\$1.34` MAE, $\text{IC} = +0.9297$) at $H=10$ swaps** and **`94.37%` (`\$6.45` MAE, $\text{IC} = +0.8894$) at $H=100$ swaps (`~25 min` ahead)**. Conditioned on *predicted* order flow, `liquidity_coupled_ticklens` outperforms `timeseries_mlp` across every horizon (`54.13%` vs `52.57%` at $H=10$, `52.67%` vs `50.35%` at $H=50$, and $\text{IC} = +0.0997$ vs $+0.0552$ at $H=100$).
+   - When forecasting `50` consecutive real Mainnet swaps open-loop across `250` held-out crash and October trajectories, our physics-coupled world model maintains **`90.67%` directional accuracy at $H=50$ swaps (`116.64 bps` RMSE)**, whereas unstructured MLPs collapse to **`56.80–57.47%` (`857.89–1,130.37 bps` RMSE)**.
 
-| Model | $H=10$ Price MAE (\$) | $H=25$ Price MAE (\$) | $H=50$ Price MAE (\$) | $H=10$ Dir Acc (Active) | $H=25$ Dir Acc (Active) | $H=50$ Flow Sign Acc | Smart Execution Timing Savings (\$ USD) |
-| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `liquidity_coupled_wm` (**Ours**) | \$3.07 | \$5.19 | \$7.56 | **54.33%** | **52.98%** | **52.20%** | **+\$2,756.60 (+0.72 bps)** |
-| `orderflow_mlp` (Time-Series Only) | \$2.91 | \$4.96 | \$7.59 | 52.27% | 49.68% | 49.89% | -\$2,471.52 (-0.64 bps) |
-| `orderflow_transformer` (Sequence Only) | \$2.95 | \$4.94 | \$7.34 | 50.04% | 48.55% | 48.56% | -\$122.02 (-0.03 bps) |
-| `momentum_reversion_ewma` | \$2.92 | \$4.80 | \$6.97 | 44.69% | 44.74% | 46.21% | -\$6,140.10 (-1.60 bps) |
-| `last_price_naive` | \$2.83 | \$4.66 | \$6.78 | 52.02% | 53.14% | 47.19% | -\$2,813.06 (-0.73 bps) |
+#### 1. Unconditional Multi-Horizon ETH Price & Order-Flow Forecasting (`results/forecast_suite/eth_price_forecast_results.json`)
+
+| Model | Params | H=10 Price MAE (\$) | H=10 Price RMSE (\$) | H=10 Dir Acc (Active) | H=25 Dir Acc (Active) | H=50 Dir Acc (Active) | H=100 Flow Spearman | Crash ROC-AUC | Exec Timing Savings (\$ USD) |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `liquidity_coupled_wm` (**Ours**) | 203,493 | \$2.84 | **\$4.13** | **53.93%** | 51.11% | 50.24% | **+0.1000** | 0.7137 | **+\$1,485.07 (+0.39 bps)** |
+| `liquidity_coupled_wm_xl` (**Ours-XL**) | 1,846,917 | \$2.91 | \$4.20 | 53.15% | 51.86% | 50.77% | +0.0251 | 0.6895 | **+\$3,800.60 (+0.99 bps)** |
+| `orderflow_mlp` | 64,713 | \$2.93 | \$4.32 | 49.51% | 49.34% | 49.70% | +0.0452 | **0.7153** | -\$737.97 (-0.19 bps) |
+| `orderflow_mlp_xl` | 418,313 | \$2.95 | \$4.31 | 53.28% | 50.16% | 50.00% | +0.0499 | 0.6942 | +\$28.94 (+0.01 bps) |
+| `orderflow_transformer` | 507,657 | \$2.92 | \$4.30 | 49.46% | 48.41% | 48.37% | +0.0402 | 0.6942 | -\$1,926.56 (-0.50 bps) |
+| `orderflow_transformer_xl` | 3,973,641 | \$2.85 | \$4.27 | 48.18% | 46.86% | 47.38% | -0.0285 | 0.6231 | -\$2,813.06 (-0.73 bps) |
+| `momentum_reversion_ewma` | 0 | \$2.92 | \$4.30 | 44.69% | 44.74% | 45.71% | -0.0078 | 0.6843 | -\$6,140.10 (-1.60 bps) |
+| `last_price_naive` | 0 | **\$2.83** | \$4.26 | 52.02% | **53.14%** | **52.62%** | +0.0000 | 0.6843 | -\$2,813.06 (-0.73 bps) |
+
+#### 2. Pretrained `Qwen2.5` Foundation-Model Price & Order-Flow Forecasters (`results/forecast_suite/llm_price_forecaster.json`)
+
+| Model | Backbone Params | Trainable Params | H=10 Dir Acc (Active) | H=25 Dir Acc (Active) | H=50 High-Conviction Acc | H=100 Return IC | H=100 Flow Spearman | Crash ROC-AUC | Exec Timing Savings (\$ USD) |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `Qwen2.5-1.5B_QLoRA` (`Qwen/Qwen2.5-1.5B`) | 907,276,325 | 18,659,877 | **53.48%** | **54.37%** | 50.03% | +0.1062 | +0.1115 | 0.6805 | **+\$5,467.71 (+1.42 bps)** |
+| `Qwen2.5-0.5B_LoRA` (`Qwen/Qwen2.5-0.5B`) | 502,944,805 | 8,912,037 | 51.65% | 50.37% | **55.88%** | **+0.1392** | **+0.1416** | **0.7129** | **+\$851.75 (+0.22 bps)** |
+| `Qwen2.5-3B_QLoRA` (`Qwen/Qwen2.5-3B`) | — | — | OOM (22 GiB L4) | — | — | — | — | — | — |
+| `Qwen2.5-7B_QLoRA_r16` (`Qwen/Qwen2.5-7B`) | — | — | OOM (22 GiB L4) | — | — | — | — | — | — |
+| `Qwen2.5-7B_QLoRA_r64` (`Qwen/Qwen2.5-7B`) | — | — | OOM (22 GiB L4) | — | — | — | — | — | — |
+
+#### 3. Flow-Conditioned ETH Price Path Forecasting (`results/forecast_suite/flow_conditioned_forecast.json`)
+
+| Model & Conditioning Regime | H=10 Price MAE (\$) | H=10 Dir Acc | H=25 Price MAE (\$) | H=25 Dir Acc | H=50 Price MAE (\$) | H=50 Dir Acc | H=100 Price MAE (\$) | H=100 Dir Acc | H=100 Return IC |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `liquidity_coupled_ticklens` (Realized Flow) | **\$1.34** | **99.50%** | \$2.47 | 96.77% | \$4.14 | 96.11% | \$6.45 | 94.37% | +0.8894 |
+| `timeseries_mlp` (Realized Flow) | \$1.49 | 99.30% | **\$2.25** | **98.57%** | **\$3.95** | **96.87%** | **\$5.91** | **94.48%** | **+0.8898** |
+| `liquidity_coupled_ticklens` (Predicted Flow) | **\$2.93** | **54.13%** | \$4.95 | **51.59%** | **\$7.21** | **52.67%** | **\$10.59** | **49.74%** | **+0.0997** |
+| `timeseries_mlp` (Predicted Flow) | \$2.95 | 52.57% | **\$4.74** | 51.28% | \$7.26 | 50.35% | \$10.69 | 47.34% | +0.0552 |
 
 ---
 

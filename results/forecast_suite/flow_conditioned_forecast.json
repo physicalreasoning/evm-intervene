@@ -1,0 +1,142 @@
+{
+  "timeseries_mlp_flow_to_price": {
+    "conditioned_on_realized_orderflow": {
+      "h10": {
+        "horizon_swaps": 10,
+        "price_usd_mae": 1.49,
+        "price_usd_rmse": 2.76,
+        "return_rmse_bps": 11.19,
+        "directional_acc_active_pct": 99.3,
+        "spearman_ic": 0.9281
+      },
+      "h25": {
+        "horizon_swaps": 25,
+        "price_usd_mae": 2.25,
+        "price_usd_rmse": 4.08,
+        "return_rmse_bps": 16.53,
+        "directional_acc_active_pct": 98.57,
+        "spearman_ic": 0.9365
+      },
+      "h50": {
+        "horizon_swaps": 50,
+        "price_usd_mae": 3.95,
+        "price_usd_rmse": 6.67,
+        "return_rmse_bps": 26.96,
+        "directional_acc_active_pct": 96.87,
+        "spearman_ic": 0.9159
+      },
+      "h100": {
+        "horizon_swaps": 100,
+        "price_usd_mae": 5.91,
+        "price_usd_rmse": 9.81,
+        "return_rmse_bps": 39.47,
+        "directional_acc_active_pct": 94.48,
+        "spearman_ic": 0.8898
+      }
+    },
+    "conditioned_on_predicted_orderflow": {
+      "h10": {
+        "horizon_swaps": 10,
+        "price_usd_mae": 2.95,
+        "price_usd_rmse": 4.28,
+        "return_rmse_bps": 17.36,
+        "directional_acc_active_pct": 52.57,
+        "spearman_ic": 0.0392
+      },
+      "h25": {
+        "horizon_swaps": 25,
+        "price_usd_mae": 4.74,
+        "price_usd_rmse": 6.57,
+        "return_rmse_bps": 26.57,
+        "directional_acc_active_pct": 51.28,
+        "spearman_ic": 0.0361
+      },
+      "h50": {
+        "horizon_swaps": 50,
+        "price_usd_mae": 7.26,
+        "price_usd_rmse": 9.75,
+        "return_rmse_bps": 39.38,
+        "directional_acc_active_pct": 50.35,
+        "spearman_ic": 0.0474
+      },
+      "h100": {
+        "horizon_swaps": 100,
+        "price_usd_mae": 10.69,
+        "price_usd_rmse": 14.3,
+        "return_rmse_bps": 57.59,
+        "directional_acc_active_pct": 47.34,
+        "spearman_ic": 0.0552
+      }
+    }
+  },
+  "liquidity_coupled_ticklens_flow_to_price": {
+    "conditioned_on_realized_orderflow": {
+      "h10": {
+        "horizon_swaps": 10,
+        "price_usd_mae": 1.34,
+        "price_usd_rmse": 2.73,
+        "return_rmse_bps": 11.03,
+        "directional_acc_active_pct": 99.5,
+        "spearman_ic": 0.9297
+      },
+      "h25": {
+        "horizon_swaps": 25,
+        "price_usd_mae": 2.47,
+        "price_usd_rmse": 5.17,
+        "return_rmse_bps": 20.85,
+        "directional_acc_active_pct": 96.77,
+        "spearman_ic": 0.9112
+      },
+      "h50": {
+        "horizon_swaps": 50,
+        "price_usd_mae": 4.14,
+        "price_usd_rmse": 8.19,
+        "return_rmse_bps": 32.91,
+        "directional_acc_active_pct": 96.11,
+        "spearman_ic": 0.9093
+      },
+      "h100": {
+        "horizon_swaps": 100,
+        "price_usd_mae": 6.45,
+        "price_usd_rmse": 13.6,
+        "return_rmse_bps": 54.42,
+        "directional_acc_active_pct": 94.37,
+        "spearman_ic": 0.8894
+      }
+    },
+    "conditioned_on_predicted_orderflow": {
+      "h10": {
+        "horizon_swaps": 10,
+        "price_usd_mae": 2.93,
+        "price_usd_rmse": 4.24,
+        "return_rmse_bps": 17.18,
+        "directional_acc_active_pct": 54.13,
+        "spearman_ic": 0.0709
+      },
+      "h25": {
+        "horizon_swaps": 25,
+        "price_usd_mae": 4.95,
+        "price_usd_rmse": 6.85,
+        "return_rmse_bps": 27.71,
+        "directional_acc_active_pct": 51.59,
+        "spearman_ic": 0.0347
+      },
+      "h50": {
+        "horizon_swaps": 50,
+        "price_usd_mae": 7.21,
+        "price_usd_rmse": 9.74,
+        "return_rmse_bps": 39.4,
+        "directional_acc_active_pct": 52.67,
+        "spearman_ic": 0.0565
+      },
+      "h100": {
+        "horizon_swaps": 100,
+        "price_usd_mae": 10.59,
+        "price_usd_rmse": 14.21,
+        "return_rmse_bps": 57.23,
+        "directional_acc_active_pct": 49.74,
+        "spearman_ic": 0.0997
+      }
+    }
+  }
+}

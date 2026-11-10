@@ -43,11 +43,21 @@ def test_vectorized_book_integration_monotonicity() -> None:
 
     # Sell flow produces negative price impact that grows in magnitude with flow
     assert torch.all(impact_bps[0] < 0.0)
-    assert float(impact_bps[0, 3]) < float(impact_bps[0, 2]) < float(impact_bps[0, 1]) < float(impact_bps[0, 0])
+    assert (
+        float(impact_bps[0, 3])
+        < float(impact_bps[0, 2])
+        < float(impact_bps[0, 1])
+        < float(impact_bps[0, 0])
+    )
 
     # Buy flow produces positive price impact that grows in magnitude with flow
     assert torch.all(impact_bps[1] > 0.0)
-    assert float(impact_bps[1, 3]) > float(impact_bps[1, 2]) > float(impact_bps[1, 1]) > float(impact_bps[1, 0])
+    assert (
+        float(impact_bps[1, 3])
+        > float(impact_bps[1, 2])
+        > float(impact_bps[1, 1])
+        > float(impact_bps[1, 0])
+    )
 
     # Zero net flow produces exact zero physical impact
     assert torch.allclose(impact_bps[2], torch.zeros(len(FORECAST_HORIZONS)), atol=1e-6)

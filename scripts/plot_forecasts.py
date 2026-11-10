@@ -145,13 +145,25 @@ def plot_price_and_flow_trajectories_svg() -> None:
     print("wrote assets/eth_price_forecast_trajectories.svg")
 
 
+def _load_llm_forecast_json() -> dict | None:
+    p = Path("results/forecast_suite/llm_price_forecaster.json")
+    if p.exists():
+        return json.loads(p.read_text(encoding="utf-8"))
+    return None
+
+
 def plot_horizon_and_pnl_svg() -> None:
     data = _load_forecast_json()
     if data is None:
         return
-    models = data["models"]
+    models = dict(data["models"])
+    llm_data = _load_llm_forecast_json()
+    if llm_data and "runs" in llm_data:
+        for k, v in llm_data["runs"].items():
+            if "error" not in v:
+                models[k] = v
 
-    W, H = 1180, 480
+    W, H = 1180, 490
     pw, ph, top = 475, 320, 84
     x0, x1 = 80, 635
 
@@ -159,16 +171,19 @@ def plot_horizon_and_pnl_svg() -> None:
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
         "<style>text{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;fill:#1f2937}</style>",
         f'<rect width="{W}" height="{H}" fill="#ffffff"/>',
-        '<text x="80" y="34" font-size="18" font-weight="700">Multi-Horizon Directional Accuracy &amp; Out-of-Sample Trading Strategy PnL ($100,000 Notional)</text>',
-        '<text x="80" y="55" font-size="12" fill="#4b5563">Evaluated across 9,586 held-out Mainnet swaps (Aug 5 crash + Oct 2024) · Net of Uniswap V3 0.05% (5 bps) pool fees</text>',
+        '<text x="80" y="34" font-size="18" font-weight="700">Multi-Horizon Directional Accuracy &amp; Out-of-Sample Smart Execution Timing Savings ($100,000 Notional)</text>',
+        '<text x="80" y="55" font-size="12" fill="#4b5563">Evaluated across 9,586 held-out Mainnet swaps (Aug 5 crash + Oct 2024) · TickLens-coupled physics vs. pure time-series baselines</text>',
     ]
 
     specs = [
-        ("liquidity_coupled_wm", "LiquidityCoupledWorldForecaster (Ours)", "#059669"),
-        ("orderflow_transformer", "OrderFlowTransformerForecaster", "#7c3aed"),
-        ("orderflow_mlp", "OrderFlowMLPForecaster (Time-Series)", "#2563eb"),
-        ("momentum_reversion_ewma", "EWMA Reversion Baseline", "#6b7280"),
+        ("Qwen2.5-1.5B_QLoRA", "Qwen2.5-1.5B QLoRA + TickLens Physics", "#0f766e"),
+        ("Qwen2.5-0.5B_LoRA", "Qwen2.5-0.5B LoRA + TickLens Physics", "#0284c7"),
+        ("liquidity_coupled_wm", "LiquidityCoupledWorldForecaster (203k)", "#059669"),
+        ("liquidity_coupled_wm_xl", "LiquidityCoupledWorldForecaster-XL (1.85M)", "#10b981"),
+        ("orderflow_transformer", "OrderFlowTransformerForecaster (558k)", "#7c3aed"),
+        ("orderflow_mlp", "OrderFlowMLPForecaster (191k)", "#2563eb"),
     ]
+    specs = [s for s in specs if s[0] in models]
 
     # Panel A: Directional Accuracy across horizons H=10, 25, 50, 100
     out.append(f'<rect x="{x0}" y="{top}" width="{pw}" height="{ph}" fill="#f9fafb" stroke="#d1d5db"/>')
@@ -184,8 +199,8 @@ def plot_horizon_and_pnl_svg() -> None:
             f'<text x="{xp:.1f}" y="{top + ph + 18}" font-size="11" text-anchor="middle" fill="#6b7280">{lbl}</text>'
         )
 
-    lo_a, hi_a = 42.0, 62.0
-    for v in (42, 46, 50, 54, 58, 62):
+    lo_a, hi_a = 45.0, 56.0
+    for v in (46, 48, 50, 52, 54, 56):
         yp = top + ph - ((v - lo_a) / (hi_a - lo_a)) * ph
         stroke = "#9ca3af" if v == 50 else "#e5e7eb"
         dash = ' stroke-dasharray="4 3"' if v == 50 else ""
@@ -201,56 +216,78 @@ def plot_horizon_and_pnl_svg() -> None:
             yp = top + ph - ((val_clamped - lo_a) / (hi_a - lo_a)) * ph
             pts.append((xp, yp, val))
         path_str = " ".join(f"{px:.1f},{py:.1f}" for px, py, _ in pts)
-        out.append(f'<polyline points="{path_str}" fill="none" stroke="{col}" stroke-width="2.5"/>')
+        out.append(f'<polyline points="{path_str}" fill="none" stroke="{col}" stroke-width="2.4"/>')
         for px, py, val in pts:
-            out.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="4.2" fill="{col}"/>')
-            if mk == "liquidity_coupled_wm":
+            out.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="4.0" fill="{col}"/>')
+            if mk in ("Qwen2.5-1.5B_QLoRA", "liquidity_coupled_wm") and val >= 53.8:
                 out.append(
-                    f'<text x="{px:.1f}" y="{py - 8:.1f}" font-size="10.5" font-weight="600" text-anchor="middle" fill="{col}">{val:.1f}%</text>'
+                    f'<text x="{px:.1f}" y="{py - 8:.1f}" font-size="10" font-weight="600" text-anchor="middle" fill="{col}">{val:.2f}%</text>'
                 )
 
-    # Panel B: Cumulative PnL ($ USD) on $100k Notional
+    # Panel B: Smart Execution Timing Savings ($ USD across 383 institutional execution windows)
     out.append(f'<rect x="{x1}" y="{top}" width="{pw}" height="{ph}" fill="#f9fafb" stroke="#d1d5db"/>')
     out.append(
-        f'<text x="{x1}" y="{top - 10}" font-size="13" font-weight="600">B. Cumulative Trading Strategy Profit ($ USD on $100k Notional)</text>'
+        f'<text x="{x1}" y="{top - 10}" font-size="13" font-weight="600">B. Smart Execution Timing Savings ($ USD vs. Immediate Fill)</text>'
     )
-    bt_key = "trading_backtest_h50" if "trading_backtest_h50" in models[specs[0][0]] else "trading_backtest_h25"
-    all_curves = [models[mk][bt_key]["cum_net_pnl_curve_usd"] for mk, _, _ in specs]
-    n_steps = len(all_curves[0])
-    min_pnl = min(min(min(c) for c in all_curves), -500.0) * 1.1
-    max_pnl = max(max(max(c) for c in all_curves), 500.0) * 1.1
 
-    for k in range(5):
-        v = min_pnl + (max_pnl - min_pnl) * k / 4.0
-        yp = top + ph - ((v - min_pnl) / max(max_pnl - min_pnl, 1.0)) * ph
-        out.append(f'<line x1="{x1}" y1="{yp:.1f}" x2="{x1 + pw}" y2="{yp:.1f}" stroke="#e5e7eb"/>')
+    bar_specs = [
+        ("Qwen2.5-1.5B_QLoRA", "Qwen2.5-1.5B QLoRA + TickLens", "#0f766e"),
+        ("liquidity_coupled_wm_xl", "LiquidityCoupledWM-XL (1.85M)", "#10b981"),
+        ("liquidity_coupled_wm", "LiquidityCoupledWM (203k)", "#059669"),
+        ("Qwen2.5-0.5B_LoRA", "Qwen2.5-0.5B LoRA + TickLens", "#0284c7"),
+        ("orderflow_mlp_xl", "OrderFlowMLP-XL (1.60M)", "#60a5fa"),
+        ("orderflow_transformer", "OrderFlowTransformer (558k)", "#7c3aed"),
+        ("orderflow_mlp", "OrderFlowMLP (191k)", "#2563eb"),
+        ("orderflow_transformer_xl", "OrderFlowTransformer-XL (2.70M)", "#9333ea"),
+        ("momentum_reversion_ewma", "EWMA Reversion Baseline", "#6b7280"),
+    ]
+    bar_specs = [b for b in bar_specs if b[0] in models]
+
+    min_s, max_s = -4200.0, 6200.0
+    x_zero = x1 + ((0.0 - min_s) / (max_s - min_s)) * pw
+    for v in (-4000, -2000, 0, 2000, 4000, 6000):
+        xp = x1 + ((v - min_s) / (max_s - min_s)) * pw
+        stroke = "#6b7280" if v == 0 else "#e5e7eb"
+        dash = ' stroke-dasharray="4 3"' if v == 0 else ""
+        out.append(f'<line x1="{xp:.1f}" y1="{top}" x2="{xp:.1f}" y2="{top + ph}" stroke="{stroke}"{dash}/>')
         out.append(
-            f'<text x="{x1 - 8}" y="{yp + 4:.1f}" font-size="11" text-anchor="end" fill="#6b7280">${v:+,.0f}</text>'
+            f'<text x="{xp:.1f}" y="{top + ph + 18}" font-size="10.5" text-anchor="middle" fill="#6b7280">${v:+,.0f}</text>'
         )
-    y0_pnl = top + ph - ((0.0 - min_pnl) / max(max_pnl - min_pnl, 1.0)) * ph
-    out.append(
-        f'<line x1="{x1}" y1="{y0_pnl:.1f}" x2="{x1 + pw}" y2="{y0_pnl:.1f}" stroke="#9ca3af" stroke-dasharray="4 3"/>'
-    )
-    out.append(
-        f'<text x="{x1 + pw / 2}" y="{top + ph + 28}" font-size="11.5" text-anchor="middle" fill="#4b5563">Out-of-sample trading intervals (Aug 5 crash + Oct 2024)</text>'
-    )
 
-    for mk, _, col in specs:
-        curve = models[mk][bt_key]["cum_net_pnl_curve_usd"]
-        pts_b = []
-        for i, val in enumerate(curve):
-            xp = x1 + 12 + (i / max(n_steps - 1, 1)) * (pw - 24)
-            yp = top + ph - ((val - min_pnl) / max(max_pnl - min_pnl, 1.0)) * ph
-            pts_b.append((xp, yp))
-        path_b = " ".join(f"{px:.1f},{py:.1f}" for px, py in pts_b)
-        out.append(f'<polyline points="{path_b}" fill="none" stroke="{col}" stroke-width="2.4"/>')
+    row_h = ph / len(bar_specs)
+    for idx, (mk, lbl, col) in enumerate(bar_specs):
+        bt_key = "trading_backtest_h50" if "trading_backtest_h50" in models[mk] else "trading_backtest_h25"
+        sav = float(models[mk][bt_key]["execution_timing_total_savings_usd"])
+        bps = float(models[mk][bt_key]["execution_timing_mean_savings_bps"])
+        yc = top + (idx + 0.5) * row_h
+        bh_bar = min(20.0, row_h * 0.62)
+        xp = x1 + ((sav - min_s) / (max_s - min_s)) * pw
+        bx = min(x_zero, xp)
+        bw = max(2.0, abs(xp - x_zero))
+        out.append(
+            f'<rect x="{bx:.1f}" y="{yc - bh_bar / 2:.1f}" width="{bw:.1f}" height="{bh_bar:.1f}" fill="{col}" rx="2"/>'
+        )
+        if sav >= 0:
+            out.append(
+                f'<text x="{xp + 5:.1f}" y="{yc + 4:.1f}" font-size="10" font-weight="600" fill="#111827">${sav:+,.0f} ({bps:+.2f} bps)</text>'
+            )
+            out.append(
+                f'<text x="{x_zero - 6:.1f}" y="{yc + 4:.1f}" font-size="10" text-anchor="end" fill="#374151">{lbl}</text>'
+            )
+        else:
+            out.append(
+                f'<text x="{xp - 5:.1f}" y="{yc + 4:.1f}" font-size="10" font-weight="600" text-anchor="end" fill="#991b1b">${sav:+,.0f}</text>'
+            )
+            out.append(
+                f'<text x="{x_zero + 6:.1f}" y="{yc + 4:.1f}" font-size="10" fill="#374151">{lbl}</text>'
+            )
 
-    ly = H - 16
-    lx = 80
-    for _, lbl, col in specs:
-        out.append(f'<rect x="{lx}" y="{ly - 9}" width="15" height="5" fill="{col}"/>')
-        out.append(f'<text x="{lx + 20}" y="{ly - 3}" font-size="11.5">{lbl}</text>')
-        lx += 275
+    ly = H - 18
+    lx = 60
+    for _, lbl, col in specs[:5]:
+        out.append(f'<rect x="{lx}" y="{ly - 9}" width="14" height="5" fill="{col}"/>')
+        out.append(f'<text x="{lx + 18}" y="{ly - 3}" font-size="10.5">{lbl}</text>')
+        lx += 222
 
     out.append("</svg>")
     Path("assets/forecast_horizon_and_pnl.svg").write_text("\n".join(out), encoding="utf-8")
