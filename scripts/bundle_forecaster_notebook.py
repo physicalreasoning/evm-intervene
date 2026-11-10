@@ -83,7 +83,8 @@ def build_notebook() -> dict:
                 "print('[ok] Unpacked code + Mainnet data into /content/evm-intervene:', sorted(os.listdir('data')))\n",
                 "\n",
                 "subprocess.run([sys.executable, '-m', 'pip', 'uninstall', '-y', 'torchao'], check=False)\n",
-                "subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', '-e', '.', 'accelerate', 'bitsandbytes', 'peft', 'transformers', 'scipy'], check=True)\n",
+                "subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', '-U', 'accelerate', 'bitsandbytes', 'peft', 'transformers', 'scipy'], check=True)\n",
+                "sys.path.insert(0, '/content/evm-intervene/src')\n",
                 "print('[ok] Environment ready!')\n"
             ],
         },
