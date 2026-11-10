@@ -1,0 +1,1651 @@
+{
+  "seeds": [
+    101,
+    202,
+    303
+  ],
+  "epochs": 45,
+  "n_trajectories": 248,
+  "models": {
+    "conservation_wm_none": {
+      "family": "conservation_wm",
+      "params": 2549,
+      "obs_val_std_mse_mean": 0.5135,
+      "cliff_bps_mean": 50.82,
+      "mean_horizons": {
+        "h1": {
+          "horizon": 1,
+          "cum_price_rmse_bps": 4.13,
+          "cum_price_p95_bps": 1.47,
+          "cum_liquidity_rmse": 0.2135
+        },
+        "h2": {
+          "horizon": 2,
+          "cum_price_rmse_bps": 286.32,
+          "cum_price_p95_bps": 3.34,
+          "cum_liquidity_rmse": 0.2441
+        },
+        "h3": {
+          "horizon": 3,
+          "cum_price_rmse_bps": 309.64,
+          "cum_price_p95_bps": 6.03,
+          "cum_liquidity_rmse": 0.2953
+        },
+        "h5": {
+          "horizon": 5,
+          "cum_price_rmse_bps": 271.61,
+          "cum_price_p95_bps": 12.23,
+          "cum_liquidity_rmse": 0.314
+        },
+        "h8": {
+          "horizon": 8,
+          "cum_price_rmse_bps": 330.15,
+          "cum_price_p95_bps": 40.59,
+          "cum_liquidity_rmse": 0.4048
+        },
+        "h12": {
+          "horizon": 12,
+          "cum_price_rmse_bps": 565.88,
+          "cum_price_p95_bps": 212.55,
+          "cum_liquidity_rmse": 0.4842
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 2549,
+          "obs_val_std_mse": 0.5134529707122901,
+          "in_tick_bps": 0.43,
+          "cliff_bps": 52.09,
+          "cascade_bps": 2611.37,
+          "cliff_std_mse": 3.7097,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 4.13,
+              "cum_price_mae_bps": 0.91,
+              "cum_price_p95_bps": 1.61,
+              "cum_liquidity_rmse": 0.2134
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 286.38,
+              "cum_price_mae_bps": 27.12,
+              "cum_price_p95_bps": 3.57,
+              "cum_liquidity_rmse": 0.2305
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 313.5,
+              "cum_price_mae_bps": 35.65,
+              "cum_price_p95_bps": 6.36,
+              "cum_liquidity_rmse": 0.3004
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 311.02,
+              "cum_price_mae_bps": 38.35,
+              "cum_price_p95_bps": 14.7,
+              "cum_liquidity_rmse": 0.287
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 348.23,
+              "cum_price_mae_bps": 52.58,
+              "cum_price_p95_bps": 40.52,
+              "cum_liquidity_rmse": 0.4006
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 567.07,
+              "cum_price_mae_bps": 114.09,
+              "cum_price_p95_bps": 237.21,
+              "cum_liquidity_rmse": 0.4694
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 2549,
+          "obs_val_std_mse": 0.5132860271127352,
+          "in_tick_bps": 0.42,
+          "cliff_bps": 49.48,
+          "cascade_bps": 2560.22,
+          "cliff_std_mse": 3.357,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 4.12,
+              "cum_price_mae_bps": 0.88,
+              "cum_price_p95_bps": 1.52,
+              "cum_liquidity_rmse": 0.2098
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 285.88,
+              "cum_price_mae_bps": 26.89,
+              "cum_price_p95_bps": 3.4,
+              "cum_liquidity_rmse": 0.2539
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 306.55,
+              "cum_price_mae_bps": 34.29,
+              "cum_price_p95_bps": 5.73,
+              "cum_liquidity_rmse": 0.2898
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 254.38,
+              "cum_price_mae_bps": 31.55,
+              "cum_price_p95_bps": 9.43,
+              "cum_liquidity_rmse": 0.3374
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 299.6,
+              "cum_price_mae_bps": 45.88,
+              "cum_price_p95_bps": 36.29,
+              "cum_liquidity_rmse": 0.3882
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 565.43,
+              "cum_price_mae_bps": 113.29,
+              "cum_price_p95_bps": 200.32,
+              "cum_liquidity_rmse": 0.4933
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 2549,
+          "obs_val_std_mse": 0.513891419492015,
+          "in_tick_bps": 0.37,
+          "cliff_bps": 50.89,
+          "cascade_bps": 2520.74,
+          "cliff_std_mse": 3.5735,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 4.13,
+              "cum_price_mae_bps": 0.79,
+              "cum_price_p95_bps": 1.27,
+              "cum_liquidity_rmse": 0.2173
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 286.69,
+              "cum_price_mae_bps": 26.78,
+              "cum_price_p95_bps": 3.06,
+              "cum_liquidity_rmse": 0.2479
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 308.88,
+              "cum_price_mae_bps": 34.45,
+              "cum_price_p95_bps": 6.01,
+              "cum_liquidity_rmse": 0.2956
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 249.43,
+              "cum_price_mae_bps": 30.31,
+              "cum_price_p95_bps": 12.56,
+              "cum_liquidity_rmse": 0.3175
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 342.62,
+              "cum_price_mae_bps": 50.87,
+              "cum_price_p95_bps": 44.96,
+              "cum_liquidity_rmse": 0.4257
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 565.13,
+              "cum_price_mae_bps": 112.66,
+              "cum_price_p95_bps": 200.12,
+              "cum_liquidity_rmse": 0.4898
+            }
+          }
+        }
+      ]
+    },
+    "conservation_wm_no_bin_net": {
+      "family": "conservation_wm",
+      "params": 2549,
+      "obs_val_std_mse_mean": 1.0472,
+      "cliff_bps_mean": 34.0,
+      "mean_horizons": {
+        "h1": {
+          "horizon": 1,
+          "cum_price_rmse_bps": 4.85,
+          "cum_price_p95_bps": 3.33,
+          "cum_liquidity_rmse": 0.2257
+        },
+        "h2": {
+          "horizon": 2,
+          "cum_price_rmse_bps": 292.38,
+          "cum_price_p95_bps": 7.04,
+          "cum_liquidity_rmse": 0.3879
+        },
+        "h3": {
+          "horizon": 3,
+          "cum_price_rmse_bps": 359.58,
+          "cum_price_p95_bps": 9.45,
+          "cum_liquidity_rmse": 0.4155
+        },
+        "h5": {
+          "horizon": 5,
+          "cum_price_rmse_bps": 778.12,
+          "cum_price_p95_bps": 35.07,
+          "cum_liquidity_rmse": 0.6423
+        },
+        "h8": {
+          "horizon": 8,
+          "cum_price_rmse_bps": 1309.93,
+          "cum_price_p95_bps": 76.17,
+          "cum_liquidity_rmse": 0.6607
+        },
+        "h12": {
+          "horizon": 12,
+          "cum_price_rmse_bps": 2015.16,
+          "cum_price_p95_bps": 483.32,
+          "cum_liquidity_rmse": 0.7957
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 2549,
+          "obs_val_std_mse": 1.0476543950423336,
+          "in_tick_bps": 0.57,
+          "cliff_bps": 33.7,
+          "cascade_bps": 2188.37,
+          "cliff_std_mse": 2.0532,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 4.84,
+              "cum_price_mae_bps": 1.56,
+              "cum_price_p95_bps": 3.3,
+              "cum_liquidity_rmse": 0.2254
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 292.36,
+              "cum_price_mae_bps": 28.74,
+              "cum_price_p95_bps": 6.95,
+              "cum_liquidity_rmse": 0.3879
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 359.56,
+              "cum_price_mae_bps": 43.93,
+              "cum_price_p95_bps": 9.36,
+              "cum_liquidity_rmse": 0.4151
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 777.82,
+              "cum_price_mae_bps": 73.29,
+              "cum_price_p95_bps": 35.19,
+              "cum_liquidity_rmse": 0.6434
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 1303.84,
+              "cum_price_mae_bps": 130.03,
+              "cum_price_p95_bps": 69.2,
+              "cum_liquidity_rmse": 0.6448
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 1811.59,
+              "cum_price_mae_bps": 226.68,
+              "cum_price_p95_bps": 452.75,
+              "cum_liquidity_rmse": 0.7209
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 2549,
+          "obs_val_std_mse": 1.0466272490781476,
+          "in_tick_bps": 0.59,
+          "cliff_bps": 34.35,
+          "cascade_bps": 2195.69,
+          "cliff_std_mse": 2.1234,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 4.86,
+              "cum_price_mae_bps": 1.58,
+              "cum_price_p95_bps": 3.37,
+              "cum_liquidity_rmse": 0.2261
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 292.41,
+              "cum_price_mae_bps": 28.79,
+              "cum_price_p95_bps": 7.14,
+              "cum_liquidity_rmse": 0.388
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 359.6,
+              "cum_price_mae_bps": 43.97,
+              "cum_price_p95_bps": 9.56,
+              "cum_liquidity_rmse": 0.4157
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 778.46,
+              "cum_price_mae_bps": 73.9,
+              "cum_price_p95_bps": 34.93,
+              "cum_liquidity_rmse": 0.6393
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 1316.17,
+              "cum_price_mae_bps": 132.36,
+              "cum_price_p95_bps": 90.24,
+              "cum_liquidity_rmse": 0.658
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 2120.72,
+              "cum_price_mae_bps": 295.03,
+              "cum_price_p95_bps": 444.02,
+              "cum_liquidity_rmse": 0.8162
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 2549,
+          "obs_val_std_mse": 1.0473189023216896,
+          "in_tick_bps": 0.58,
+          "cliff_bps": 33.94,
+          "cascade_bps": 2191.08,
+          "cliff_std_mse": 2.0788,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 4.84,
+              "cum_price_mae_bps": 1.57,
+              "cum_price_p95_bps": 3.32,
+              "cum_liquidity_rmse": 0.2256
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 292.38,
+              "cum_price_mae_bps": 28.76,
+              "cum_price_p95_bps": 7.02,
+              "cum_liquidity_rmse": 0.3879
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 359.58,
+              "cum_price_mae_bps": 43.95,
+              "cum_price_p95_bps": 9.44,
+              "cum_liquidity_rmse": 0.4156
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 778.08,
+              "cum_price_mae_bps": 73.55,
+              "cum_price_p95_bps": 35.09,
+              "cum_liquidity_rmse": 0.6443
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 1309.79,
+              "cum_price_mae_bps": 130.67,
+              "cum_price_p95_bps": 69.06,
+              "cum_liquidity_rmse": 0.6794
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 2113.17,
+              "cum_price_mae_bps": 296.6,
+              "cum_price_p95_bps": 553.19,
+              "cum_liquidity_rmse": 0.8499
+            }
+          }
+        }
+      ]
+    },
+    "mlp_M_1.5M": {
+      "family": "mlp_direct",
+      "params": 3367043,
+      "obs_val_std_mse_mean": 0.1827,
+      "cliff_bps_mean": 199.68,
+      "mean_horizons": {
+        "h1": {
+          "horizon": 1,
+          "cum_price_rmse_bps": 19.14,
+          "cum_price_p95_bps": 42.34,
+          "cum_liquidity_rmse": 0.4217
+        },
+        "h2": {
+          "horizon": 2,
+          "cum_price_rmse_bps": 301.57,
+          "cum_price_p95_bps": 85.09,
+          "cum_liquidity_rmse": 0.7945
+        },
+        "h3": {
+          "horizon": 3,
+          "cum_price_rmse_bps": 370.79,
+          "cum_price_p95_bps": 115.68,
+          "cum_liquidity_rmse": 1.027
+        },
+        "h5": {
+          "horizon": 5,
+          "cum_price_rmse_bps": 379.03,
+          "cum_price_p95_bps": 188.75,
+          "cum_liquidity_rmse": 1.4941
+        },
+        "h8": {
+          "horizon": 8,
+          "cum_price_rmse_bps": 468.67,
+          "cum_price_p95_bps": 301.03,
+          "cum_liquidity_rmse": 2.2505
+        },
+        "h12": {
+          "horizon": 12,
+          "cum_price_rmse_bps": 702.91,
+          "cum_price_p95_bps": 562.91,
+          "cum_liquidity_rmse": 3.2528
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 3367043,
+          "obs_val_std_mse": 0.18569253151141296,
+          "in_tick_bps": 15.48,
+          "cliff_bps": 201.96,
+          "cascade_bps": 4107.87,
+          "cliff_std_mse": 64.0451,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 26.68,
+              "cum_price_mae_bps": 14.63,
+              "cum_price_p95_bps": 62.22,
+              "cum_liquidity_rmse": 0.4079
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 305.53,
+              "cum_price_mae_bps": 54.38,
+              "cum_price_p95_bps": 126.24,
+              "cum_liquidity_rmse": 0.7406
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 377.6,
+              "cum_price_mae_bps": 78.13,
+              "cum_price_p95_bps": 171.66,
+              "cum_liquidity_rmse": 0.9308
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 392.39,
+              "cum_price_mae_bps": 102.41,
+              "cum_price_p95_bps": 267.1,
+              "cum_liquidity_rmse": 1.2988
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 494.39,
+              "cum_price_mae_bps": 151.93,
+              "cum_price_p95_bps": 435.53,
+              "cum_liquidity_rmse": 1.848
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 750.99,
+              "cum_price_mae_bps": 253.83,
+              "cum_price_p95_bps": 810.29,
+              "cum_liquidity_rmse": 2.5741
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 3367043,
+          "obs_val_std_mse": 0.17829745282582846,
+          "in_tick_bps": 6.59,
+          "cliff_bps": 200.63,
+          "cascade_bps": 4087.2,
+          "cliff_std_mse": 64.6303,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 13.82,
+              "cum_price_mae_bps": 6.87,
+              "cum_price_p95_bps": 27.05,
+              "cum_liquidity_rmse": 0.4567
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 300.63,
+              "cum_price_mae_bps": 38.53,
+              "cum_price_p95_bps": 52.45,
+              "cum_liquidity_rmse": 0.9342
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 368.85,
+              "cum_price_mae_bps": 53.98,
+              "cum_price_p95_bps": 59.51,
+              "cum_liquidity_rmse": 1.2767
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 373.15,
+              "cum_price_mae_bps": 64.39,
+              "cum_price_p95_bps": 101.84,
+              "cum_liquidity_rmse": 1.9221
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 457.42,
+              "cum_price_mae_bps": 100.25,
+              "cum_price_p95_bps": 185.18,
+              "cum_liquidity_rmse": 2.9865
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 679.01,
+              "cum_price_mae_bps": 184.73,
+              "cum_price_p95_bps": 464.85,
+              "cum_liquidity_rmse": 4.3958
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 3367043,
+          "obs_val_std_mse": 0.18406223839065072,
+          "in_tick_bps": 15.78,
+          "cliff_bps": 196.44,
+          "cascade_bps": 4077.47,
+          "cliff_std_mse": 64.9027,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 16.93,
+              "cum_price_mae_bps": 8.55,
+              "cum_price_p95_bps": 37.76,
+              "cum_liquidity_rmse": 0.4005
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 298.54,
+              "cum_price_mae_bps": 42.7,
+              "cum_price_p95_bps": 76.59,
+              "cum_liquidity_rmse": 0.7087
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 365.92,
+              "cum_price_mae_bps": 62.37,
+              "cum_price_p95_bps": 115.86,
+              "cum_liquidity_rmse": 0.8735
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 371.56,
+              "cum_price_mae_bps": 77.21,
+              "cum_price_p95_bps": 197.32,
+              "cum_liquidity_rmse": 1.2614
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 454.2,
+              "cum_price_mae_bps": 112.06,
+              "cum_price_p95_bps": 282.38,
+              "cum_liquidity_rmse": 1.9169
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 678.74,
+              "cum_price_mae_bps": 197.97,
+              "cum_price_p95_bps": 413.6,
+              "cum_liquidity_rmse": 2.7884
+            }
+          }
+        }
+      ]
+    },
+    "mlp_L_8M": {
+      "family": "mlp_direct",
+      "params": 28540419,
+      "obs_val_std_mse_mean": 0.1833,
+      "cliff_bps_mean": 200.89,
+      "mean_horizons": {
+        "h1": {
+          "horizon": 1,
+          "cum_price_rmse_bps": 13.02,
+          "cum_price_p95_bps": 32.23,
+          "cum_liquidity_rmse": 0.3535
+        },
+        "h2": {
+          "horizon": 2,
+          "cum_price_rmse_bps": 296.86,
+          "cum_price_p95_bps": 56.45,
+          "cum_liquidity_rmse": 0.6285
+        },
+        "h3": {
+          "horizon": 3,
+          "cum_price_rmse_bps": 362.97,
+          "cum_price_p95_bps": 78.07,
+          "cum_liquidity_rmse": 0.7375
+        },
+        "h5": {
+          "horizon": 5,
+          "cum_price_rmse_bps": 366.12,
+          "cum_price_p95_bps": 133.44,
+          "cum_liquidity_rmse": 0.97
+        },
+        "h8": {
+          "horizon": 8,
+          "cum_price_rmse_bps": 445.01,
+          "cum_price_p95_bps": 236.2,
+          "cum_liquidity_rmse": 1.3475
+        },
+        "h12": {
+          "horizon": 12,
+          "cum_price_rmse_bps": 664.32,
+          "cum_price_p95_bps": 454.88,
+          "cum_liquidity_rmse": 1.8629
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 28540419,
+          "obs_val_std_mse": 0.18813684870291633,
+          "in_tick_bps": 6.16,
+          "cliff_bps": 198.17,
+          "cascade_bps": 4086.19,
+          "cliff_std_mse": 61.9394,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 12.5,
+              "cum_price_mae_bps": 6.45,
+              "cum_price_p95_bps": 28.43,
+              "cum_liquidity_rmse": 0.3517
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 298.24,
+              "cum_price_mae_bps": 38.25,
+              "cum_price_p95_bps": 48.3,
+              "cum_liquidity_rmse": 0.5937
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 365.25,
+              "cum_price_mae_bps": 53.53,
+              "cum_price_p95_bps": 57.95,
+              "cum_liquidity_rmse": 0.6731
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 369.06,
+              "cum_price_mae_bps": 62.79,
+              "cum_price_p95_bps": 102.86,
+              "cum_liquidity_rmse": 0.8566
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 453.67,
+              "cum_price_mae_bps": 97.78,
+              "cum_price_p95_bps": 191.89,
+              "cum_liquidity_rmse": 1.1402
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 683.61,
+              "cum_price_mae_bps": 178.21,
+              "cum_price_p95_bps": 403.82,
+              "cum_liquidity_rmse": 1.5335
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 28540419,
+          "obs_val_std_mse": 0.17825027009212951,
+          "in_tick_bps": 11.07,
+          "cliff_bps": 202.4,
+          "cascade_bps": 4065.09,
+          "cliff_std_mse": 65.8109,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 12.12,
+              "cum_price_mae_bps": 6.29,
+              "cum_price_p95_bps": 33.99,
+              "cum_liquidity_rmse": 0.3587
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 291.78,
+              "cum_price_mae_bps": 38.22,
+              "cum_price_p95_bps": 64.64,
+              "cum_liquidity_rmse": 0.6543
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 354.58,
+              "cum_price_mae_bps": 57.95,
+              "cum_price_p95_bps": 105.24,
+              "cum_liquidity_rmse": 0.8048
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 354.73,
+              "cum_price_mae_bps": 72.36,
+              "cum_price_p95_bps": 170.26,
+              "cum_liquidity_rmse": 1.0821
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 423.11,
+              "cum_price_mae_bps": 107.59,
+              "cum_price_p95_bps": 281.13,
+              "cum_liquidity_rmse": 1.5542
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 622.88,
+              "cum_price_mae_bps": 189.58,
+              "cum_price_p95_bps": 533.46,
+              "cum_liquidity_rmse": 2.1678
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 28540419,
+          "obs_val_std_mse": 0.1836277159831706,
+          "in_tick_bps": 9.63,
+          "cliff_bps": 202.1,
+          "cascade_bps": 4090.53,
+          "cliff_std_mse": 64.6209,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 14.45,
+              "cum_price_mae_bps": 7.72,
+              "cum_price_p95_bps": 34.28,
+              "cum_liquidity_rmse": 0.3501
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 300.57,
+              "cum_price_mae_bps": 40.76,
+              "cum_price_p95_bps": 56.4,
+              "cum_liquidity_rmse": 0.6375
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 369.08,
+              "cum_price_mae_bps": 58.97,
+              "cum_price_p95_bps": 71.01,
+              "cum_liquidity_rmse": 0.7346
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 374.57,
+              "cum_price_mae_bps": 71.61,
+              "cum_price_p95_bps": 127.19,
+              "cum_liquidity_rmse": 0.9712
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 458.24,
+              "cum_price_mae_bps": 109.57,
+              "cum_price_p95_bps": 235.58,
+              "cum_liquidity_rmse": 1.3482
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 686.47,
+              "cum_price_mae_bps": 192.21,
+              "cum_price_p95_bps": 427.35,
+              "cum_liquidity_rmse": 1.8875
+            }
+          }
+        }
+      ]
+    },
+    "transformer_M_1.5M": {
+      "family": "seq_transformer",
+      "params": 1795843,
+      "obs_val_std_mse_mean": 0.2247,
+      "cliff_bps_mean": 167.07,
+      "mean_horizons": {
+        "h1": {
+          "horizon": 1,
+          "cum_price_rmse_bps": 7.38,
+          "cum_price_p95_bps": 8.35,
+          "cum_liquidity_rmse": 0.3081
+        },
+        "h2": {
+          "horizon": 2,
+          "cum_price_rmse_bps": 294.63,
+          "cum_price_p95_bps": 16.97,
+          "cum_liquidity_rmse": 0.4698
+        },
+        "h3": {
+          "horizon": 3,
+          "cum_price_rmse_bps": 361.21,
+          "cum_price_p95_bps": 20.67,
+          "cum_liquidity_rmse": 0.475
+        },
+        "h5": {
+          "horizon": 5,
+          "cum_price_rmse_bps": 360.78,
+          "cum_price_p95_bps": 43.26,
+          "cum_liquidity_rmse": 0.5548
+        },
+        "h8": {
+          "horizon": 8,
+          "cum_price_rmse_bps": 431.79,
+          "cum_price_p95_bps": 73.2,
+          "cum_liquidity_rmse": 0.6539
+        },
+        "h12": {
+          "horizon": 12,
+          "cum_price_rmse_bps": 649.16,
+          "cum_price_p95_bps": 165.73,
+          "cum_liquidity_rmse": 0.7342
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 1795843,
+          "obs_val_std_mse": 0.22426843221020568,
+          "in_tick_bps": 1.33,
+          "cliff_bps": 155.74,
+          "cascade_bps": 3917.72,
+          "cliff_std_mse": 41.1696,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 5.53,
+              "cum_price_mae_bps": 1.82,
+              "cum_price_p95_bps": 4.95,
+              "cum_liquidity_rmse": 0.2555
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 293.67,
+              "cum_price_mae_bps": 30.82,
+              "cum_price_p95_bps": 14.2,
+              "cum_liquidity_rmse": 0.4416
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 360.06,
+              "cum_price_mae_bps": 45.61,
+              "cum_price_p95_bps": 18.71,
+              "cum_liquidity_rmse": 0.4542
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 359.27,
+              "cum_price_mae_bps": 50.22,
+              "cum_price_p95_bps": 39.03,
+              "cum_liquidity_rmse": 0.5216
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 430.24,
+              "cum_price_mae_bps": 73.41,
+              "cum_price_p95_bps": 75.61,
+              "cum_liquidity_rmse": 0.6036
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 648.48,
+              "cum_price_mae_bps": 146.88,
+              "cum_price_p95_bps": 150.0,
+              "cum_liquidity_rmse": 0.7275
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 1795843,
+          "obs_val_std_mse": 0.24714136198831965,
+          "in_tick_bps": 1.5,
+          "cliff_bps": 170.81,
+          "cascade_bps": 3964.23,
+          "cliff_std_mse": 48.9056,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 7.0,
+              "cum_price_mae_bps": 2.17,
+              "cum_price_p95_bps": 7.27,
+              "cum_liquidity_rmse": 0.2749
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 294.26,
+              "cum_price_mae_bps": 30.38,
+              "cum_price_p95_bps": 13.41,
+              "cum_liquidity_rmse": 0.3888
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 360.83,
+              "cum_price_mae_bps": 44.62,
+              "cum_price_p95_bps": 15.62,
+              "cum_liquidity_rmse": 0.3816
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 360.37,
+              "cum_price_mae_bps": 48.54,
+              "cum_price_p95_bps": 34.8,
+              "cum_liquidity_rmse": 0.4589
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 431.22,
+              "cum_price_mae_bps": 71.04,
+              "cum_price_p95_bps": 65.03,
+              "cum_liquidity_rmse": 0.5474
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 648.06,
+              "cum_price_mae_bps": 145.22,
+              "cum_price_p95_bps": 184.86,
+              "cum_liquidity_rmse": 0.6015
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 1795843,
+          "obs_val_std_mse": 0.20275658182886838,
+          "in_tick_bps": 2.92,
+          "cliff_bps": 174.67,
+          "cascade_bps": 3986.56,
+          "cliff_std_mse": 52.7461,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 9.6,
+              "cum_price_mae_bps": 3.71,
+              "cum_price_p95_bps": 12.84,
+              "cum_liquidity_rmse": 0.3938
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 295.97,
+              "cum_price_mae_bps": 33.76,
+              "cum_price_p95_bps": 23.3,
+              "cum_liquidity_rmse": 0.5789
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 362.75,
+              "cum_price_mae_bps": 48.82,
+              "cum_price_p95_bps": 27.68,
+              "cum_liquidity_rmse": 0.5893
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 362.7,
+              "cum_price_mae_bps": 54.38,
+              "cum_price_p95_bps": 55.96,
+              "cum_liquidity_rmse": 0.6839
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 433.9,
+              "cum_price_mae_bps": 76.92,
+              "cum_price_p95_bps": 78.97,
+              "cum_liquidity_rmse": 0.8107
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 650.94,
+              "cum_price_mae_bps": 146.91,
+              "cum_price_p95_bps": 162.34,
+              "cum_liquidity_rmse": 0.8736
+            }
+          }
+        }
+      ]
+    },
+    "transformer_L_8M": {
+      "family": "seq_transformer",
+      "params": 9234435,
+      "obs_val_std_mse_mean": 0.2413,
+      "cliff_bps_mean": 168.03,
+      "mean_horizons": {
+        "h1": {
+          "horizon": 1,
+          "cum_price_rmse_bps": 8.34,
+          "cum_price_p95_bps": 14.4,
+          "cum_liquidity_rmse": 0.4123
+        },
+        "h2": {
+          "horizon": 2,
+          "cum_price_rmse_bps": 294.99,
+          "cum_price_p95_bps": 25.99,
+          "cum_liquidity_rmse": 0.5989
+        },
+        "h3": {
+          "horizon": 3,
+          "cum_price_rmse_bps": 361.25,
+          "cum_price_p95_bps": 33.05,
+          "cum_liquidity_rmse": 0.617
+        },
+        "h5": {
+          "horizon": 5,
+          "cum_price_rmse_bps": 361.31,
+          "cum_price_p95_bps": 69.0,
+          "cum_liquidity_rmse": 0.6943
+        },
+        "h8": {
+          "horizon": 8,
+          "cum_price_rmse_bps": 432.99,
+          "cum_price_p95_bps": 111.07,
+          "cum_liquidity_rmse": 0.7959
+        },
+        "h12": {
+          "horizon": 12,
+          "cum_price_rmse_bps": 650.72,
+          "cum_price_p95_bps": 207.07,
+          "cum_liquidity_rmse": 0.8664
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 9234435,
+          "obs_val_std_mse": 0.23954338128989933,
+          "in_tick_bps": 3.58,
+          "cliff_bps": 175.92,
+          "cascade_bps": 3952.26,
+          "cliff_std_mse": 52.4291,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 8.04,
+              "cum_price_mae_bps": 4.9,
+              "cum_price_p95_bps": 14.0,
+              "cum_liquidity_rmse": 0.42
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 294.77,
+              "cum_price_mae_bps": 37.33,
+              "cum_price_p95_bps": 31.2,
+              "cum_liquidity_rmse": 0.626
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 360.71,
+              "cum_price_mae_bps": 53.35,
+              "cum_price_p95_bps": 45.09,
+              "cum_liquidity_rmse": 0.6433
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 360.27,
+              "cum_price_mae_bps": 63.87,
+              "cum_price_p95_bps": 80.52,
+              "cum_liquidity_rmse": 0.7313
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 430.57,
+              "cum_price_mae_bps": 95.8,
+              "cum_price_p95_bps": 135.83,
+              "cum_liquidity_rmse": 0.8354
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 642.39,
+              "cum_price_mae_bps": 177.78,
+              "cum_price_p95_bps": 217.53,
+              "cum_liquidity_rmse": 0.917
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 9234435,
+          "obs_val_std_mse": 0.2634749699573379,
+          "in_tick_bps": 2.82,
+          "cliff_bps": 156.95,
+          "cascade_bps": 3914.97,
+          "cliff_std_mse": 40.3788,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 8.98,
+              "cum_price_mae_bps": 3.99,
+              "cum_price_p95_bps": 14.54,
+              "cum_liquidity_rmse": 0.3984
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 295.11,
+              "cum_price_mae_bps": 33.79,
+              "cum_price_p95_bps": 22.12,
+              "cum_liquidity_rmse": 0.5812
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 361.56,
+              "cum_price_mae_bps": 48.28,
+              "cum_price_p95_bps": 24.76,
+              "cum_liquidity_rmse": 0.6032
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 361.8,
+              "cum_price_mae_bps": 55.66,
+              "cum_price_p95_bps": 66.99,
+              "cum_liquidity_rmse": 0.6969
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 433.73,
+              "cum_price_mae_bps": 81.8,
+              "cum_price_p95_bps": 97.26,
+              "cum_liquidity_rmse": 0.8169
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 653.79,
+              "cum_price_mae_bps": 161.34,
+              "cum_price_p95_bps": 194.05,
+              "cum_liquidity_rmse": 0.9122
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 9234435,
+          "obs_val_std_mse": 0.22087030017466644,
+          "in_tick_bps": 2.05,
+          "cliff_bps": 171.21,
+          "cascade_bps": 3952.09,
+          "cliff_std_mse": 49.1519,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 8.01,
+              "cum_price_mae_bps": 4.04,
+              "cum_price_p95_bps": 14.67,
+              "cum_liquidity_rmse": 0.4186
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 295.08,
+              "cum_price_mae_bps": 33.73,
+              "cum_price_p95_bps": 24.65,
+              "cum_liquidity_rmse": 0.5894
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 361.49,
+              "cum_price_mae_bps": 48.11,
+              "cum_price_p95_bps": 29.29,
+              "cum_liquidity_rmse": 0.6046
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 361.85,
+              "cum_price_mae_bps": 54.96,
+              "cum_price_p95_bps": 59.48,
+              "cum_liquidity_rmse": 0.6547
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 434.67,
+              "cum_price_mae_bps": 80.56,
+              "cum_price_p95_bps": 100.11,
+              "cum_liquidity_rmse": 0.7355
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 655.98,
+              "cum_price_mae_bps": 155.9,
+              "cum_price_p95_bps": 209.63,
+              "cum_liquidity_rmse": 0.7699
+            }
+          }
+        }
+      ]
+    },
+    "jepa_M_1.5M": {
+      "family": "latent_jepa",
+      "params": 985155,
+      "obs_val_std_mse_mean": 0.356,
+      "cliff_bps_mean": 184.54,
+      "mean_horizons": {
+        "h1": {
+          "horizon": 1,
+          "cum_price_rmse_bps": 11.1,
+          "cum_price_p95_bps": 21.26,
+          "cum_liquidity_rmse": 0.6695
+        },
+        "h2": {
+          "horizon": 2,
+          "cum_price_rmse_bps": 294.36,
+          "cum_price_p95_bps": 50.73,
+          "cum_liquidity_rmse": 1.1692
+        },
+        "h3": {
+          "horizon": 3,
+          "cum_price_rmse_bps": 361.3,
+          "cum_price_p95_bps": 67.29,
+          "cum_liquidity_rmse": 1.5323
+        },
+        "h5": {
+          "horizon": 5,
+          "cum_price_rmse_bps": 362.33,
+          "cum_price_p95_bps": 133.61,
+          "cum_liquidity_rmse": 2.181
+        },
+        "h8": {
+          "horizon": 8,
+          "cum_price_rmse_bps": 434.01,
+          "cum_price_p95_bps": 286.68,
+          "cum_liquidity_rmse": 2.9326
+        },
+        "h12": {
+          "horizon": 12,
+          "cum_price_rmse_bps": 645.39,
+          "cum_price_p95_bps": 553.23,
+          "cum_liquidity_rmse": 3.7364
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 985155,
+          "obs_val_std_mse": 0.34498330616618117,
+          "in_tick_bps": 5.15,
+          "cliff_bps": 182.89,
+          "cascade_bps": 3970.99,
+          "cliff_std_mse": 59.6033,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 11.18,
+              "cum_price_mae_bps": 6.28,
+              "cum_price_p95_bps": 23.08,
+              "cum_liquidity_rmse": 0.7778
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 292.9,
+              "cum_price_mae_bps": 42.69,
+              "cum_price_p95_bps": 59.02,
+              "cum_liquidity_rmse": 1.3914
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 359.52,
+              "cum_price_mae_bps": 61.18,
+              "cum_price_p95_bps": 84.06,
+              "cum_liquidity_rmse": 1.8866
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 360.35,
+              "cum_price_mae_bps": 84.79,
+              "cum_price_p95_bps": 170.86,
+              "cum_liquidity_rmse": 2.7574
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 430.06,
+              "cum_price_mae_bps": 143.42,
+              "cum_price_p95_bps": 372.27,
+              "cum_liquidity_rmse": 3.7299
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 634.25,
+              "cum_price_mae_bps": 256.89,
+              "cum_price_p95_bps": 764.38,
+              "cum_liquidity_rmse": 4.7106
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 985155,
+          "obs_val_std_mse": 0.3579592416066665,
+          "in_tick_bps": 3.9,
+          "cliff_bps": 184.76,
+          "cascade_bps": 3980.88,
+          "cliff_std_mse": 59.3358,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 10.51,
+              "cum_price_mae_bps": 6.36,
+              "cum_price_p95_bps": 19.47,
+              "cum_liquidity_rmse": 0.4136
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 295.43,
+              "cum_price_mae_bps": 38.67,
+              "cum_price_p95_bps": 38.27,
+              "cum_liquidity_rmse": 0.6262
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 362.28,
+              "cum_price_mae_bps": 54.59,
+              "cum_price_p95_bps": 48.4,
+              "cum_liquidity_rmse": 0.6875
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 362.94,
+              "cum_price_mae_bps": 62.98,
+              "cum_price_p95_bps": 78.9,
+              "cum_liquidity_rmse": 0.8498
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 437.0,
+              "cum_price_mae_bps": 94.47,
+              "cum_price_p95_bps": 149.97,
+              "cum_liquidity_rmse": 1.0881
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 656.1,
+              "cum_price_mae_bps": 174.41,
+              "cum_price_p95_bps": 257.98,
+              "cum_liquidity_rmse": 1.3725
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 985155,
+          "obs_val_std_mse": 0.36491512963431255,
+          "in_tick_bps": 5.23,
+          "cliff_bps": 185.97,
+          "cascade_bps": 3984.19,
+          "cliff_std_mse": 61.2798,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 11.62,
+              "cum_price_mae_bps": 6.48,
+              "cum_price_p95_bps": 21.23,
+              "cum_liquidity_rmse": 0.817
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 294.76,
+              "cum_price_mae_bps": 40.97,
+              "cum_price_p95_bps": 54.9,
+              "cum_liquidity_rmse": 1.4901
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 362.09,
+              "cum_price_mae_bps": 59.84,
+              "cum_price_p95_bps": 69.4,
+              "cum_liquidity_rmse": 2.0229
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 363.69,
+              "cum_price_mae_bps": 82.41,
+              "cum_price_p95_bps": 151.06,
+              "cum_liquidity_rmse": 2.9359
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 434.97,
+              "cum_price_mae_bps": 140.22,
+              "cum_price_p95_bps": 337.79,
+              "cum_liquidity_rmse": 3.9797
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 645.83,
+              "cum_price_mae_bps": 262.07,
+              "cum_price_p95_bps": 637.34,
+              "cum_liquidity_rmse": 5.1261
+            }
+          }
+        }
+      ]
+    },
+    "jepa_L_8M": {
+      "family": "latent_jepa",
+      "params": 1561155,
+      "obs_val_std_mse_mean": 0.3551,
+      "cliff_bps_mean": 188.05,
+      "mean_horizons": {
+        "h1": {
+          "horizon": 1,
+          "cum_price_rmse_bps": 12.79,
+          "cum_price_p95_bps": 25.23,
+          "cum_liquidity_rmse": 0.5935
+        },
+        "h2": {
+          "horizon": 2,
+          "cum_price_rmse_bps": 295.31,
+          "cum_price_p95_bps": 53.42,
+          "cum_liquidity_rmse": 0.9934
+        },
+        "h3": {
+          "horizon": 3,
+          "cum_price_rmse_bps": 362.43,
+          "cum_price_p95_bps": 69.18,
+          "cum_liquidity_rmse": 1.2678
+        },
+        "h5": {
+          "horizon": 5,
+          "cum_price_rmse_bps": 364.3,
+          "cum_price_p95_bps": 112.86,
+          "cum_liquidity_rmse": 1.7822
+        },
+        "h8": {
+          "horizon": 8,
+          "cum_price_rmse_bps": 437.99,
+          "cum_price_p95_bps": 233.09,
+          "cum_liquidity_rmse": 2.3984
+        },
+        "h12": {
+          "horizon": 12,
+          "cum_price_rmse_bps": 653.63,
+          "cum_price_p95_bps": 443.88,
+          "cum_liquidity_rmse": 3.0934
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 1561155,
+          "obs_val_std_mse": 0.3767138754460716,
+          "in_tick_bps": 7.54,
+          "cliff_bps": 192.34,
+          "cascade_bps": 4000.72,
+          "cliff_std_mse": 64.6708,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 13.12,
+              "cum_price_mae_bps": 9.57,
+              "cum_price_p95_bps": 26.34,
+              "cum_liquidity_rmse": 0.5106
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 292.78,
+              "cum_price_mae_bps": 48.13,
+              "cum_price_p95_bps": 58.2,
+              "cum_liquidity_rmse": 0.7501
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 358.9,
+              "cum_price_mae_bps": 65.89,
+              "cum_price_p95_bps": 72.22,
+              "cum_liquidity_rmse": 0.9025
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 359.09,
+              "cum_price_mae_bps": 85.18,
+              "cum_price_p95_bps": 126.72,
+              "cum_liquidity_rmse": 1.2135
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 426.17,
+              "cum_price_mae_bps": 137.59,
+              "cum_price_p95_bps": 222.45,
+              "cum_liquidity_rmse": 1.6877
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 624.69,
+              "cum_price_mae_bps": 237.6,
+              "cum_price_p95_bps": 373.96,
+              "cum_liquidity_rmse": 2.2524
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 1561155,
+          "obs_val_std_mse": 0.33049064639131714,
+          "in_tick_bps": 4.97,
+          "cliff_bps": 186.41,
+          "cascade_bps": 3987.95,
+          "cliff_std_mse": 60.5478,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 11.89,
+              "cum_price_mae_bps": 7.8,
+              "cum_price_p95_bps": 23.44,
+              "cum_liquidity_rmse": 0.386
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 295.96,
+              "cum_price_mae_bps": 41.95,
+              "cum_price_p95_bps": 52.23,
+              "cum_liquidity_rmse": 0.5673
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 362.97,
+              "cum_price_mae_bps": 58.75,
+              "cum_price_p95_bps": 66.43,
+              "cum_liquidity_rmse": 0.5936
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 364.24,
+              "cum_price_mae_bps": 69.77,
+              "cum_price_p95_bps": 91.26,
+              "cum_liquidity_rmse": 0.6652
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 440.07,
+              "cum_price_mae_bps": 105.1,
+              "cum_price_p95_bps": 166.51,
+              "cum_liquidity_rmse": 0.7707
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 663.16,
+              "cum_price_mae_bps": 190.15,
+              "cum_price_p95_bps": 313.61,
+              "cum_liquidity_rmse": 0.847
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 1561155,
+          "obs_val_std_mse": 0.3579565443776375,
+          "in_tick_bps": 6.15,
+          "cliff_bps": 185.41,
+          "cascade_bps": 3986.45,
+          "cliff_std_mse": 60.9692,
+          "horizons": {
+            "h1": {
+              "horizon": 1,
+              "cum_price_rmse_bps": 13.36,
+              "cum_price_mae_bps": 8.53,
+              "cum_price_p95_bps": 25.9,
+              "cum_liquidity_rmse": 0.884
+            },
+            "h2": {
+              "horizon": 2,
+              "cum_price_rmse_bps": 297.18,
+              "cum_price_mae_bps": 42.76,
+              "cum_price_p95_bps": 49.82,
+              "cum_liquidity_rmse": 1.6629
+            },
+            "h3": {
+              "horizon": 3,
+              "cum_price_rmse_bps": 365.43,
+              "cum_price_mae_bps": 62.32,
+              "cum_price_p95_bps": 68.9,
+              "cum_liquidity_rmse": 2.3073
+            },
+            "h5": {
+              "horizon": 5,
+              "cum_price_rmse_bps": 369.56,
+              "cum_price_mae_bps": 82.21,
+              "cum_price_p95_bps": 120.59,
+              "cum_liquidity_rmse": 3.468
+            },
+            "h8": {
+              "horizon": 8,
+              "cum_price_rmse_bps": 447.72,
+              "cum_price_mae_bps": 134.23,
+              "cum_price_p95_bps": 310.32,
+              "cum_liquidity_rmse": 4.7368
+            },
+            "h12": {
+              "horizon": 12,
+              "cum_price_rmse_bps": 673.03,
+              "cum_price_mae_bps": 253.54,
+              "cum_price_p95_bps": 644.06,
+              "cum_liquidity_rmse": 6.1808
+            }
+          }
+        }
+      ]
+    }
+  }
+}

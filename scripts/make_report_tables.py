@@ -1,3 +1,4 @@
+# ruff: noqa: E501
 """Print Markdown tables for README.md / FINDINGS.md directly from committed results JSON.
 
 Every number in the docs should come from this script, not be typed by hand.
@@ -146,6 +147,112 @@ def research_v2_tables() -> str:
     return "\n".join(lines)
 
 
+def heavy_suite_tables() -> str:
+    hs = RES / "heavy_suite"
+    lines: list[str] = []
+    if (hs / "llm_ladder.json").exists():
+        ldr = json.loads((hs / "llm_ladder.json").read_text(encoding="utf-8"))
+        lines += [
+            "## Full Foundation-Model Scaling Ladder (`results/heavy_suite/llm_ladder.json`)",
+            "",
+            "| Configuration | Backbone params | Trainable params | Obs val std-MSE | In-tick (bps) | Cliff RMSE (bps) | Cliff std-MSE | Rollout H=12 (bps) | Real Flow H=50 (bps) | Planner Viol % |",
+            "| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+        ]
+        runs_iter = ldr["runs"].values() if isinstance(ldr["runs"], dict) else ldr["runs"]
+        for r in runs_iter:
+            if "error" in r:
+                lines.append(
+                    f"| `{r['model_id']}` (r={r['lora_r']}) | — | — | OOM (22 GiB L4) | — | — | — | — | — | — |"
+                )
+                continue
+            tag = "random-init scratch" if r["random_init"] else f"pretrained (r={r['lora_r']})"
+            ro12 = r["rollout_horizons"]["h12"]["cum_price_rmse_bps"]
+            rf50 = r["real_flow_rollout"]["all_trajectories"]["h50"]
+            pv = r["planner_overall"]["violation_rate_pct"]
+            lines.append(
+                f"| `{r['model_id']}` {tag} | {r['backbone_params']:,} | {r['trainable_params']:,} | "
+                f"{r['obs_val_std_mse']:.4f} | {r['in_tick_bps']:.2f} | **{r['cliff_bps']:.2f}** | "
+                f"{r['cliff_std_mse']:.2f} | {ro12:.2f} | "
+                f"{rf50['price_rmse_bps']:.2f} ({rf50['directional_acc_pct']:.1f}%) | "
+                f"{pv:.2f}% |"
+            )
+        lines.append("")
+
+    if (hs / "planner.json").exists():
+        pl = json.loads((hs / "planner.json").read_text(encoding="utf-8"))
+        lines += [
+            "## Downstream Risk-Constrained Execution Planner (`results/heavy_suite/planner.json`)",
+            "",
+            "| Model | Params | Mean Viol Rate | Viol @ B=25 bps | Overshoot RMSE (bps) | Sizing Rel Err | Mean Excess Slippage (USD) |",
+            "| :--- | ---: | ---: | ---: | ---: | ---: | ---: |",
+        ]
+        for k, v in pl["models"].items():
+            m = v["overall_mean"]
+            b25 = v["by_budget_mean"]["B_25bps"]["violation_rate_pct"]
+            lines.append(
+                f"| `{k}` | {v['params']:,} | {m['violation_rate_pct']:.2f}% | {b25:.2f}% | "
+                f"{m['overshoot_rmse_bps']:.2f} | {m['sizing_rel_err_pct']:.2f}% | "
+                f"\\${m['mean_excess_slippage_usd']:,.2f} |"
+            )
+        lines.append("")
+
+    if (hs / "rollout.json").exists():
+        ro = json.loads((hs / "rollout.json").read_text(encoding="utf-8"))
+        lines += [
+            "## 12-Step Autoregressive Counterfactual Rollouts (`results/heavy_suite/rollout.json`)",
+            "",
+            "| Model | Params | H=1 RMSE (bps) | H=3 RMSE (bps) | H=5 RMSE (bps) | H=8 RMSE (bps) | H=12 RMSE (bps) | H=12 p95 (bps) | H=12 Liq RMSE |",
+            "| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+        ]
+        for k, v in ro["models"].items():
+            by_h = v["mean_horizons"]
+            lines.append(
+                f"| `{k}` | {v['params']:,} | {by_h['h1']['cum_price_rmse_bps']:.2f} | "
+                f"{by_h['h3']['cum_price_rmse_bps']:.2f} | {by_h['h5']['cum_price_rmse_bps']:.2f} | "
+                f"{by_h['h8']['cum_price_rmse_bps']:.2f} | {by_h['h12']['cum_price_rmse_bps']:.2f} | "
+                f"{by_h['h12']['cum_price_p95_bps']:.2f} | {by_h['h12']['cum_liquidity_rmse']:.4f} |"
+            )
+        lines.append("")
+
+    if (hs / "forecast.json").exists():
+        fc = json.loads((hs / "forecast.json").read_text(encoding="utf-8"))
+        p1 = fc["real_flow_rollout_models"]
+        lines += [
+            "## Part 1: 50-Swap Real Mainnet Order-Flow Trajectory Forecasting (`results/heavy_suite/forecast.json`)",
+            "",
+            "| Model | H=1 RMSE (bps) | H=10 RMSE (bps) | H=20 RMSE (bps) | H=35 RMSE (bps) | H=50 RMSE (bps) | H=50 Dir Acc | H=50 Liq RMSE |",
+            "| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+        ]
+        for k, v in p1.items():
+            bh = v["all_trajectories_mean"]
+            lines.append(
+                f"| `{k}` | {bh['h1']['price_rmse_bps']:.2f} | {bh['h10']['price_rmse_bps']:.2f} | "
+                f"{bh['h20']['price_rmse_bps']:.2f} | {bh['h35']['price_rmse_bps']:.2f} | "
+                f"{bh['h50']['price_rmse_bps']:.2f} | {bh['h50']['directional_acc_pct']:.2f}% | "
+                f"{bh['h50']['liquidity_rmse']:.4f} |"
+            )
+        p2 = fc["unconditional_volatility_forecast"]
+        lines += [
+            "",
+            "## Part 2: Unconditional 20-Swap Volatility, Excursion & Liquidity-Depletion Forecasting (`results/heavy_suite/forecast.json`)",
+            "",
+            "| Forecaster | Vol RMSE (bps) | Spearman Vol | Excursion RMSE (bps) | Spearman Excursion | Liq-Depletion RMSE | Spearman Liq-Depletion |",
+            "| :--- | ---: | ---: | ---: | ---: | ---: | ---: |",
+        ]
+        for k, m in [
+            ("ewma_persistence", p2["ewma_persistence"]),
+            ("history_only_forecaster", p2["history_only_forecaster_mean"]),
+            ("spatial_ticklens_forecaster", p2["spatial_ticklens_forecaster_mean"]),
+        ]:
+            lines.append(
+                f"| `{k}` | {m['vol_rmse_bps']:.2f} | {m['spearman_vol']:+.4f} | "
+                f"{m['excursion_rmse_bps']:.2f} | {m['spearman_excursion']:+.4f} | "
+                f"{m['liq_depletion_rmse']:.4f} | {m['spearman_liq_depletion']:+.4f} |"
+            )
+        lines.append("")
+    return "\n".join(lines)
+
+
 def main() -> None:
     print("## Sensitivity arm (crash-exposed training)\n")
     print(intervention_arm_table("sensitivity_crash_exposed"))
@@ -154,6 +261,7 @@ def main() -> None:
     print("\n## Scaling sweep\n")
     print(scaling_table())
     print("\n" + research_v2_tables())
+    print("\n" + heavy_suite_tables())
 
 
 if __name__ == "__main__":

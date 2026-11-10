@@ -2,7 +2,7 @@
 <style>text{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;fill:#1f2937}</style>
 <rect width="1120" height="480" fill="#ffffff"/>
 <text x="75" y="34" font-size="18" font-weight="700">Parameter scaling (2.5k to 7.1B): observational fit improves, cliff error plateaus</text>
-<text x="75" y="56" font-size="12" fill="#4b5563">1,488 held-out counterfactual interventions across 62 checkpoints · scratch models (3 seeds) + Qwen2.5 3B/7B QLoRA</text>
+<text x="75" y="56" font-size="12" fill="#4b5563">1,488 held-out counterfactual interventions across 62 checkpoints · scratch models (3 seeds) + Qwen2.5 0.5B/1.5B/3B/7B LoRA/QLoRA</text>
 <rect x="75" y="82" width="430" height="330" fill="#f9fafb" stroke="#d1d5db"/>
 <text x="75" y="72" font-size="13" font-weight="600">A. Observational validation loss (std-MSE)</text>
 <line x1="126.3" y1="82" x2="126.3" y2="412" stroke="#e5e7eb"/>
@@ -47,9 +47,13 @@
 <circle cx="282.6" cy="204.8" r="4.0" fill="#d97706"/>
 <circle cx="327.5" cy="223.2" r="4.0" fill="#d97706"/>
 <circle cx="381.9" cy="213.6" r="4.0" fill="#d97706"/>
-<polyline points="468.3,287.7 490.7,292.8" fill="none" stroke="#dc2626" stroke-width="2.4"/>
-<circle cx="468.3" cy="287.7" r="5.0" fill="#dc2626"/>
-<circle cx="490.7" cy="292.8" r="5.0" fill="#dc2626"/>
+<polyline points="418.7,291.5 449.5,303.4 468.3,291.0 490.7,289.6 490.7,293.0" fill="none" stroke="#dc2626" stroke-width="2.4"/>
+<circle cx="418.7" cy="291.5" r="5.0" fill="#dc2626"/>
+<circle cx="449.5" cy="303.4" r="5.0" fill="#dc2626"/>
+<circle cx="468.3" cy="291.0" r="5.0" fill="#dc2626"/>
+<circle cx="490.7" cy="289.6" r="5.0" fill="#dc2626"/>
+<circle cx="490.7" cy="293.0" r="5.0" fill="#dc2626"/>
+<circle cx="418.7" cy="298.2" r="5.5" fill="#ffffff" stroke="#dc2626" stroke-width="2.2"/>
 <rect x="615" y="82" width="430" height="330" fill="#f9fafb" stroke="#d1d5db"/>
 <text x="615" y="72" font-size="13" font-weight="600">B. Held-out counterfactual cliff RMSE (bps)</text>
 <line x1="666.3" y1="82" x2="666.3" y2="412" stroke="#e5e7eb"/>
@@ -94,17 +98,21 @@
 <circle cx="822.6" cy="151.1" r="4.0" fill="#d97706"/>
 <circle cx="867.5" cy="153.1" r="4.0" fill="#d97706"/>
 <circle cx="921.9" cy="152.4" r="4.0" fill="#d97706"/>
-<polyline points="1008.3,176.0 1030.7,161.0" fill="none" stroke="#dc2626" stroke-width="2.4"/>
-<circle cx="1008.3" cy="176.0" r="5.0" fill="#dc2626"/>
-<circle cx="1030.7" cy="161.0" r="5.0" fill="#dc2626"/>
-<rect x="75" y="451" width="14" height="4" fill="#2563eb"/>
-<text x="95" y="457" font-size="11.5">Direct MLP (247k - 170M)</text>
-<rect x="320" y="451" width="14" height="4" fill="#7c3aed"/>
-<text x="340" y="457" font-size="11.5">Cross-attention Transformer (184k - 70M)</text>
-<rect x="565" y="451" width="14" height="4" fill="#d97706"/>
-<text x="585" y="457" font-size="11.5">Latent JEPA (340k - 127M)</text>
-<rect x="810" y="451" width="14" height="4" fill="#dc2626"/>
-<text x="830" y="457" font-size="11.5">Qwen2.5 QLoRA (3.1B - 7.1B)</text>
-<rect x="1055" y="451" width="14" height="4" fill="#059669"/>
-<text x="1075" y="457" font-size="11.5">conservation_wm (2.5k)</text>
+<polyline points="958.7,161.8 989.5,154.5 1008.3,178.2 1030.7,162.2 1030.7,154.1" fill="none" stroke="#dc2626" stroke-width="2.4"/>
+<circle cx="958.7" cy="161.8" r="5.0" fill="#dc2626"/>
+<circle cx="989.5" cy="154.5" r="5.0" fill="#dc2626"/>
+<circle cx="1008.3" cy="178.2" r="5.0" fill="#dc2626"/>
+<circle cx="1030.7" cy="162.2" r="5.0" fill="#dc2626"/>
+<circle cx="1030.7" cy="154.1" r="5.0" fill="#dc2626"/>
+<circle cx="958.7" cy="184.5" r="5.5" fill="#ffffff" stroke="#dc2626" stroke-width="2.2"/>
+<rect x="60" y="451" width="14" height="4" fill="#2563eb"/>
+<text x="78" y="457" font-size="11">Direct MLP (247k - 170M)</text>
+<rect x="298" y="451" width="14" height="4" fill="#7c3aed"/>
+<text x="316" y="457" font-size="11">Cross-attention Transformer (184k - 70M)</text>
+<rect x="536" y="451" width="14" height="4" fill="#d97706"/>
+<text x="554" y="457" font-size="11">Latent JEPA (340k - 127M)</text>
+<rect x="774" y="451" width="14" height="4" fill="#dc2626"/>
+<text x="792" y="457" font-size="11">Qwen2.5 LoRA/QLoRA (0.5B - 7.1B)</text>
+<rect x="1012" y="451" width="14" height="4" fill="#059669"/>
+<text x="1030" y="457" font-size="11">conservation_wm (2.5k)</text>
 </svg>

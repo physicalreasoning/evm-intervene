@@ -13,11 +13,15 @@ By pairing observational training on historical Mainnet swaps with an exact `uin
 
 1. **Observational Loss Does Not Rank Counterfactual Accuracy:** At checkpoints matched within `5%` of observational validation MSE on our crash-exposed benchmark (`train=8,809`, `val=2,378`, `interventions=936`, 5 seeds), `seq_transformer` (`162.00 bps`, `55.04` std-MSE) and `latent_jepa` (`159.66 bps`, `56.73` std-MSE) incur **`20x` higher counterfactual cliff std-MSE** than the `2,549`-parameter `ConservationIntegralWorldModel` (`41.86 bps`, `2.71` std-MSE; paired block-bootstrap gap `+52.28` `[+31.36, +75.91]`, Holm-Bonferroni $p = 0.0012$). Across all 20 runs, observational validation MSE is **negatively correlated** with counterfactual cliff RMSE (Spearman $\rho = -0.535$, $p = 0.0150$).
 2. **Brute-Force Parameter Scaling (`184k` $\to$ `170M`) Plateaus on Liquidity Cliffs:** Scaling `mlp_direct`, `seq_transformer`, and `latent_jepa` across four capacity tiers (`S_150k`, `M_1.5M`, `L_8M`, `XXL_85M`, up to `170,363,907` parameters; `train=13,148`, `val=2,755`, `interventions=1,488`, 3 seeds) lowers observational validation loss to `0.1794–0.2360` (vs `0.5136` for `conservation_wm`), yet counterfactual cliff RMSE remains trapped at **`165.09–207.22 bps`** vs **`50.83 bps`** for the `2,549`-parameter conservation model.
-3. **Pretrained `3B` and `7B` QLoRA Foundation Models Hit the Exact Same Structural Barrier:** Fine-tuning `Qwen/Qwen2.5-3B` (`3.09B` parameters, `8.02M` trainable) and `Qwen/Qwen2.5-7B` (`7.07B` parameters, `11.23M` trainable) via 4-bit QLoRA with a 34-token spatial `TickLens` state/action encoder achieves strong observational validation loss (`0.2260` and `0.2167`, beating the `0.6834` copy baseline by $>3\times$) and accurate in-tick execution (`1.73` and `2.06 bps`), yet stalls at **`164.50 bps`** (`48.57` std-MSE) and **`174.95 bps`** (`53.01` std-MSE) on Regime II liquidity cliffs.
+3. **Pretrained `0.5B`–`7B` LoRA/QLoRA Foundation Models Hit the Exact Same Structural Barrier:** Fine-tuning `Qwen/Qwen2.5-0.5B` (both pretrained and random-init scratch control), `Qwen/Qwen2.5-1.5B`, `Qwen/Qwen2.5-3B`, and `Qwen/Qwen2.5-7B` (`r=16` and high-rank `r=64`, `41.5M` trainable parameters) with a 34-token spatial `TickLens` state/action encoder achieves strong observational validation loss (`0.1975–0.2226`, beating the `0.6834` copy baseline by $>3\times$) and accurate in-tick execution (`1.12–2.68 bps`), yet stalls at **`158.54–179.75 bps`** (`44.89–55.79` std-MSE) on Regime II liquidity cliffs. Pretrained language/code weights provide zero counterfactual advantage over randomly initialized weights on the exact same `0.5B` architecture (`174.39 bps` vs `158.54 bps`).
 4. **Ablation and Coverage Diagnostics Isolate Sequential Reserve Integration:**
-   - Ablating the learned per-bin residual network (`no_bin_net`, leaving `4` scalar parameters over the raw `TickLens` profile) increases observational validation MSE (`0.5135 -> 1.0472`) while **reducing** counterfactual cliff error (`50.34 -> 34.00 bps`, `2.09` std-MSE), proving that unstructured residual capacity fits routine observational microstructure noise at the expense of out-of-distribution boundary accuracy.
+   - Ablating the learned per-bin residual network (`no_bin_net`, leaving `4` scalar parameters over the raw `TickLens` profile) increases observational validation MSE (`0.5135 -> 1.0472`) while **reducing** 1-step counterfactual cliff error (`50.34 -> 34.00 bps`, `2.09` std-MSE), proving that unstructured residual capacity fits routine observational microstructure noise at the expense of out-of-distribution boundary accuracy.
    - Ablating the `TickLens` spatial profile (`uniform_profile`) while keeping the sequential conservation loop degrades cliff RMSE from `50.34 bps` (`3.48` std-MSE) to `133.92 bps` (`27.07` std-MSE), confirming that both the spatial liquidity profile and the sequential conservation integral are necessary.
    - Augmenting training data with `+15%` (`+2,320`) explicit multi-tick cliff swaps improves all architectures, yet unstructured models still exhibit **`5.3x–5.9x` higher cliff RMSE (`133.27–147.32 bps` vs `24.93 bps`) and `30x–37x` higher std-MSE (`31.58–38.80` vs `1.05`)** because each block presents a distinct 32-bin `(ticks, liquidity_net)` step function that cannot be memorized across blocks.
+5. **Multi-Step Autoregressive Rollouts, 50-Swap Real Mainnet Forecasting, and Downstream Order Planning (`results/heavy_suite/`):**
+   - Over 12-step stress rollouts (`n=248`), the hybrid `conservation_wm_none` maintains the lowest cumulative price RMSE (`565.88 bps`, `liq_rmse = 0.4842`), whereas `no_bin_net` compounds liquidity errors (`2,015.16 bps`), demonstrating why both exact conservation structure and calibrated learned bin updates are required for multi-step dynamics.
+   - Over `250` held-out 50-swap real Mainnet trajectories, `conservation_wm_none` retains **`90.67%` directional accuracy at $H=50$ swaps (`116.64 bps` RMSE)** while scratch MLPs collapse to `56.80–57.47%` (`857.89–1,130.37 bps`). In unconditional 20-swap regime forecasting (`n=15,016`), adding the spatial `TickLens` profile boosts 20-swap liquidity-depletion rank correlation by **`7.3x`** ($\rho = +0.0198 \to +0.1440$).
+   - In a downstream risk-constrained execution planner (`620` sizing tasks across $B \in \{25, 50, 100, 200, 400\}\text{ bps}$), `conservation_wm_none` achieves a **`6.83%` budget violation rate** (`2.42%` at $B=25\text{ bps}$), **`6.47%` order-sizing error**, and **`\$5,802.92` mean excess slippage**, compared to **`23.01–34.52%` violation rates** and **`\$21,626.74–\$45,033.92` mean excess slippage** ($3.7\times\text{–}7.8\times$ higher financial loss) for unstructured neural world models.
 
 ---
 
@@ -121,16 +125,24 @@ A natural hypothesis is that `150k`-parameter models fail on multi-tick cliffs s
 
 Across all `39` scratch runs (including the `conservation_wm` anchor), Spearman correlation between observational MSE and cliff RMSE is $\rho = -0.512$ ($p = 0.0009$); across the `36` unstructured neural runs alone, $\rho = -0.380$ ($p = 0.0224$). Increasing parameter count by $69,000\times$ relative to `conservation_wm` improves observational MSE by $2.8\times$ (`0.5136 -> 0.1794`) while leaving counterfactual cliff error more than $3.2\times$ worse (`165.09–207.22 bps` vs `50.83 bps`).
 
-### 4.2 End-to-End QLoRA Fine-Tuning of Pretrained `3B` and `7B` LLMs
+### 4.2 Full Foundation-Model Scaling Ladder (`0.5B` $\to$ `7B` LoRA/QLoRA, `results/heavy_suite/llm_ladder.json`)
 
-To ensure a fair test of pretrained foundation models, [`scripts/run_research_v2.py`](scripts/run_research_v2.py) implements a structured 34-token spatial encoder (`TokenizedStateEncoder`: 1 pool-header token + 32 `TickLens` bin tokens with sinusoidal position embeddings + 1 swap-action token) feeding directly into a pretrained `Qwen2.5` causal Transformer backbone with LoRA adapters (`r=16, lora_alpha=32` on `q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj`), trained end-to-end with AdamW for 4 epochs (`batch_size=32`, cosine schedule):
+To ensure a comprehensive test of pretrained foundation models, [`scripts/run_heavy_suite.py`](scripts/run_heavy_suite.py) and [`scripts/run_research_v2.py`](scripts/run_research_v2.py) implement a structured 34-token spatial encoder (`TokenizedStateEncoder`: 1 pool-header token + 32 `TickLens` bin tokens with sinusoidal position embeddings + 1 swap-action token) feeding directly into `Qwen2.5` causal Transformer backbones (`0.5B` to `7B`) with LoRA/QLoRA adapters (`r=16, lora_alpha=32` and high-rank `r=64, lora_alpha=128` on `q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj`), plus a randomly initialized `Qwen2.5-0.5B` control (`AutoModelForCausalLM.from_config`) to isolate the effect of language/code pretraining:
 
-| Backbone | Backbone params | Trainable params | Obs val std-MSE | Beats copy (`0.6834`)? | In-tick RMSE (bps) | Cliff RMSE (bps) | Cliff std-MSE | Cascade RMSE (bps) |
-| :--- | ---: | ---: | ---: | :---: | ---: | ---: | ---: | ---: |
-| `Qwen/Qwen2.5-3B` (4-bit QLoRA) | 3,085,938,688 | 8,020,995 | 0.2260 | yes | 1.73 | 164.50 | 48.57 | 3,892.8 |
-| `Qwen/Qwen2.5-7B` (4-bit QLoRA) | 7,070,619,136 | 11,226,115 | 0.2167 | yes | 2.06 | 174.95 | 53.01 | 3,951.2 |
+| Configuration | Backbone params | Trainable params | Obs val std-MSE | In-tick (bps) | Cliff RMSE (bps) | Cliff std-MSE | Rollout H=12 (bps) | Real Flow H=50 (bps) | Planner Viol % |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `Qwen/Qwen2.5-0.5B` pretrained (r=16) | 494,032,768 | 2,446,851 | 0.2191 | 1.18 | **174.39** | 54.16 | 633.83 | 105.64 (80.8%) | 11.77% |
+| `Qwen/Qwen2.5-0.5B` random-init scratch | 494,032,768 | 2,446,851 | 0.2069 | 2.21 | **158.54** | 44.89 | 609.28 | 107.32 (80.0%) | 13.23% |
+| `Qwen/Qwen2.5-1.5B` pretrained (r=16) | 1,543,714,304 | 4,844,547 | 0.1975 | 2.68 | **179.50** | 55.79 | 623.77 | 148.96 (77.2%) | 21.45% |
+| `Qwen/Qwen2.5-3B` pretrained (r=16) | 3,085,938,688 | 8,020,995 | 0.2200 | 1.67 | **162.98** | 47.07 | 621.19 | 99.19 (78.8%) | 21.94% |
+| `Qwen/Qwen2.5-7B` pretrained (r=16) | 7,070,619,136 | 11,226,115 | 0.2163 | 1.12 | **179.75** | 53.48 | 625.22 | 106.80 (80.0%) | 14.68% |
+| `Qwen/Qwen2.5-7B` pretrained (r=64) | 7,070,619,136 | 41,503,747 | 0.2226 | 2.42 | **174.12** | 51.82 | 593.33 | 130.65 (81.2%) | 11.94% |
+| `Qwen/Qwen2.5-14B` (r=16) | — | — | OOM (22 GiB L4) | — | — | — | — | — | — |
 
-Both `Qwen2.5-3B` and `Qwen2.5-7B` converge cleanly on observational validation loss (`0.2260` and `0.2167`, beating the `0.6834` copy baseline by $>3\times$) and achieve `1.73–2.06 bps` RMSE on Regime I in-tick swaps. Yet on Regime II multi-tick cliffs, they plateau at **`164.50 bps`** and **`174.95 bps`** — virtually identical to the `165.09–180.99 bps` plateau of scratch `seq_transformer` models.
+Three conclusions follow directly from the foundation-model ladder:
+1. **Every Qwen2.5 configuration (`0.5B` $\to$ `7B`) converges cleanly on observational swaps** (`obs_val = 0.1975–0.2226`, beating the `0.6834` copy baseline by $>3\times$) and achieves `1.12–2.68 bps` RMSE on Regime I in-tick swaps.
+2. **Pretrained language/code priors confer zero counterfactual advantage over random initialization:** On the exact same `Qwen2.5-0.5B` architecture and 34-token spatial `TickLens` input, randomly initialized weights achieve slightly better observational loss (`0.2069` vs `0.2191`) and slightly lower cliff RMSE (`158.54 bps` vs `174.39 bps`) than pretrained weights.
+3. **Scaling backbone size (`0.5B` $\to$ `7B`) or quadrupling LoRA rank (`r=16` $\to$ `r=64`, `41.5M` trainable parameters) leaves Regime II cliff error flat (`162.98–179.75 bps`).**
 
 ---
 
@@ -150,7 +162,7 @@ To verify which component of `conservation_wm` drives its counterfactual accurac
 | `no_liq_coupling` | Disable liquidity-shift coupling ($\beta_{\text{liq}} = 0$) | 0.5133 | 0.41 | 50.27 | 3.47 | 3,212.1 |
 
 Three mechanistic insights emerge:
-1. **Why observational MSE and counterfactual cliff error anti-correlate (`no_bin_net` vs `none`):** In historical observational data, `TickLens` snapshots are sampled every `2,000` blocks (`~7.5 hours`), creating mild intra-window liquidity drift. The learned `bin_net` residual MLP reduces observational validation MSE by `51%` (`1.0472 -> 0.5135`) by absorbing this observational drift, but that learned adjustment introduces a `16.34 bps` bias (`34.00 -> 50.34 bps`) when evaluated on exact counterfactual checkpoints.
+1. **Why observational MSE and 1-step counterfactual cliff error anti-correlate (`no_bin_net` vs `none`):** In historical observational data, `TickLens` snapshots are sampled every `2,000` blocks (`~7.5 hours`), creating mild intra-window liquidity drift. The learned `bin_net` residual MLP reduces observational validation MSE by `51%` (`1.0472 -> 0.5135`) by absorbing this observational drift, while introducing a `16.34 bps` bias (`34.00 -> 50.34 bps`) on 1-step counterfactual checkpoints. As shown in Section 6 below, however, `bin_net` is critical for multi-step rollouts and real-flow forecasting because it calibrates post-swap active liquidity updates.
 2. **Both the spatial profile and sequential integral are required (`uniform_profile`):** Keeping the exact sequential reserve conservation loop while replacing the observed `TickLens` liquidity profile with a uniform profile causes cliff RMSE to jump from `50.34 bps` (`3.48` std-MSE) to `133.92 bps` (`27.07` std-MSE).
 3. **Liquidity-shift coupling specifically governs deep cascades (`no_liq_coupling`):** Setting $\beta_{\text{liq}} = 0$ leaves in-tick (`0.41 bps`) and Regime II cliff (`50.27 bps`) price error unchanged, but increases Regime III cascade error from `2,544.8 bps` to `3,212.1 bps`.
 
@@ -169,8 +181,75 @@ Adding explicit cliff transitions during training reduces `mlp_direct` cliff err
 
 ---
 
-## 6. Limitations & Scope Conditions
+## 6. Multi-Step Counterfactual Rollouts, 50-Swap Real Mainnet Forecasting, and Downstream Risk-Constrained Order Planning
 
-1. **Single-Step vs. Multi-Step Reflexive Feedback:** The primary benchmark evaluates single-step state transitions $s_{t+1} = T(s_t, \text{do}(a_t))$ against exact EVM execution. In live markets, large price dislocations also trigger endogenous arbitrage and LP `Mint`/`Burn` responses in subsequent blocks.
+![Multi-Step Rollouts, 50-Swap Real Mainnet Forecasting, and Risk-Constrained Order Planning](assets/heavy_suite_summary.svg)
+
+### 6.1 12-Step Autoregressive Counterfactual Rollouts (`results/heavy_suite/rollout.json`)
+
+To test whether 1-step counterfactual errors compound or cancel over multi-step horizons, we evaluate 12-step open-loop autoregressive stress sequences (`248` trajectories across `62` held-out checkpoints: institutional TWAP sell execution, panic dump + partial arbitrage recovery, staircase liquidity probing, and alternating volatile burst) where each model recursively updates its own predicted pool state $(\hat{P}_{t+k}, \hat{L}_{t+k})$ and shifts the local `TickLens` window accordingly:
+
+| Model | Params | H=1 RMSE (bps) | H=3 RMSE (bps) | H=5 RMSE (bps) | H=8 RMSE (bps) | H=12 RMSE (bps) | H=12 p95 (bps) | H=12 Liq RMSE |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `conservation_wm_none` | 2,549 | 4.13 | 309.64 | 271.61 | 330.15 | **565.88** | 212.55 | **0.4842** |
+| `conservation_wm_no_bin_net` | 2,549 | 4.85 | 359.58 | 778.12 | 1,309.93 | 2,015.16 | 483.32 | 0.7957 |
+| `mlp_M_1.5M` | 3,367,043 | 19.14 | 370.79 | 379.03 | 468.67 | 702.91 | 562.91 | 3.2528 |
+| `mlp_L_8M` | 28,540,419 | 13.02 | 362.97 | 366.12 | 445.01 | 664.32 | 454.88 | 1.8629 |
+| `transformer_M_1.5M` | 1,795,843 | 7.38 | 361.21 | 360.78 | 431.79 | 649.16 | 165.73 | 0.7342 |
+| `transformer_L_8M` | 9,234,435 | 8.34 | 361.25 | 361.31 | 432.99 | 650.72 | 207.07 | 0.8664 |
+| `jepa_M_1.5M` | 985,155 | 11.10 | 361.30 | 362.33 | 434.01 | 645.39 | 553.23 | 3.7364 |
+| `jepa_L_8M` | 1,561,155 | 12.79 | 362.43 | 364.30 | 437.99 | 653.63 | 443.88 | 3.0934 |
+
+Crucially, while `conservation_wm_no_bin_net` had the lowest 1-step cliff RMSE (`34.00 bps`), its uncalibrated post-swap liquidity predictions compound over 12 autoregressive steps (`2,015.16 bps`), whereas the full hybrid `conservation_wm_none` achieves the lowest price and liquidity error across all horizons (`565.88 bps`, `liq_rmse = 0.4842`).
+
+### 6.2 50-Swap Real Mainnet Trajectory & Unconditional Regime Forecasting (`results/heavy_suite/forecast.json`)
+
+We next evaluate two distinct forecasting tasks on held-out real Ethereum Mainnet data (August 5, 2024 crash and October 2024):
+
+1. **Part A — 50-Swap Open-Loop Real Order-Flow Forecasting (`250` held-out 50-swap trajectories):** Starting from an exact Mainnet state $s_t$, we feed the exact sequence of `50` consecutive real historical Mainnet swap actions $(a_t, \dots, a_{t+49})$ open-loop without state resets:
+
+| Model | H=1 RMSE (bps) | H=10 RMSE (bps) | H=20 RMSE (bps) | H=35 RMSE (bps) | H=50 RMSE (bps) | H=50 Dir Acc | H=50 Liq RMSE |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `conservation_wm_none` | **4.33** | **40.23** | **48.93** | **90.83** | **116.64** | **90.67%** | **0.8714** |
+| `conservation_wm_no_bin_net` | 10.61 | 663.91 | 1,005.69 | 1,763.42 | 1,437.64 | 87.33% | 1.1330 |
+| `mlp_M_1.5M` | 13.58 | 115.03 | 289.62 | 563.35 | 857.89 | 57.47% | 35.3043 |
+| `mlp_L_8M` | 12.83 | 147.01 | 389.72 | 725.75 | 1,130.37 | 56.80% | 65.5204 |
+| `transformer_M_1.5M` | 14.87 | 47.89 | 69.13 | 112.90 | 173.39 | 76.27% | 1.2191 |
+| `transformer_L_8M` | 13.57 | 67.02 | 108.50 | 235.75 | 502.50 | 65.20% | 5.1481 |
+| `jepa_M_1.5M` | 10.49 | 54.33 | 86.88 | 140.39 | 217.40 | 72.93% | 7.9051 |
+| `jepa_L_8M` | 10.49 | 49.90 | 84.27 | 146.01 | 225.24 | 70.27% | 7.2620 |
+
+2. **Part B — Unconditional 20-Swap Volatility, Excursion & Liquidity-Depletion Forecasting (`n=15,016` held-out swaps, no future actions given):** From current state $s_t$ alone, we predict realized volatility, maximum downside price excursion, and maximum active-liquidity drop over the next `20` swaps:
+
+| Forecaster | Vol RMSE (bps) | Spearman Vol | Excursion RMSE (bps) | Spearman Excursion | Liq-Depletion RMSE | Spearman Liq-Depletion |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: |
+| `ewma_persistence` | 118.64 | +0.8295 | 114.02 | +0.7575 | 1.8106 | +0.0000 |
+| `history_only_forecaster` | 116.08 | +0.8237 | 95.72 | +0.7101 | 1.6190 | +0.0198 |
+| `spatial_ticklens_forecaster` | 119.45 | +0.7160 | 105.79 | +0.6305 | **1.6038** | **+0.1440** |
+
+While passive 20-swap volatility and excursion are governed primarily by order-flow arrival clustering (`ewma_persistence` and `history_only_forecaster` achieve $\rho = 0.8295$ and $0.8237$), swap-history features alone have near-zero ability to predict upcoming liquidity-cliff depletion ($\rho = 0.0000$ and $0.0198$). Conditioning on the spatial `TickLens` boundary profile increases 20-swap liquidity-depletion rank correlation by **`7.3x`** ($\rho = +0.0198 \to +0.1440$) and achieves the lowest depletion RMSE (`1.6038`).
+
+### 6.3 Downstream Risk-Constrained Execution Planner (`results/heavy_suite/planner.json`)
+
+Finally, we test whether counterfactual world-model errors translate into concrete financial losses when used for downstream decision-making. Across `62` held-out checkpoints, `5` slippage budgets $B \in \{25, 50, 100, 200, 400\}\text{ bps}$, and both buy/sell directions (`620` sizing tasks per seed), each world model is queried via 24-iteration binary search to select the maximum order size $\hat{a}^*(B)$ whose predicted price impact is $\le B\text{ bps}$, which is then executed in the exact EVM oracle:
+
+| Model | Params | Mean Viol Rate | Viol @ B=25 bps | Overshoot RMSE (bps) | Sizing Rel Err | Mean Excess Slippage (USD) |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: |
+| `conservation_wm_none` | 2,549 | **6.83%** | **2.42%** | **441.20** | **6.47%** | **\$5,802.92** |
+| `conservation_wm_no_bin_net` | 2,549 | 52.74% | 89.52% | 512.33 | 11.51% | \$7,144.93 |
+| `mlp_M_1.5M` | 3,367,043 | 34.52% | 39.51% | 849.20 | 128.19% | \$44,481.71 |
+| `mlp_L_8M` | 28,540,419 | 31.07% | 31.72% | 840.38 | 126.94% | \$45,033.92 |
+| `transformer_M_1.5M` | 1,795,843 | 23.23% | 20.16% | 590.22 | 31.34% | \$21,626.74 |
+| `transformer_L_8M` | 9,234,435 | 28.87% | 38.98% | 561.29 | 37.72% | \$21,831.74 |
+| `jepa_M_1.5M` | 985,155 | 23.01% | 18.55% | 608.30 | 43.65% | \$24,229.25 |
+| `jepa_L_8M` | 1,561,155 | 25.38% | 18.82% | 656.67 | 49.08% | \$27,018.96 |
+
+Unstructured world models underestimate slippage across tick boundaries, systematically over-sizing orders (`31.34%–128.19%` relative sizing error vs `6.47%` for `conservation_wm_none`) and incurring **$3.7\times\text{–}7.8\times$ higher mean excess slippage (`\$21,626.74–\$45,033.92` vs `\$5,802.92`)**.
+
+---
+
+## 7. Limitations & Scope Conditions
+
+1. **Open-Loop vs. Closed-Loop Reflexive Arbitrage:** Our 12-step counterfactual rollouts and 50-swap real Mainnet trajectory evaluations feed action sequences open-loop without simulating endogenous off-chain arbitrageur responses or LP `Mint`/`Burn` reactions in subsequent blocks.
 2. **32-Bin Local `TickLens` Horizon (`Regime III` Cascades):** Because the state representation encodes the `32` nearest initialized ticks around the active tick (`16` per side), extreme Regime III vacuum cascades that cross $\ge 96$ ticks exceed the local 16-bin window on one side, causing all models (including `conservation_wm` at `2,191.7–2,544.8 bps`) to incur elevated error once flow exits the observed bin window.
 3. **Domain Specificity:** Concentrated-liquidity AMMs have an exact deterministic invariant determined by on-chain contract bytecode. In domains where the underlying conservation law is only approximate (e.g., limit-order books with hidden liquidity or off-chain latency), hybrid physical-neural world models must learn both the conservation structure and stochastic boundary slippage.

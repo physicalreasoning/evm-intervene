@@ -1,5 +1,5 @@
 # ruff: noqa: E501
-"""Render assets/scaling_sweep.svg and assets/ablation_and_coverage.svg from committed results JSON."""
+"""Render SVG figures in assets/ directly from committed results JSON."""
 
 from __future__ import annotations
 
@@ -17,14 +17,21 @@ LABELS = {
     "mlp_direct": "Direct MLP (247k - 170M)",
     "seq_transformer": "Cross-attention Transformer (184k - 70M)",
     "latent_jepa": "Latent JEPA (340k - 127M)",
-    "qwen_qlora": "Qwen2.5 QLoRA (3.1B - 7.1B)",
+    "qwen_qlora": "Qwen2.5 LoRA/QLoRA (0.5B - 7.1B)",
 }
 
 
 def plot_scaling_svg() -> None:
     s = json.loads(Path("results/scaling_sweep_results.json").read_text(encoding="utf-8"))
-    llm_path = Path("results/research_v2/llm.json")
-    llm_runs = json.loads(llm_path.read_text(encoding="utf-8"))["runs"] if llm_path.exists() else []
+    ldr_path = Path("results/heavy_suite/llm_ladder.json")
+    v2_path = Path("results/research_v2/llm.json")
+    if ldr_path.exists():
+        raw_runs = json.loads(ldr_path.read_text(encoding="utf-8"))["runs"]
+        llm_runs = list(raw_runs.values()) if isinstance(raw_runs, dict) else raw_runs
+    elif v2_path.exists():
+        llm_runs = json.loads(v2_path.read_text(encoding="utf-8"))["runs"]
+    else:
+        llm_runs = []
 
     anchor = s["anchor_conservation_wm"]
     series: dict[str, list[tuple[int, float, float]]] = {f: [] for f in COLORS}
@@ -32,11 +39,14 @@ def plot_scaling_svg() -> None:
         for fam, v in fams.items():
             series[fam].append((int(v["params"]), float(v["cliff_rmse_bps_mean"]), float(v["obs_val_std_mse_mean"])))
 
+    rand_pts: list[tuple[int, float, float]] = []
     for r in llm_runs:
-        if r.get("valid_beats_copy") and not r.get("random_init"):
-            series["qwen_qlora"].append(
-                (int(r["backbone_params"]), float(r["cliff_bps"]), float(r["obs_val_std_mse"]))
-            )
+        if r.get("valid_beats_copy"):
+            pt = (int(r["backbone_params"]), float(r["cliff_bps"]), float(r["obs_val_std_mse"]))
+            if r.get("random_init"):
+                rand_pts.append(pt)
+            else:
+                series["qwen_qlora"].append(pt)
 
     W, H = 1120, 480
     panels = [
@@ -58,7 +68,7 @@ def plot_scaling_svg() -> None:
         f'<rect width="{W}" height="{H}" fill="#ffffff"/>',
         '<text x="75" y="34" font-size="18" font-weight="700">Parameter scaling (2.5k to 7.1B): observational fit improves, cliff error plateaus</text>',
         f'<text x="75" y="56" font-size="12" fill="#4b5563">{s["dataset_summary"]["counterfactual_interventions"]:,} held-out '
-        "counterfactual interventions across 62 checkpoints · scratch models (3 seeds) + Qwen2.5 3B/7B QLoRA</text>",
+        "counterfactual interventions across 62 checkpoints · scratch models (3 seeds) + Qwen2.5 0.5B/1.5B/3B/7B LoRA/QLoRA</text>",
     ]
     for x0, title, idx, lo, hi in panels:
         out.append(f'<rect x="{x0}" y="{top}" width="{pw}" height="{ph}" fill="#f9fafb" stroke="#d1d5db"/>')
@@ -97,15 +107,20 @@ def plot_scaling_svg() -> None:
                 val = c if idx == 1 else o
                 r_px = 5.0 if fam == "qwen_qlora" else 4.0
                 out.append(f'<circle cx="{mx(x0, p):.1f}" cy="{my(val, lo, hi):.1f}" r="{r_px}" fill="{COLORS[fam]}"/>')
+        for p, c, o in rand_pts:
+            val = c if idx == 1 else o
+            out.append(
+                f'<circle cx="{mx(x0, p):.1f}" cy="{my(val, lo, hi):.1f}" r="5.5" fill="#ffffff" stroke="#dc2626" stroke-width="2.2"/>'
+            )
 
     ly = H - 20
-    lx = 75
+    lx = 60
     for fam in COLORS:
         out.append(f'<rect x="{lx}" y="{ly - 9}" width="14" height="4" fill="{COLORS[fam]}"/>')
-        out.append(f'<text x="{lx + 20}" y="{ly - 3}" font-size="11.5">{LABELS[fam]}</text>')
-        lx += 245
+        out.append(f'<text x="{lx + 18}" y="{ly - 3}" font-size="11">{LABELS[fam]}</text>')
+        lx += 238
     out.append(f'<rect x="{lx}" y="{ly - 9}" width="14" height="4" fill="#059669"/>')
-    out.append(f'<text x="{lx + 20}" y="{ly - 3}" font-size="11.5">conservation_wm (2.5k)</text>')
+    out.append(f'<text x="{lx + 18}" y="{ly - 3}" font-size="11">conservation_wm (2.5k)</text>')
     out.append("</svg>")
     Path("assets/scaling_sweep.svg").write_text("\n".join(out), encoding="utf-8")
     print("wrote assets/scaling_sweep.svg")
@@ -177,7 +192,7 @@ def plot_ablation_and_coverage_svg() -> None:
         ("seq_transformer", "seq_transformer (1.8M)", "#7c3aed"),
         ("conservation_wm", "conservation_wm (2.5k)", "#059669"),
     ]
-    for fam, lbl, col in fam_meta:
+    for fam, _lbl, col in fam_meta:
         pts = []
         for xp, fk in zip(x_positions, fracs, strict=True):
             val = float(cov[fk]["families"][fam]["mean"]["cliff_bps"])
@@ -201,6 +216,122 @@ def plot_ablation_and_coverage_svg() -> None:
     print("wrote assets/ablation_and_coverage.svg")
 
 
+def plot_heavy_suite_svg() -> None:
+    hs = Path("results/heavy_suite")
+    if not (hs / "rollout.json").exists():
+        return
+    ro = json.loads((hs / "rollout.json").read_text(encoding="utf-8"))["models"]
+    fc = json.loads((hs / "forecast.json").read_text(encoding="utf-8"))["real_flow_rollout_models"]
+    pl = json.loads((hs / "planner.json").read_text(encoding="utf-8"))["models"]
+
+    W, H = 1220, 480
+    pw, ph, top = 335, 310, 86
+    out = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
+        "<style>text{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;fill:#1f2937}</style>",
+        f'<rect width="{W}" height="{H}" fill="#ffffff"/>',
+        '<text x="65" y="34" font-size="18" font-weight="700">Multi-step rollouts, 50-swap real Mainnet forecasting, and risk-constrained order planning</text>',
+        '<text x="65" y="56" font-size="12" fill="#4b5563">Mean over 3 seeds · 248 12-step stress rollouts · 250 50-swap real Mainnet trajectories · 620 risk-constrained sizing tasks</text>',
+    ]
+
+    model_specs = [
+        ("conservation_wm_none", "conservation_wm (2.5k)", "#059669"),
+        ("transformer_M_1.5M", "seq_transformer M (1.5M)", "#7c3aed"),
+        ("jepa_M_1.5M", "latent_jepa M (1.5M)", "#d97706"),
+        ("mlp_M_1.5M", "mlp_direct M (1.5M)", "#2563eb"),
+    ]
+
+    # Panel A: 12-step rollout price RMSE
+    x0 = 65
+    out.append(f'<rect x="{x0}" y="{top}" width="{pw}" height="{ph}" fill="#f9fafb" stroke="#d1d5db"/>')
+    out.append(f'<text x="{x0}" y="{top - 10}" font-size="12.5" font-weight="600">A. 12-step counterfactual rollout RMSE (bps)</text>')
+    horizons_ro = [1, 2, 3, 5, 8, 12]
+    for h in horizons_ro:
+        xp = x0 + 24 + (h - 1) / 11.0 * (pw - 48)
+        out.append(f'<line x1="{xp:.1f}" y1="{top}" x2="{xp:.1f}" y2="{top + ph}" stroke="#e5e7eb"/>')
+        out.append(f'<text x="{xp:.1f}" y="{top + ph + 18}" font-size="11" text-anchor="middle" fill="#6b7280">H={h}</text>')
+    for v in [0, 200, 400, 600, 800]:
+        yp = top + ph - (v / 800.0) * ph
+        out.append(f'<line x1="{x0}" y1="{yp:.1f}" x2="{x0 + pw}" y2="{yp:.1f}" stroke="#e5e7eb"/>')
+        out.append(f'<text x="{x0 - 6}" y="{yp + 4:.1f}" font-size="10.5" text-anchor="end" fill="#6b7280">{v}</text>')
+    out.append(f'<text x="{x0 + pw / 2}" y="{top + ph + 38}" font-size="11.5" text-anchor="middle">Autoregressive stress rollout step</text>')
+    for mk, _, col in model_specs:
+        pts = []
+        for h in horizons_ro:
+            xp = x0 + 24 + (h - 1) / 11.0 * (pw - 48)
+            val = float(ro[mk]["mean_horizons"][f"h{h}"]["cum_price_rmse_bps"])
+            yp = top + ph - (min(val, 800.0) / 800.0) * ph
+            pts.append((xp, yp))
+        path = " ".join(f"{px:.1f},{py:.1f}" for px, py in pts)
+        out.append(f'<polyline points="{path}" fill="none" stroke="{col}" stroke-width="2.4"/>')
+        for px, py in pts:
+            out.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="3.6" fill="{col}"/>')
+
+    # Panel B: 50-swap real Mainnet order-flow forecasting
+    x1 = 455
+    out.append(f'<rect x="{x1}" y="{top}" width="{pw}" height="{ph}" fill="#f9fafb" stroke="#d1d5db"/>')
+    out.append(f'<text x="{x1}" y="{top - 10}" font-size="12.5" font-weight="600">B. 50-swap real Mainnet forecast RMSE (bps)</text>')
+    horizons_fc = [1, 5, 10, 20, 35, 50]
+    for h in horizons_fc:
+        xp = x1 + 24 + (h - 1) / 49.0 * (pw - 48)
+        out.append(f'<line x1="{xp:.1f}" y1="{top}" x2="{xp:.1f}" y2="{top + ph}" stroke="#e5e7eb"/>')
+        out.append(f'<text x="{xp:.1f}" y="{top + ph + 18}" font-size="11" text-anchor="middle" fill="#6b7280">{h}</text>')
+    for v in [0, 250, 500, 750, 1000]:
+        yp = top + ph - (v / 1000.0) * ph
+        out.append(f'<line x1="{x1}" y1="{yp:.1f}" x2="{x1 + pw}" y2="{yp:.1f}" stroke="#e5e7eb"/>')
+        out.append(f'<text x="{x1 - 6}" y="{yp + 4:.1f}" font-size="10.5" text-anchor="end" fill="#6b7280">{v}</text>')
+    out.append(f'<text x="{x1 + pw / 2}" y="{top + ph + 38}" font-size="11.5" text-anchor="middle">Forward real historical swaps (open-loop)</text>')
+    for mk, _, col in model_specs:
+        pts = []
+        for h in horizons_fc:
+            xp = x1 + 24 + (h - 1) / 49.0 * (pw - 48)
+            val = float(fc[mk]["all_trajectories_mean"][f"h{h}"]["price_rmse_bps"])
+            yp = top + ph - (min(val, 1000.0) / 1000.0) * ph
+            pts.append((xp, yp))
+        path = " ".join(f"{px:.1f},{py:.1f}" for px, py in pts)
+        out.append(f'<polyline points="{path}" fill="none" stroke="{col}" stroke-width="2.4"/>')
+        for px, py in pts:
+            out.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="3.6" fill="{col}"/>')
+
+    # Panel C: Planner budget violation rate & excess slippage bars
+    x2 = 845
+    out.append(f'<rect x="{x2}" y="{top}" width="{pw}" height="{ph}" fill="#f9fafb" stroke="#d1d5db"/>')
+    out.append(f'<text x="{x2}" y="{top - 10}" font-size="12.5" font-weight="600">C. Execution planner budget violation rate</text>')
+    budgets = ["25", "50", "100", "200", "400"]
+    for i, b in enumerate(budgets):
+        xp = x2 + 30 + i * (pw - 60) / 4.0
+        out.append(f'<line x1="{xp:.1f}" y1="{top}" x2="{xp:.1f}" y2="{top + ph}" stroke="#e5e7eb"/>')
+        out.append(f'<text x="{xp:.1f}" y="{top + ph + 18}" font-size="11" text-anchor="middle" fill="#6b7280">{b} bps</text>')
+    for v in [0, 15, 30, 45, 60]:
+        yp = top + ph - (v / 60.0) * ph
+        out.append(f'<line x1="{x2}" y1="{yp:.1f}" x2="{x2 + pw}" y2="{yp:.1f}" stroke="#e5e7eb"/>')
+        out.append(f'<text x="{x2 - 6}" y="{yp + 4:.1f}" font-size="10.5" text-anchor="end" fill="#6b7280">{v}%</text>')
+    out.append(f'<text x="{x2 + pw / 2}" y="{top + ph + 38}" font-size="11.5" text-anchor="middle">Target price-impact budget B</text>')
+    for mk, _, col in model_specs:
+        pts = []
+        for i, b in enumerate(budgets):
+            xp = x2 + 30 + i * (pw - 60) / 4.0
+            v_pct = float(pl[mk]["by_budget_mean"][f"B_{b}bps"]["violation_rate_pct"])
+            yp = top + ph - (min(v_pct, 60.0) / 60.0) * ph
+            pts.append((xp, yp))
+        path = " ".join(f"{px:.1f},{py:.1f}" for px, py in pts)
+        out.append(f'<polyline points="{path}" fill="none" stroke="{col}" stroke-width="2.4"/>')
+        for px, py in pts:
+            out.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="3.6" fill="{col}"/>')
+
+    lx = 65
+    ly = H - 16
+    for _, lbl, col in model_specs:
+        out.append(f'<rect x="{lx}" y="{ly - 9}" width="14" height="4" fill="{col}"/>')
+        out.append(f'<text x="{lx + 18}" y="{ly - 3}" font-size="11.5">{lbl}</text>')
+        lx += 265
+
+    out.append("</svg>")
+    Path("assets/heavy_suite_summary.svg").write_text("\n".join(out), encoding="utf-8")
+    print("wrote assets/heavy_suite_summary.svg")
+
+
 if __name__ == "__main__":
     plot_scaling_svg()
     plot_ablation_and_coverage_svg()
+    plot_heavy_suite_svg()

@@ -1,0 +1,1867 @@
+{
+  "seeds": [
+    101,
+    202,
+    303
+  ],
+  "epochs": 45,
+  "n_checkpoints": 62,
+  "models": {
+    "conservation_wm_none": {
+      "family": "conservation_wm",
+      "params": 2549,
+      "obs_val_std_mse_mean": 0.5135,
+      "cliff_bps_mean": 50.82,
+      "overall_mean": {
+        "violation_rate_pct": 6.83,
+        "overshoot_rmse_bps": 441.2,
+        "overshoot_p95_bps": 31.1,
+        "sizing_rel_err_pct": 6.47,
+        "mean_excess_slippage_usd": 5802.92
+      },
+      "by_budget_mean": {
+        "B_25bps": {
+          "budget_bps": 25.0,
+          "violation_rate_pct": 2.42,
+          "overshoot_rmse_bps": 0.47,
+          "overshoot_p95_bps": 0.0,
+          "sizing_rel_err_pct": 5.94
+        },
+        "B_50bps": {
+          "budget_bps": 50.0,
+          "violation_rate_pct": 6.72,
+          "overshoot_rmse_bps": 293.4,
+          "overshoot_p95_bps": 5.88,
+          "sizing_rel_err_pct": 8.11
+        },
+        "B_100bps": {
+          "budget_bps": 100.0,
+          "violation_rate_pct": 7.26,
+          "overshoot_rmse_bps": 290.38,
+          "overshoot_p95_bps": 41.53,
+          "sizing_rel_err_pct": 6.54
+        },
+        "B_200bps": {
+          "budget_bps": 200.0,
+          "violation_rate_pct": 8.87,
+          "overshoot_rmse_bps": 441.46,
+          "overshoot_p95_bps": 92.16,
+          "sizing_rel_err_pct": 5.73
+        },
+        "B_400bps": {
+          "budget_bps": 400.0,
+          "violation_rate_pct": 8.87,
+          "overshoot_rmse_bps": 779.74,
+          "overshoot_p95_bps": 596.82,
+          "sizing_rel_err_pct": 5.99
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 2549,
+          "obs_val_std_mse": 0.5134529707122901,
+          "in_tick_bps": 0.43,
+          "cliff_bps": 52.09,
+          "cascade_bps": 2611.37,
+          "cliff_std_mse": 3.7097,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 6.77,
+              "overshoot_rmse_bps": 442.25,
+              "overshoot_p95_bps": 28.29,
+              "sizing_rel_err_pct": 6.74,
+              "mean_excess_slippage_usd": 5902.98
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 2.42,
+                "overshoot_rmse_bps": 0.63,
+                "overshoot_p95_bps": 0.0,
+                "sizing_rel_err_pct": 6.41,
+                "mean_excess_slippage_usd": 1.7
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 6.45,
+                "overshoot_rmse_bps": 293.39,
+                "overshoot_p95_bps": 4.48,
+                "sizing_rel_err_pct": 8.53,
+                "mean_excess_slippage_usd": 406.75
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 7.26,
+                "overshoot_rmse_bps": 290.4,
+                "overshoot_p95_bps": 40.83,
+                "sizing_rel_err_pct": 6.62,
+                "mean_excess_slippage_usd": 878.76
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 8.87,
+                "overshoot_rmse_bps": 441.52,
+                "overshoot_p95_bps": 96.47,
+                "sizing_rel_err_pct": 5.97,
+                "mean_excess_slippage_usd": 4349.4
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 8.87,
+                "overshoot_rmse_bps": 782.67,
+                "overshoot_p95_bps": 633.71,
+                "sizing_rel_err_pct": 6.14,
+                "mean_excess_slippage_usd": 23878.3
+              }
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 2549,
+          "obs_val_std_mse": 0.5132860271127352,
+          "in_tick_bps": 0.42,
+          "cliff_bps": 49.48,
+          "cascade_bps": 2560.22,
+          "cliff_std_mse": 3.357,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 6.77,
+              "overshoot_rmse_bps": 440.52,
+              "overshoot_p95_bps": 31.75,
+              "sizing_rel_err_pct": 6.52,
+              "mean_excess_slippage_usd": 5698.8
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 2.42,
+                "overshoot_rmse_bps": 0.39,
+                "overshoot_p95_bps": 0.0,
+                "sizing_rel_err_pct": 6.07,
+                "mean_excess_slippage_usd": 1.08
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 6.45,
+                "overshoot_rmse_bps": 293.39,
+                "overshoot_p95_bps": 5.86,
+                "sizing_rel_err_pct": 8.34,
+                "mean_excess_slippage_usd": 407.04
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 7.26,
+                "overshoot_rmse_bps": 290.34,
+                "overshoot_p95_bps": 41.88,
+                "sizing_rel_err_pct": 6.59,
+                "mean_excess_slippage_usd": 842.86
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 8.87,
+                "overshoot_rmse_bps": 441.39,
+                "overshoot_p95_bps": 83.54,
+                "sizing_rel_err_pct": 5.75,
+                "mean_excess_slippage_usd": 4200.52
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 8.87,
+                "overshoot_rmse_bps": 777.87,
+                "overshoot_p95_bps": 523.05,
+                "sizing_rel_err_pct": 5.83,
+                "mean_excess_slippage_usd": 23042.53
+              }
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 2549,
+          "obs_val_std_mse": 0.513891419492015,
+          "in_tick_bps": 0.37,
+          "cliff_bps": 50.89,
+          "cascade_bps": 2520.74,
+          "cliff_std_mse": 3.5735,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 6.94,
+              "overshoot_rmse_bps": 440.84,
+              "overshoot_p95_bps": 33.25,
+              "sizing_rel_err_pct": 6.15,
+              "mean_excess_slippage_usd": 5806.98
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 2.42,
+                "overshoot_rmse_bps": 0.39,
+                "overshoot_p95_bps": 0.0,
+                "sizing_rel_err_pct": 5.35,
+                "mean_excess_slippage_usd": 1.08
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 7.26,
+                "overshoot_rmse_bps": 293.41,
+                "overshoot_p95_bps": 7.29,
+                "sizing_rel_err_pct": 7.47,
+                "mean_excess_slippage_usd": 439.21
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 7.26,
+                "overshoot_rmse_bps": 290.41,
+                "overshoot_p95_bps": 41.88,
+                "sizing_rel_err_pct": 6.42,
+                "mean_excess_slippage_usd": 885.59
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 8.87,
+                "overshoot_rmse_bps": 441.48,
+                "overshoot_p95_bps": 96.47,
+                "sizing_rel_err_pct": 5.48,
+                "mean_excess_slippage_usd": 4283.73
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 8.87,
+                "overshoot_rmse_bps": 778.68,
+                "overshoot_p95_bps": 633.71,
+                "sizing_rel_err_pct": 6.01,
+                "mean_excess_slippage_usd": 23425.32
+              }
+            }
+          }
+        }
+      ]
+    },
+    "conservation_wm_no_bin_net": {
+      "family": "conservation_wm",
+      "params": 2549,
+      "obs_val_std_mse_mean": 1.0472,
+      "cliff_bps_mean": 34.0,
+      "overall_mean": {
+        "violation_rate_pct": 52.74,
+        "overshoot_rmse_bps": 512.33,
+        "overshoot_p95_bps": 45.86,
+        "sizing_rel_err_pct": 11.51,
+        "mean_excess_slippage_usd": 7144.93
+      },
+      "by_budget_mean": {
+        "B_25bps": {
+          "budget_bps": 25.0,
+          "violation_rate_pct": 89.52,
+          "overshoot_rmse_bps": 6.74,
+          "overshoot_p95_bps": 3.87,
+          "sizing_rel_err_pct": 15.41
+        },
+        "B_50bps": {
+          "budget_bps": 50.0,
+          "violation_rate_pct": 77.15,
+          "overshoot_rmse_bps": 294.61,
+          "overshoot_p95_bps": 10.36,
+          "sizing_rel_err_pct": 16.35
+        },
+        "B_100bps": {
+          "budget_bps": 100.0,
+          "violation_rate_pct": 55.11,
+          "overshoot_rmse_bps": 446.05,
+          "overshoot_p95_bps": 35.25,
+          "sizing_rel_err_pct": 11.97
+        },
+        "B_200bps": {
+          "budget_bps": 200.0,
+          "violation_rate_pct": 28.23,
+          "overshoot_rmse_bps": 655.66,
+          "overshoot_p95_bps": 81.03,
+          "sizing_rel_err_pct": 7.52
+        },
+        "B_400bps": {
+          "budget_bps": 400.0,
+          "violation_rate_pct": 13.71,
+          "overshoot_rmse_bps": 772.47,
+          "overshoot_p95_bps": 162.95,
+          "sizing_rel_err_pct": 6.3
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 2549,
+          "obs_val_std_mse": 1.0476543950423336,
+          "in_tick_bps": 0.57,
+          "cliff_bps": 33.7,
+          "cascade_bps": 2188.37,
+          "cliff_std_mse": 2.0532,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 52.1,
+              "overshoot_rmse_bps": 512.47,
+              "overshoot_p95_bps": 45.86,
+              "sizing_rel_err_pct": 11.42,
+              "mean_excess_slippage_usd": 7124.05
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 88.71,
+                "overshoot_rmse_bps": 6.73,
+                "overshoot_p95_bps": 3.85,
+                "sizing_rel_err_pct": 15.31,
+                "mean_excess_slippage_usd": 120.35
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 75.81,
+                "overshoot_rmse_bps": 294.61,
+                "overshoot_p95_bps": 10.36,
+                "sizing_rel_err_pct": 16.21,
+                "mean_excess_slippage_usd": 987.05
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 54.03,
+                "overshoot_rmse_bps": 446.05,
+                "overshoot_p95_bps": 35.25,
+                "sizing_rel_err_pct": 11.84,
+                "mean_excess_slippage_usd": 3170.09
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 28.23,
+                "overshoot_rmse_bps": 656.21,
+                "overshoot_p95_bps": 81.03,
+                "sizing_rel_err_pct": 7.46,
+                "mean_excess_slippage_usd": 10252.74
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 13.71,
+                "overshoot_rmse_bps": 772.47,
+                "overshoot_p95_bps": 162.95,
+                "sizing_rel_err_pct": 6.3,
+                "mean_excess_slippage_usd": 21090.03
+              }
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 2549,
+          "obs_val_std_mse": 1.0466272490781476,
+          "in_tick_bps": 0.59,
+          "cliff_bps": 34.35,
+          "cascade_bps": 2195.69,
+          "cliff_std_mse": 2.1234,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 53.55,
+              "overshoot_rmse_bps": 512.05,
+              "overshoot_p95_bps": 45.86,
+              "sizing_rel_err_pct": 11.62,
+              "mean_excess_slippage_usd": 7179.0
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 91.13,
+                "overshoot_rmse_bps": 6.76,
+                "overshoot_p95_bps": 3.91,
+                "sizing_rel_err_pct": 15.61,
+                "mean_excess_slippage_usd": 122.68
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 79.03,
+                "overshoot_rmse_bps": 294.61,
+                "overshoot_p95_bps": 10.36,
+                "sizing_rel_err_pct": 16.52,
+                "mean_excess_slippage_usd": 1011.14
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 55.65,
+                "overshoot_rmse_bps": 446.05,
+                "overshoot_p95_bps": 35.25,
+                "sizing_rel_err_pct": 12.04,
+                "mean_excess_slippage_usd": 3202.88
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 28.23,
+                "overshoot_rmse_bps": 654.57,
+                "overshoot_p95_bps": 81.03,
+                "sizing_rel_err_pct": 7.63,
+                "mean_excess_slippage_usd": 10468.29
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 13.71,
+                "overshoot_rmse_bps": 772.47,
+                "overshoot_p95_bps": 162.95,
+                "sizing_rel_err_pct": 6.3,
+                "mean_excess_slippage_usd": 21090.03
+              }
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 2549,
+          "obs_val_std_mse": 1.0473189023216896,
+          "in_tick_bps": 0.58,
+          "cliff_bps": 33.94,
+          "cascade_bps": 2191.08,
+          "cliff_std_mse": 2.0788,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 52.58,
+              "overshoot_rmse_bps": 512.47,
+              "overshoot_p95_bps": 45.86,
+              "sizing_rel_err_pct": 11.48,
+              "mean_excess_slippage_usd": 7131.74
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 88.71,
+                "overshoot_rmse_bps": 6.73,
+                "overshoot_p95_bps": 3.85,
+                "sizing_rel_err_pct": 15.31,
+                "mean_excess_slippage_usd": 120.35
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 76.61,
+                "overshoot_rmse_bps": 294.61,
+                "overshoot_p95_bps": 10.36,
+                "sizing_rel_err_pct": 16.31,
+                "mean_excess_slippage_usd": 992.71
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 55.65,
+                "overshoot_rmse_bps": 446.05,
+                "overshoot_p95_bps": 35.25,
+                "sizing_rel_err_pct": 12.04,
+                "mean_excess_slippage_usd": 3202.88
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 28.23,
+                "overshoot_rmse_bps": 656.21,
+                "overshoot_p95_bps": 81.03,
+                "sizing_rel_err_pct": 7.46,
+                "mean_excess_slippage_usd": 10252.74
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 13.71,
+                "overshoot_rmse_bps": 772.47,
+                "overshoot_p95_bps": 162.95,
+                "sizing_rel_err_pct": 6.3,
+                "mean_excess_slippage_usd": 21090.03
+              }
+            }
+          }
+        }
+      ]
+    },
+    "mlp_M_1.5M": {
+      "family": "mlp_direct",
+      "params": 3367043,
+      "obs_val_std_mse_mean": 0.1827,
+      "cliff_bps_mean": 199.68,
+      "overall_mean": {
+        "violation_rate_pct": 34.52,
+        "overshoot_rmse_bps": 849.2,
+        "overshoot_p95_bps": 1938.5,
+        "sizing_rel_err_pct": 128.19,
+        "mean_excess_slippage_usd": 44481.71
+      },
+      "by_budget_mean": {
+        "B_25bps": {
+          "budget_bps": 25.0,
+          "violation_rate_pct": 39.51,
+          "overshoot_rmse_bps": 831.31,
+          "overshoot_p95_bps": 958.23,
+          "sizing_rel_err_pct": 304.22
+        },
+        "B_50bps": {
+          "budget_bps": 50.0,
+          "violation_rate_pct": 48.12,
+          "overshoot_rmse_bps": 880.71,
+          "overshoot_p95_bps": 1395.32,
+          "sizing_rel_err_pct": 187.77
+        },
+        "B_100bps": {
+          "budget_bps": 100.0,
+          "violation_rate_pct": 41.4,
+          "overshoot_rmse_bps": 873.62,
+          "overshoot_p95_bps": 1763.84,
+          "sizing_rel_err_pct": 87.28
+        },
+        "B_200bps": {
+          "budget_bps": 200.0,
+          "violation_rate_pct": 28.23,
+          "overshoot_rmse_bps": 852.87,
+          "overshoot_p95_bps": 1758.33,
+          "sizing_rel_err_pct": 40.61
+        },
+        "B_400bps": {
+          "budget_bps": 400.0,
+          "violation_rate_pct": 15.32,
+          "overshoot_rmse_bps": 802.2,
+          "overshoot_p95_bps": 1603.52,
+          "sizing_rel_err_pct": 21.08
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 3367043,
+          "obs_val_std_mse": 0.18569253151141296,
+          "in_tick_bps": 15.48,
+          "cliff_bps": 201.96,
+          "cascade_bps": 4107.87,
+          "cliff_std_mse": 64.0451,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 29.52,
+              "overshoot_rmse_bps": 830.71,
+              "overshoot_p95_bps": 1889.75,
+              "sizing_rel_err_pct": 101.72,
+              "mean_excess_slippage_usd": 44399.06
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 21.77,
+                "overshoot_rmse_bps": 725.61,
+                "overshoot_p95_bps": 452.59,
+                "sizing_rel_err_pct": 171.92,
+                "mean_excess_slippage_usd": 30173.79
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 42.74,
+                "overshoot_rmse_bps": 887.04,
+                "overshoot_p95_bps": 1813.84,
+                "sizing_rel_err_pct": 187.71,
+                "mean_excess_slippage_usd": 44134.22
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 39.52,
+                "overshoot_rmse_bps": 873.81,
+                "overshoot_p95_bps": 1763.84,
+                "sizing_rel_err_pct": 86.44,
+                "mean_excess_slippage_usd": 44539.54
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 28.23,
+                "overshoot_rmse_bps": 854.38,
+                "overshoot_p95_bps": 1777.92,
+                "sizing_rel_err_pct": 41.44,
+                "mean_excess_slippage_usd": 53198.75
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 15.32,
+                "overshoot_rmse_bps": 802.2,
+                "overshoot_p95_bps": 1603.52,
+                "sizing_rel_err_pct": 21.08,
+                "mean_excess_slippage_usd": 49949.01
+              }
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 3367043,
+          "obs_val_std_mse": 0.17829745282582846,
+          "in_tick_bps": 6.59,
+          "cliff_bps": 200.63,
+          "cascade_bps": 4087.2,
+          "cliff_std_mse": 64.6303,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 43.23,
+              "overshoot_rmse_bps": 863.17,
+              "overshoot_p95_bps": 2036.0,
+              "sizing_rel_err_pct": 153.91,
+              "mean_excess_slippage_usd": 48121.99
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 65.32,
+                "overshoot_rmse_bps": 894.49,
+                "overshoot_p95_bps": 1838.84,
+                "sizing_rel_err_pct": 415.98,
+                "mean_excess_slippage_usd": 45238.3
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 62.1,
+                "overshoot_rmse_bps": 887.17,
+                "overshoot_p95_bps": 1813.84,
+                "sizing_rel_err_pct": 199.42,
+                "mean_excess_slippage_usd": 45521.76
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 45.16,
+                "overshoot_rmse_bps": 874.42,
+                "overshoot_p95_bps": 1763.84,
+                "sizing_rel_err_pct": 91.62,
+                "mean_excess_slippage_usd": 46514.01
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 28.23,
+                "overshoot_rmse_bps": 854.41,
+                "overshoot_p95_bps": 1777.92,
+                "sizing_rel_err_pct": 41.46,
+                "mean_excess_slippage_usd": 53386.85
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 15.32,
+                "overshoot_rmse_bps": 802.2,
+                "overshoot_p95_bps": 1603.52,
+                "sizing_rel_err_pct": 21.08,
+                "mean_excess_slippage_usd": 49949.01
+              }
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 3367043,
+          "obs_val_std_mse": 0.18406223839065072,
+          "in_tick_bps": 15.78,
+          "cliff_bps": 196.44,
+          "cascade_bps": 4077.47,
+          "cliff_std_mse": 64.9027,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 30.81,
+              "overshoot_rmse_bps": 853.71,
+              "overshoot_p95_bps": 1889.75,
+              "sizing_rel_err_pct": 128.95,
+              "mean_excess_slippage_usd": 40924.09
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 31.45,
+                "overshoot_rmse_bps": 873.84,
+                "overshoot_p95_bps": 583.27,
+                "sizing_rel_err_pct": 324.77,
+                "mean_excess_slippage_usd": 33327.54
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 39.52,
+                "overshoot_rmse_bps": 867.92,
+                "overshoot_p95_bps": 558.27,
+                "sizing_rel_err_pct": 176.17,
+                "mean_excess_slippage_usd": 33811.77
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 39.52,
+                "overshoot_rmse_bps": 872.63,
+                "overshoot_p95_bps": 1763.84,
+                "sizing_rel_err_pct": 83.77,
+                "mean_excess_slippage_usd": 41957.68
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 28.23,
+                "overshoot_rmse_bps": 849.82,
+                "overshoot_p95_bps": 1719.14,
+                "sizing_rel_err_pct": 38.94,
+                "mean_excess_slippage_usd": 45574.44
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 15.32,
+                "overshoot_rmse_bps": 802.2,
+                "overshoot_p95_bps": 1603.52,
+                "sizing_rel_err_pct": 21.08,
+                "mean_excess_slippage_usd": 49949.01
+              }
+            }
+          }
+        }
+      ]
+    },
+    "mlp_L_8M": {
+      "family": "mlp_direct",
+      "params": 28540419,
+      "obs_val_std_mse_mean": 0.1833,
+      "cliff_bps_mean": 200.89,
+      "overall_mean": {
+        "violation_rate_pct": 31.07,
+        "overshoot_rmse_bps": 840.38,
+        "overshoot_p95_bps": 1725.5,
+        "sizing_rel_err_pct": 126.94,
+        "mean_excess_slippage_usd": 45033.92
+      },
+      "by_budget_mean": {
+        "B_25bps": {
+          "budget_bps": 25.0,
+          "violation_rate_pct": 31.72,
+          "overshoot_rmse_bps": 761.7,
+          "overshoot_p95_bps": 882.67,
+          "sizing_rel_err_pct": 301.1
+        },
+        "B_50bps": {
+          "budget_bps": 50.0,
+          "violation_rate_pct": 43.01,
+          "overshoot_rmse_bps": 887.01,
+          "overshoot_p95_bps": 1813.84,
+          "sizing_rel_err_pct": 186.2
+        },
+        "B_100bps": {
+          "budget_bps": 100.0,
+          "violation_rate_pct": 36.83,
+          "overshoot_rmse_bps": 874.09,
+          "overshoot_p95_bps": 1775.25,
+          "sizing_rel_err_pct": 85.36
+        },
+        "B_200bps": {
+          "budget_bps": 200.0,
+          "violation_rate_pct": 28.5,
+          "overshoot_rmse_bps": 854.92,
+          "overshoot_p95_bps": 1789.46,
+          "sizing_rel_err_pct": 40.95
+        },
+        "B_400bps": {
+          "budget_bps": 400.0,
+          "violation_rate_pct": 15.32,
+          "overshoot_rmse_bps": 802.2,
+          "overshoot_p95_bps": 1603.52,
+          "sizing_rel_err_pct": 21.11
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 28540419,
+          "obs_val_std_mse": 0.18813684870291633,
+          "in_tick_bps": 6.16,
+          "cliff_bps": 198.17,
+          "cascade_bps": 4086.19,
+          "cliff_std_mse": 61.9394,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 33.39,
+              "overshoot_rmse_bps": 858.39,
+              "overshoot_p95_bps": 1987.25,
+              "sizing_rel_err_pct": 143.39,
+              "mean_excess_slippage_usd": 44179.67
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 39.52,
+                "overshoot_rmse_bps": 875.08,
+                "overshoot_p95_bps": 583.27,
+                "sizing_rel_err_pct": 386.74,
+                "mean_excess_slippage_usd": 34805.8
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 43.55,
+                "overshoot_rmse_bps": 886.98,
+                "overshoot_p95_bps": 1813.84,
+                "sizing_rel_err_pct": 184.73,
+                "mean_excess_slippage_usd": 43729.07
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 39.52,
+                "overshoot_rmse_bps": 872.78,
+                "overshoot_p95_bps": 1763.84,
+                "sizing_rel_err_pct": 84.04,
+                "mean_excess_slippage_usd": 42259.11
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 29.03,
+                "overshoot_rmse_bps": 852.27,
+                "overshoot_p95_bps": 1761.35,
+                "sizing_rel_err_pct": 40.3,
+                "mean_excess_slippage_usd": 50155.38
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 15.32,
+                "overshoot_rmse_bps": 802.2,
+                "overshoot_p95_bps": 1603.52,
+                "sizing_rel_err_pct": 21.16,
+                "mean_excess_slippage_usd": 49949.01
+              }
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 28540419,
+          "obs_val_std_mse": 0.17825027009212951,
+          "in_tick_bps": 11.07,
+          "cliff_bps": 202.4,
+          "cascade_bps": 4065.09,
+          "cliff_std_mse": 65.8109,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 28.06,
+              "overshoot_rmse_bps": 799.19,
+              "overshoot_p95_bps": 1153.24,
+              "sizing_rel_err_pct": 102.79,
+              "mean_excess_slippage_usd": 42025.32
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 20.97,
+                "overshoot_rmse_bps": 516.84,
+                "overshoot_p95_bps": 225.91,
+                "sizing_rel_err_pct": 179.95,
+                "mean_excess_slippage_usd": 12827.18
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 40.32,
+                "overshoot_rmse_bps": 887.0,
+                "overshoot_p95_bps": 1813.84,
+                "sizing_rel_err_pct": 186.32,
+                "mean_excess_slippage_usd": 43744.77
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 35.48,
+                "overshoot_rmse_bps": 873.61,
+                "overshoot_p95_bps": 1763.84,
+                "sizing_rel_err_pct": 85.42,
+                "mean_excess_slippage_usd": 43935.71
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 28.23,
+                "overshoot_rmse_bps": 856.08,
+                "overshoot_p95_bps": 1803.52,
+                "sizing_rel_err_pct": 41.16,
+                "mean_excess_slippage_usd": 59669.96
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 15.32,
+                "overshoot_rmse_bps": 802.2,
+                "overshoot_p95_bps": 1603.52,
+                "sizing_rel_err_pct": 21.08,
+                "mean_excess_slippage_usd": 49949.01
+              }
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 28540419,
+          "obs_val_std_mse": 0.1836277159831706,
+          "in_tick_bps": 9.63,
+          "cliff_bps": 202.1,
+          "cascade_bps": 4090.53,
+          "cliff_std_mse": 64.6209,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 31.77,
+              "overshoot_rmse_bps": 863.57,
+              "overshoot_p95_bps": 2036.0,
+              "sizing_rel_err_pct": 134.65,
+              "mean_excess_slippage_usd": 48896.78
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 34.68,
+                "overshoot_rmse_bps": 893.18,
+                "overshoot_p95_bps": 1838.84,
+                "sizing_rel_err_pct": 336.6,
+                "mean_excess_slippage_usd": 43146.91
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 45.16,
+                "overshoot_rmse_bps": 887.05,
+                "overshoot_p95_bps": 1813.84,
+                "sizing_rel_err_pct": 187.56,
+                "mean_excess_slippage_usd": 43882.93
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 35.48,
+                "overshoot_rmse_bps": 875.89,
+                "overshoot_p95_bps": 1798.06,
+                "sizing_rel_err_pct": 86.62,
+                "mean_excess_slippage_usd": 47476.98
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 28.23,
+                "overshoot_rmse_bps": 856.42,
+                "overshoot_p95_bps": 1803.52,
+                "sizing_rel_err_pct": 41.39,
+                "mean_excess_slippage_usd": 60028.05
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 15.32,
+                "overshoot_rmse_bps": 802.2,
+                "overshoot_p95_bps": 1603.52,
+                "sizing_rel_err_pct": 21.08,
+                "mean_excess_slippage_usd": 49949.01
+              }
+            }
+          }
+        }
+      ]
+    },
+    "transformer_M_1.5M": {
+      "family": "seq_transformer",
+      "params": 1795843,
+      "obs_val_std_mse_mean": 0.2247,
+      "cliff_bps_mean": 167.07,
+      "overall_mean": {
+        "violation_rate_pct": 23.23,
+        "overshoot_rmse_bps": 590.22,
+        "overshoot_p95_bps": 199.54,
+        "sizing_rel_err_pct": 31.34,
+        "mean_excess_slippage_usd": 21626.74
+      },
+      "by_budget_mean": {
+        "B_25bps": {
+          "budget_bps": 25.0,
+          "violation_rate_pct": 20.16,
+          "overshoot_rmse_bps": 103.68,
+          "overshoot_p95_bps": 12.01,
+          "sizing_rel_err_pct": 26.85
+        },
+        "B_50bps": {
+          "budget_bps": 50.0,
+          "violation_rate_pct": 25.0,
+          "overshoot_rmse_bps": 348.96,
+          "overshoot_p95_bps": 32.63,
+          "sizing_rel_err_pct": 36.57
+        },
+        "B_100bps": {
+          "budget_bps": 100.0,
+          "violation_rate_pct": 30.92,
+          "overshoot_rmse_bps": 557.4,
+          "overshoot_p95_bps": 117.92,
+          "sizing_rel_err_pct": 37.96
+        },
+        "B_200bps": {
+          "budget_bps": 200.0,
+          "violation_rate_pct": 24.73,
+          "overshoot_rmse_bps": 789.65,
+          "overshoot_p95_bps": 844.59,
+          "sizing_rel_err_pct": 34.23
+        },
+        "B_400bps": {
+          "budget_bps": 400.0,
+          "violation_rate_pct": 15.32,
+          "overshoot_rmse_bps": 802.2,
+          "overshoot_p95_bps": 1603.52,
+          "sizing_rel_err_pct": 21.08
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 1795843,
+          "obs_val_std_mse": 0.22426843221020568,
+          "in_tick_bps": 1.33,
+          "cliff_bps": 155.74,
+          "cascade_bps": 3917.72,
+          "cliff_std_mse": 41.1696,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 21.94,
+              "overshoot_rmse_bps": 549.34,
+              "overshoot_p95_bps": 130.64,
+              "sizing_rel_err_pct": 25.69,
+              "mean_excess_slippage_usd": 18987.66
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 18.55,
+                "overshoot_rmse_bps": 7.13,
+                "overshoot_p95_bps": 6.12,
+                "sizing_rel_err_pct": 19.45,
+                "mean_excess_slippage_usd": 56.08
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 31.45,
+                "overshoot_rmse_bps": 296.34,
+                "overshoot_p95_bps": 23.03,
+                "sizing_rel_err_pct": 30.96,
+                "mean_excess_slippage_usd": 1437.72
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 25.0,
+                "overshoot_rmse_bps": 455.3,
+                "overshoot_p95_bps": 52.46,
+                "sizing_rel_err_pct": 29.69,
+                "mean_excess_slippage_usd": 5336.98
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 19.35,
+                "overshoot_rmse_bps": 755.12,
+                "overshoot_p95_bps": 517.42,
+                "sizing_rel_err_pct": 27.25,
+                "mean_excess_slippage_usd": 38158.53
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 15.32,
+                "overshoot_rmse_bps": 802.2,
+                "overshoot_p95_bps": 1603.52,
+                "sizing_rel_err_pct": 21.08,
+                "mean_excess_slippage_usd": 49949.01
+              }
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 1795843,
+          "obs_val_std_mse": 0.24714136198831965,
+          "in_tick_bps": 1.5,
+          "cliff_bps": 170.81,
+          "cascade_bps": 3964.23,
+          "cliff_std_mse": 48.9056,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 19.35,
+              "overshoot_rmse_bps": 551.27,
+              "overshoot_p95_bps": 159.38,
+              "sizing_rel_err_pct": 27.43,
+              "mean_excess_slippage_usd": 19769.91
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 12.1,
+                "overshoot_rmse_bps": 6.72,
+                "overshoot_p95_bps": 4.82,
+                "sizing_rel_err_pct": 20.98,
+                "mean_excess_slippage_usd": 16.17
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 16.13,
+                "overshoot_rmse_bps": 296.13,
+                "overshoot_p95_bps": 21.54,
+                "sizing_rel_err_pct": 31.7,
+                "mean_excess_slippage_usd": 852.98
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 28.23,
+                "overshoot_rmse_bps": 453.13,
+                "overshoot_p95_bps": 63.73,
+                "sizing_rel_err_pct": 33.03,
+                "mean_excess_slippage_usd": 5731.73
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 25.0,
+                "overshoot_rmse_bps": 763.46,
+                "overshoot_p95_bps": 538.72,
+                "sizing_rel_err_pct": 30.36,
+                "mean_excess_slippage_usd": 42299.67
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 15.32,
+                "overshoot_rmse_bps": 802.2,
+                "overshoot_p95_bps": 1603.52,
+                "sizing_rel_err_pct": 21.08,
+                "mean_excess_slippage_usd": 49949.01
+              }
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 1795843,
+          "obs_val_std_mse": 0.20275658182886838,
+          "in_tick_bps": 2.92,
+          "cliff_bps": 174.67,
+          "cascade_bps": 3986.56,
+          "cliff_std_mse": 52.7461,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 28.39,
+              "overshoot_rmse_bps": 670.05,
+              "overshoot_p95_bps": 308.61,
+              "sizing_rel_err_pct": 40.9,
+              "mean_excess_slippage_usd": 26122.66
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 29.84,
+                "overshoot_rmse_bps": 297.19,
+                "overshoot_p95_bps": 25.1,
+                "sizing_rel_err_pct": 40.12,
+                "mean_excess_slippage_usd": 631.77
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 27.42,
+                "overshoot_rmse_bps": 454.42,
+                "overshoot_p95_bps": 53.33,
+                "sizing_rel_err_pct": 47.05,
+                "mean_excess_slippage_usd": 3028.46
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 39.52,
+                "overshoot_rmse_bps": 763.76,
+                "overshoot_p95_bps": 237.57,
+                "sizing_rel_err_pct": 51.16,
+                "mean_excess_slippage_usd": 20344.89
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 29.84,
+                "overshoot_rmse_bps": 850.37,
+                "overshoot_p95_bps": 1477.62,
+                "sizing_rel_err_pct": 45.09,
+                "mean_excess_slippage_usd": 56659.15
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 15.32,
+                "overshoot_rmse_bps": 802.2,
+                "overshoot_p95_bps": 1603.52,
+                "sizing_rel_err_pct": 21.08,
+                "mean_excess_slippage_usd": 49949.01
+              }
+            }
+          }
+        }
+      ]
+    },
+    "transformer_L_8M": {
+      "family": "seq_transformer",
+      "params": 9234435,
+      "obs_val_std_mse_mean": 0.2413,
+      "cliff_bps_mean": 168.03,
+      "overall_mean": {
+        "violation_rate_pct": 28.87,
+        "overshoot_rmse_bps": 561.29,
+        "overshoot_p95_bps": 181.12,
+        "sizing_rel_err_pct": 37.72,
+        "mean_excess_slippage_usd": 21831.74
+      },
+      "by_budget_mean": {
+        "B_25bps": {
+          "budget_bps": 25.0,
+          "violation_rate_pct": 38.98,
+          "overshoot_rmse_bps": 296.36,
+          "overshoot_p95_bps": 26.87,
+          "sizing_rel_err_pct": 41.5
+        },
+        "B_50bps": {
+          "budget_bps": 50.0,
+          "violation_rate_pct": 35.48,
+          "overshoot_rmse_bps": 294.65,
+          "overshoot_p95_bps": 56.78,
+          "sizing_rel_err_pct": 46.0
+        },
+        "B_100bps": {
+          "budget_bps": 100.0,
+          "violation_rate_pct": 31.72,
+          "overshoot_rmse_bps": 462.57,
+          "overshoot_p95_bps": 151.01,
+          "sizing_rel_err_pct": 43.98
+        },
+        "B_200bps": {
+          "budget_bps": 200.0,
+          "violation_rate_pct": 22.85,
+          "overshoot_rmse_bps": 730.73,
+          "overshoot_p95_bps": 867.85,
+          "sizing_rel_err_pct": 36.02
+        },
+        "B_400bps": {
+          "budget_bps": 400.0,
+          "violation_rate_pct": 15.32,
+          "overshoot_rmse_bps": 802.2,
+          "overshoot_p95_bps": 1603.52,
+          "sizing_rel_err_pct": 21.08
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 9234435,
+          "obs_val_std_mse": 0.23954338128989933,
+          "in_tick_bps": 3.58,
+          "cliff_bps": 175.92,
+          "cascade_bps": 3952.26,
+          "cliff_std_mse": 52.4291,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 31.77,
+              "overshoot_rmse_bps": 593.67,
+              "overshoot_p95_bps": 263.51,
+              "sizing_rel_err_pct": 44.97,
+              "mean_excess_slippage_usd": 24668.93
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 33.87,
+                "overshoot_rmse_bps": 296.26,
+                "overshoot_p95_bps": 38.36,
+                "sizing_rel_err_pct": 46.72,
+                "mean_excess_slippage_usd": 499.2
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 37.9,
+                "overshoot_rmse_bps": 287.66,
+                "overshoot_p95_bps": 89.55,
+                "sizing_rel_err_pct": 56.35,
+                "mean_excess_slippage_usd": 1602.27
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 40.32,
+                "overshoot_rmse_bps": 463.39,
+                "overshoot_p95_bps": 225.5,
+                "sizing_rel_err_pct": 54.5,
+                "mean_excess_slippage_usd": 10970.42
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 31.45,
+                "overshoot_rmse_bps": 856.41,
+                "overshoot_p95_bps": 1803.52,
+                "sizing_rel_err_pct": 46.21,
+                "mean_excess_slippage_usd": 60323.78
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 15.32,
+                "overshoot_rmse_bps": 802.2,
+                "overshoot_p95_bps": 1603.52,
+                "sizing_rel_err_pct": 21.08,
+                "mean_excess_slippage_usd": 49949.01
+              }
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 9234435,
+          "obs_val_std_mse": 0.2634749699573379,
+          "in_tick_bps": 2.82,
+          "cliff_bps": 156.95,
+          "cascade_bps": 3914.97,
+          "cliff_std_mse": 40.3788,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 26.45,
+              "overshoot_rmse_bps": 564.31,
+              "overshoot_p95_bps": 120.53,
+              "sizing_rel_err_pct": 33.26,
+              "mean_excess_slippage_usd": 18779.45
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 38.71,
+                "overshoot_rmse_bps": 296.39,
+                "overshoot_p95_bps": 18.04,
+                "sizing_rel_err_pct": 36.19,
+                "mean_excess_slippage_usd": 518.23
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 32.26,
+                "overshoot_rmse_bps": 298.09,
+                "overshoot_p95_bps": 38.55,
+                "sizing_rel_err_pct": 40.63,
+                "mean_excess_slippage_usd": 1047.96
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 27.42,
+                "overshoot_rmse_bps": 450.82,
+                "overshoot_p95_bps": 84.32,
+                "sizing_rel_err_pct": 36.76,
+                "mean_excess_slippage_usd": 4200.37
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 18.55,
+                "overshoot_rmse_bps": 754.16,
+                "overshoot_p95_bps": 503.6,
+                "sizing_rel_err_pct": 31.64,
+                "mean_excess_slippage_usd": 38181.69
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 15.32,
+                "overshoot_rmse_bps": 802.2,
+                "overshoot_p95_bps": 1603.52,
+                "sizing_rel_err_pct": 21.08,
+                "mean_excess_slippage_usd": 49949.01
+              }
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 9234435,
+          "obs_val_std_mse": 0.22087030017466644,
+          "in_tick_bps": 2.05,
+          "cliff_bps": 171.21,
+          "cascade_bps": 3952.09,
+          "cliff_std_mse": 49.1519,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 28.39,
+              "overshoot_rmse_bps": 525.89,
+              "overshoot_p95_bps": 159.33,
+              "sizing_rel_err_pct": 34.92,
+              "mean_excess_slippage_usd": 22046.83
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 44.35,
+                "overshoot_rmse_bps": 296.42,
+                "overshoot_p95_bps": 24.21,
+                "sizing_rel_err_pct": 41.6,
+                "mean_excess_slippage_usd": 554.06
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 36.29,
+                "overshoot_rmse_bps": 298.21,
+                "overshoot_p95_bps": 42.24,
+                "sizing_rel_err_pct": 41.02,
+                "mean_excess_slippage_usd": 1279.15
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 27.42,
+                "overshoot_rmse_bps": 473.51,
+                "overshoot_p95_bps": 143.22,
+                "sizing_rel_err_pct": 40.67,
+                "mean_excess_slippage_usd": 26612.37
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 18.55,
+                "overshoot_rmse_bps": 581.62,
+                "overshoot_p95_bps": 296.42,
+                "sizing_rel_err_pct": 30.22,
+                "mean_excess_slippage_usd": 31839.56
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 15.32,
+                "overshoot_rmse_bps": 802.2,
+                "overshoot_p95_bps": 1603.52,
+                "sizing_rel_err_pct": 21.08,
+                "mean_excess_slippage_usd": 49949.01
+              }
+            }
+          }
+        }
+      ]
+    },
+    "jepa_M_1.5M": {
+      "family": "latent_jepa",
+      "params": 985155,
+      "obs_val_std_mse_mean": 0.356,
+      "cliff_bps_mean": 184.54,
+      "overall_mean": {
+        "violation_rate_pct": 23.01,
+        "overshoot_rmse_bps": 608.3,
+        "overshoot_p95_bps": 262.7,
+        "sizing_rel_err_pct": 43.65,
+        "mean_excess_slippage_usd": 24229.25
+      },
+      "by_budget_mean": {
+        "B_25bps": {
+          "budget_bps": 25.0,
+          "violation_rate_pct": 18.55,
+          "overshoot_rmse_bps": 197.73,
+          "overshoot_p95_bps": 11.3,
+          "sizing_rel_err_pct": 48.67
+        },
+        "B_50bps": {
+          "budget_bps": 50.0,
+          "violation_rate_pct": 17.48,
+          "overshoot_rmse_bps": 292.53,
+          "overshoot_p95_bps": 25.26,
+          "sizing_rel_err_pct": 51.68
+        },
+        "B_100bps": {
+          "budget_bps": 100.0,
+          "violation_rate_pct": 29.84,
+          "overshoot_rmse_bps": 567.95,
+          "overshoot_p95_bps": 149.33,
+          "sizing_rel_err_pct": 53.44
+        },
+        "B_200bps": {
+          "budget_bps": 200.0,
+          "violation_rate_pct": 33.87,
+          "overshoot_rmse_bps": 856.72,
+          "overshoot_p95_bps": 1803.52,
+          "sizing_rel_err_pct": 43.39
+        },
+        "B_400bps": {
+          "budget_bps": 400.0,
+          "violation_rate_pct": 15.32,
+          "overshoot_rmse_bps": 802.2,
+          "overshoot_p95_bps": 1603.52,
+          "sizing_rel_err_pct": 21.08
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 985155,
+          "obs_val_std_mse": 0.34498330616618117,
+          "in_tick_bps": 5.15,
+          "cliff_bps": 182.89,
+          "cascade_bps": 3970.99,
+          "cliff_std_mse": 59.6033,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 17.74,
+              "overshoot_rmse_bps": 577.67,
+              "overshoot_p95_bps": 228.72,
+              "sizing_rel_err_pct": 39.22,
+              "mean_excess_slippage_usd": 23036.82
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 6.45,
+                "overshoot_rmse_bps": 1.14,
+                "overshoot_p95_bps": 1.85,
+                "sizing_rel_err_pct": 44.12,
+                "mean_excess_slippage_usd": 2.51
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 7.26,
+                "overshoot_rmse_bps": 294.38,
+                "overshoot_p95_bps": 6.78,
+                "sizing_rel_err_pct": 47.13,
+                "mean_excess_slippage_usd": 492.41
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 25.81,
+                "overshoot_rmse_bps": 452.09,
+                "overshoot_p95_bps": 74.62,
+                "sizing_rel_err_pct": 40.38,
+                "mean_excess_slippage_usd": 3814.38
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 33.87,
+                "overshoot_rmse_bps": 856.72,
+                "overshoot_p95_bps": 1803.52,
+                "sizing_rel_err_pct": 43.39,
+                "mean_excess_slippage_usd": 60925.8
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 15.32,
+                "overshoot_rmse_bps": 802.2,
+                "overshoot_p95_bps": 1603.52,
+                "sizing_rel_err_pct": 21.08,
+                "mean_excess_slippage_usd": 49949.01
+              }
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 985155,
+          "obs_val_std_mse": 0.3579592416066665,
+          "in_tick_bps": 3.9,
+          "cliff_bps": 184.76,
+          "cascade_bps": 3980.88,
+          "cliff_std_mse": 59.3358,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 29.68,
+              "overshoot_rmse_bps": 634.33,
+              "overshoot_p95_bps": 296.04,
+              "sizing_rel_err_pct": 48.46,
+              "mean_excess_slippage_usd": 25546.94
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 34.68,
+                "overshoot_rmse_bps": 296.42,
+                "overshoot_p95_bps": 27.37,
+                "sizing_rel_err_pct": 55.17,
+                "mean_excess_slippage_usd": 496.36
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 30.65,
+                "overshoot_rmse_bps": 286.45,
+                "overshoot_p95_bps": 53.38,
+                "sizing_rel_err_pct": 56.41,
+                "mean_excess_slippage_usd": 1107.01
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 33.87,
+                "overshoot_rmse_bps": 681.5,
+                "overshoot_p95_bps": 258.41,
+                "sizing_rel_err_pct": 66.25,
+                "mean_excess_slippage_usd": 15256.53
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 33.87,
+                "overshoot_rmse_bps": 856.72,
+                "overshoot_p95_bps": 1803.52,
+                "sizing_rel_err_pct": 43.39,
+                "mean_excess_slippage_usd": 60925.8
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 15.32,
+                "overshoot_rmse_bps": 802.2,
+                "overshoot_p95_bps": 1603.52,
+                "sizing_rel_err_pct": 21.08,
+                "mean_excess_slippage_usd": 49949.01
+              }
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 985155,
+          "obs_val_std_mse": 0.36491512963431255,
+          "in_tick_bps": 5.23,
+          "cliff_bps": 185.97,
+          "cascade_bps": 3984.19,
+          "cliff_std_mse": 61.2798,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 21.61,
+              "overshoot_rmse_bps": 612.89,
+              "overshoot_p95_bps": 263.34,
+              "sizing_rel_err_pct": 43.28,
+              "mean_excess_slippage_usd": 24104.0
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 14.52,
+                "overshoot_rmse_bps": 295.62,
+                "overshoot_p95_bps": 4.69,
+                "sizing_rel_err_pct": 46.73,
+                "mean_excess_slippage_usd": 359.26
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 14.52,
+                "overshoot_rmse_bps": 296.76,
+                "overshoot_p95_bps": 15.63,
+                "sizing_rel_err_pct": 51.49,
+                "mean_excess_slippage_usd": 773.99
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 29.84,
+                "overshoot_rmse_bps": 570.27,
+                "overshoot_p95_bps": 114.95,
+                "sizing_rel_err_pct": 53.69,
+                "mean_excess_slippage_usd": 8511.93
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 33.87,
+                "overshoot_rmse_bps": 856.72,
+                "overshoot_p95_bps": 1803.52,
+                "sizing_rel_err_pct": 43.39,
+                "mean_excess_slippage_usd": 60925.8
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 15.32,
+                "overshoot_rmse_bps": 802.2,
+                "overshoot_p95_bps": 1603.52,
+                "sizing_rel_err_pct": 21.08,
+                "mean_excess_slippage_usd": 49949.01
+              }
+            }
+          }
+        }
+      ]
+    },
+    "jepa_L_8M": {
+      "family": "latent_jepa",
+      "params": 1561155,
+      "obs_val_std_mse_mean": 0.3551,
+      "cliff_bps_mean": 188.05,
+      "overall_mean": {
+        "violation_rate_pct": 25.38,
+        "overshoot_rmse_bps": 656.67,
+        "overshoot_p95_bps": 304.55,
+        "sizing_rel_err_pct": 49.08,
+        "mean_excess_slippage_usd": 27018.96
+      },
+      "by_budget_mean": {
+        "B_25bps": {
+          "budget_bps": 25.0,
+          "violation_rate_pct": 18.82,
+          "overshoot_rmse_bps": 198.05,
+          "overshoot_p95_bps": 13.68,
+          "sizing_rel_err_pct": 55.51
+        },
+        "B_50bps": {
+          "budget_bps": 50.0,
+          "violation_rate_pct": 23.39,
+          "overshoot_rmse_bps": 290.22,
+          "overshoot_p95_bps": 34.65,
+          "sizing_rel_err_pct": 56.11
+        },
+        "B_100bps": {
+          "budget_bps": 100.0,
+          "violation_rate_pct": 35.48,
+          "overshoot_rmse_bps": 796.38,
+          "overshoot_p95_bps": 336.19,
+          "sizing_rel_err_pct": 69.31
+        },
+        "B_200bps": {
+          "budget_bps": 200.0,
+          "violation_rate_pct": 33.87,
+          "overshoot_rmse_bps": 856.72,
+          "overshoot_p95_bps": 1803.52,
+          "sizing_rel_err_pct": 43.39
+        },
+        "B_400bps": {
+          "budget_bps": 400.0,
+          "violation_rate_pct": 15.32,
+          "overshoot_rmse_bps": 802.2,
+          "overshoot_p95_bps": 1603.52,
+          "sizing_rel_err_pct": 21.08
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 1561155,
+          "obs_val_std_mse": 0.3767138754460716,
+          "in_tick_bps": 7.54,
+          "cliff_bps": 192.34,
+          "cascade_bps": 4000.72,
+          "cliff_std_mse": 64.6708,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 21.61,
+              "overshoot_rmse_bps": 661.3,
+              "overshoot_p95_bps": 307.3,
+              "sizing_rel_err_pct": 45.07,
+              "mean_excess_slippage_usd": 27874.64
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 2.42,
+                "overshoot_rmse_bps": 0.57,
+                "overshoot_p95_bps": 0.25,
+                "sizing_rel_err_pct": 48.47,
+                "mean_excess_slippage_usd": 0.94
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 19.35,
+                "overshoot_rmse_bps": 294.88,
+                "overshoot_p95_bps": 16.83,
+                "sizing_rel_err_pct": 47.44,
+                "mean_excess_slippage_usd": 605.23
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 37.1,
+                "overshoot_rmse_bps": 849.8,
+                "overshoot_p95_bps": 398.01,
+                "sizing_rel_err_pct": 64.99,
+                "mean_excess_slippage_usd": 27892.2
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 33.87,
+                "overshoot_rmse_bps": 856.72,
+                "overshoot_p95_bps": 1803.52,
+                "sizing_rel_err_pct": 43.39,
+                "mean_excess_slippage_usd": 60925.8
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 15.32,
+                "overshoot_rmse_bps": 802.2,
+                "overshoot_p95_bps": 1603.52,
+                "sizing_rel_err_pct": 21.08,
+                "mean_excess_slippage_usd": 49949.01
+              }
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 1561155,
+          "obs_val_std_mse": 0.33049064639131714,
+          "in_tick_bps": 4.97,
+          "cliff_bps": 186.41,
+          "cascade_bps": 3987.95,
+          "cliff_std_mse": 60.5478,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 28.87,
+              "overshoot_rmse_bps": 655.04,
+              "overshoot_p95_bps": 308.61,
+              "sizing_rel_err_pct": 53.84,
+              "mean_excess_slippage_usd": 27011.03
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 29.84,
+                "overshoot_rmse_bps": 296.43,
+                "overshoot_p95_bps": 24.94,
+                "sizing_rel_err_pct": 61.34,
+                "mean_excess_slippage_usd": 502.83
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 29.84,
+                "overshoot_rmse_bps": 286.75,
+                "overshoot_p95_bps": 61.0,
+                "sizing_rel_err_pct": 64.4,
+                "mean_excess_slippage_usd": 1206.46
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 35.48,
+                "overshoot_rmse_bps": 773.17,
+                "overshoot_p95_bps": 353.5,
+                "sizing_rel_err_pct": 78.98,
+                "mean_excess_slippage_usd": 22471.05
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 33.87,
+                "overshoot_rmse_bps": 856.72,
+                "overshoot_p95_bps": 1803.52,
+                "sizing_rel_err_pct": 43.39,
+                "mean_excess_slippage_usd": 60925.8
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 15.32,
+                "overshoot_rmse_bps": 802.2,
+                "overshoot_p95_bps": 1603.52,
+                "sizing_rel_err_pct": 21.08,
+                "mean_excess_slippage_usd": 49949.01
+              }
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 1561155,
+          "obs_val_std_mse": 0.3579565443776375,
+          "in_tick_bps": 6.15,
+          "cliff_bps": 185.41,
+          "cascade_bps": 3986.45,
+          "cliff_std_mse": 60.9692,
+          "planner": {
+            "overall": {
+              "violation_rate_pct": 25.65,
+              "overshoot_rmse_bps": 653.66,
+              "overshoot_p95_bps": 297.74,
+              "sizing_rel_err_pct": 48.33,
+              "mean_excess_slippage_usd": 26171.21
+            },
+            "by_budget": {
+              "B_25bps": {
+                "budget_bps": 25.0,
+                "violation_rate_pct": 24.19,
+                "overshoot_rmse_bps": 297.15,
+                "overshoot_p95_bps": 15.85,
+                "sizing_rel_err_pct": 56.73,
+                "mean_excess_slippage_usd": 580.92
+              },
+              "B_50bps": {
+                "budget_bps": 50.0,
+                "violation_rate_pct": 20.97,
+                "overshoot_rmse_bps": 289.02,
+                "overshoot_p95_bps": 26.13,
+                "sizing_rel_err_pct": 56.5,
+                "mean_excess_slippage_usd": 1125.18
+              },
+              "B_100bps": {
+                "budget_bps": 100.0,
+                "violation_rate_pct": 33.87,
+                "overshoot_rmse_bps": 766.17,
+                "overshoot_p95_bps": 257.07,
+                "sizing_rel_err_pct": 63.95,
+                "mean_excess_slippage_usd": 18275.15
+              },
+              "B_200bps": {
+                "budget_bps": 200.0,
+                "violation_rate_pct": 33.87,
+                "overshoot_rmse_bps": 856.72,
+                "overshoot_p95_bps": 1803.52,
+                "sizing_rel_err_pct": 43.39,
+                "mean_excess_slippage_usd": 60925.8
+              },
+              "B_400bps": {
+                "budget_bps": 400.0,
+                "violation_rate_pct": 15.32,
+                "overshoot_rmse_bps": 802.2,
+                "overshoot_p95_bps": 1603.52,
+                "sizing_rel_err_pct": 21.08,
+                "mean_excess_slippage_usd": 49949.01
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

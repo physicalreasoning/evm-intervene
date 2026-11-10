@@ -1,0 +1,3196 @@
+{
+  "seeds": [
+    101,
+    202,
+    303
+  ],
+  "epochs": 45,
+  "n_real_trajectories": 250,
+  "real_flow_rollout_models": {
+    "conservation_wm_none": {
+      "family": "conservation_wm",
+      "params": 2549,
+      "obs_val_std_mse_mean": 0.5135,
+      "cliff_bps_mean": 50.82,
+      "all_trajectories_mean": {
+        "h1": {
+          "horizon_swaps": 1,
+          "price_rmse_bps": 4.33,
+          "liquidity_rmse": 0.5004,
+          "directional_acc_pct": 100.0
+        },
+        "h5": {
+          "horizon_swaps": 5,
+          "price_rmse_bps": 33.04,
+          "liquidity_rmse": 0.6358,
+          "directional_acc_pct": 97.63
+        },
+        "h10": {
+          "horizon_swaps": 10,
+          "price_rmse_bps": 40.23,
+          "liquidity_rmse": 0.6337,
+          "directional_acc_pct": 98.37
+        },
+        "h20": {
+          "horizon_swaps": 20,
+          "price_rmse_bps": 48.93,
+          "liquidity_rmse": 0.7965,
+          "directional_acc_pct": 92.61
+        },
+        "h35": {
+          "horizon_swaps": 35,
+          "price_rmse_bps": 90.83,
+          "liquidity_rmse": 0.8034,
+          "directional_acc_pct": 95.18
+        },
+        "h50": {
+          "horizon_swaps": 50,
+          "price_rmse_bps": 116.64,
+          "liquidity_rmse": 0.8714,
+          "directional_acc_pct": 90.67
+        }
+      },
+      "high_vol_cliff_trajectories_mean": {
+        "h1": {
+          "horizon_swaps": 1,
+          "price_rmse_bps": 5.2,
+          "liquidity_rmse": 0.4381,
+          "directional_acc_pct": 100.0
+        },
+        "h5": {
+          "horizon_swaps": 5,
+          "price_rmse_bps": 36.81,
+          "liquidity_rmse": 0.6963,
+          "directional_acc_pct": 97.39
+        },
+        "h10": {
+          "horizon_swaps": 10,
+          "price_rmse_bps": 48.21,
+          "liquidity_rmse": 0.6704,
+          "directional_acc_pct": 97.44
+        },
+        "h20": {
+          "horizon_swaps": 20,
+          "price_rmse_bps": 60.24,
+          "liquidity_rmse": 0.9125,
+          "directional_acc_pct": 89.81
+        },
+        "h35": {
+          "horizon_swaps": 35,
+          "price_rmse_bps": 113.62,
+          "liquidity_rmse": 0.9419,
+          "directional_acc_pct": 93.42
+        },
+        "h50": {
+          "horizon_swaps": 50,
+          "price_rmse_bps": 146.08,
+          "liquidity_rmse": 0.9884,
+          "directional_acc_pct": 86.71
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 2549,
+          "obs_val_std_mse": 0.5134529707122901,
+          "in_tick_bps": 0.43,
+          "cliff_bps": 52.09,
+          "cascade_bps": 2611.37,
+          "cliff_std_mse": 3.7097,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 4.36,
+                "price_mae_bps": 1.14,
+                "liquidity_rmse": 0.5008,
+                "directional_acc_pct": 100.0
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 32.16,
+                "price_mae_bps": 6.85,
+                "liquidity_rmse": 0.6379,
+                "directional_acc_pct": 97.49
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 38.84,
+                "price_mae_bps": 10.82,
+                "liquidity_rmse": 0.6448,
+                "directional_acc_pct": 98.37
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 46.26,
+                "price_mae_bps": 14.97,
+                "liquidity_rmse": 0.7811,
+                "directional_acc_pct": 92.74
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 119.48,
+                "price_mae_bps": 27.8,
+                "liquidity_rmse": 0.7976,
+                "directional_acc_pct": 95.98
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 126.27,
+                "price_mae_bps": 35.57,
+                "liquidity_rmse": 0.8816,
+                "directional_acc_pct": 90.8
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 5.24,
+                "price_mae_bps": 1.53,
+                "liquidity_rmse": 0.4386,
+                "directional_acc_pct": 100.0
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 35.92,
+                "price_mae_bps": 8.79,
+                "liquidity_rmse": 0.6913,
+                "directional_acc_pct": 97.39
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 47.55,
+                "price_mae_bps": 15.44,
+                "liquidity_rmse": 0.6695,
+                "directional_acc_pct": 97.44
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 58.01,
+                "price_mae_bps": 22.47,
+                "liquidity_rmse": 0.8791,
+                "directional_acc_pct": 89.81
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 150.26,
+                "price_mae_bps": 42.81,
+                "liquidity_rmse": 0.9351,
+                "directional_acc_pct": 94.27
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 158.72,
+                "price_mae_bps": 54.26,
+                "liquidity_rmse": 1.0048,
+                "directional_acc_pct": 87.34
+              }
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 2549,
+          "obs_val_std_mse": 0.5132860271127352,
+          "in_tick_bps": 0.42,
+          "cliff_bps": 49.48,
+          "cascade_bps": 2560.22,
+          "cliff_std_mse": 3.357,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 4.35,
+                "price_mae_bps": 1.12,
+                "liquidity_rmse": 0.5019,
+                "directional_acc_pct": 100.0
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 34.61,
+                "price_mae_bps": 6.91,
+                "liquidity_rmse": 0.6232,
+                "directional_acc_pct": 97.49
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 42.58,
+                "price_mae_bps": 11.3,
+                "liquidity_rmse": 0.6223,
+                "directional_acc_pct": 98.37
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 51.69,
+                "price_mae_bps": 16.44,
+                "liquidity_rmse": 0.7766,
+                "directional_acc_pct": 92.34
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 98.01,
+                "price_mae_bps": 27.38,
+                "liquidity_rmse": 0.8191,
+                "directional_acc_pct": 95.18
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 113.38,
+                "price_mae_bps": 36.03,
+                "liquidity_rmse": 0.8494,
+                "directional_acc_pct": 91.6
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 5.22,
+                "price_mae_bps": 1.51,
+                "liquidity_rmse": 0.4394,
+                "directional_acc_pct": 100.0
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 37.08,
+                "price_mae_bps": 8.55,
+                "liquidity_rmse": 0.6887,
+                "directional_acc_pct": 97.39
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 48.81,
+                "price_mae_bps": 15.33,
+                "liquidity_rmse": 0.6791,
+                "directional_acc_pct": 97.44
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 61.51,
+                "price_mae_bps": 23.42,
+                "liquidity_rmse": 0.9048,
+                "directional_acc_pct": 89.17
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 121.55,
+                "price_mae_bps": 40.63,
+                "liquidity_rmse": 0.9622,
+                "directional_acc_pct": 93.63
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 140.94,
+                "price_mae_bps": 53.51,
+                "liquidity_rmse": 0.9665,
+                "directional_acc_pct": 87.97
+              }
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 2549,
+          "obs_val_std_mse": 0.513891419492015,
+          "in_tick_bps": 0.37,
+          "cliff_bps": 50.89,
+          "cascade_bps": 2520.74,
+          "cliff_std_mse": 3.5735,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 4.28,
+                "price_mae_bps": 1.04,
+                "liquidity_rmse": 0.4986,
+                "directional_acc_pct": 100.0
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 32.35,
+                "price_mae_bps": 6.75,
+                "liquidity_rmse": 0.6463,
+                "directional_acc_pct": 97.91
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 39.28,
+                "price_mae_bps": 10.79,
+                "liquidity_rmse": 0.6341,
+                "directional_acc_pct": 98.37
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 48.84,
+                "price_mae_bps": 15.57,
+                "liquidity_rmse": 0.8319,
+                "directional_acc_pct": 92.74
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 55.0,
+                "price_mae_bps": 20.91,
+                "liquidity_rmse": 0.7934,
+                "directional_acc_pct": 94.38
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 110.26,
+                "price_mae_bps": 34.72,
+                "liquidity_rmse": 0.8831,
+                "directional_acc_pct": 89.6
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 5.13,
+                "price_mae_bps": 1.4,
+                "liquidity_rmse": 0.4362,
+                "directional_acc_pct": 100.0
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 37.42,
+                "price_mae_bps": 8.91,
+                "liquidity_rmse": 0.7088,
+                "directional_acc_pct": 97.39
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 48.28,
+                "price_mae_bps": 15.56,
+                "liquidity_rmse": 0.6625,
+                "directional_acc_pct": 97.44
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 61.2,
+                "price_mae_bps": 23.39,
+                "liquidity_rmse": 0.9536,
+                "directional_acc_pct": 90.45
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 69.05,
+                "price_mae_bps": 31.75,
+                "liquidity_rmse": 0.9283,
+                "directional_acc_pct": 92.36
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 138.57,
+                "price_mae_bps": 52.85,
+                "liquidity_rmse": 0.994,
+                "directional_acc_pct": 84.81
+              }
+            }
+          }
+        }
+      ]
+    },
+    "conservation_wm_no_bin_net": {
+      "family": "conservation_wm",
+      "params": 2549,
+      "obs_val_std_mse_mean": 1.0472,
+      "cliff_bps_mean": 34.0,
+      "all_trajectories_mean": {
+        "h1": {
+          "horizon_swaps": 1,
+          "price_rmse_bps": 10.61,
+          "liquidity_rmse": 0.5516,
+          "directional_acc_pct": 100.0
+        },
+        "h5": {
+          "horizon_swaps": 5,
+          "price_rmse_bps": 157.37,
+          "liquidity_rmse": 0.6196,
+          "directional_acc_pct": 98.33
+        },
+        "h10": {
+          "horizon_swaps": 10,
+          "price_rmse_bps": 663.91,
+          "liquidity_rmse": 0.7755,
+          "directional_acc_pct": 95.92
+        },
+        "h20": {
+          "horizon_swaps": 20,
+          "price_rmse_bps": 1005.69,
+          "liquidity_rmse": 0.9652,
+          "directional_acc_pct": 93.01
+        },
+        "h35": {
+          "horizon_swaps": 35,
+          "price_rmse_bps": 1763.42,
+          "liquidity_rmse": 0.9289,
+          "directional_acc_pct": 93.3
+        },
+        "h50": {
+          "horizon_swaps": 50,
+          "price_rmse_bps": 1437.64,
+          "liquidity_rmse": 1.133,
+          "directional_acc_pct": 87.33
+        }
+      },
+      "high_vol_cliff_trajectories_mean": {
+        "h1": {
+          "horizon_swaps": 1,
+          "price_rmse_bps": 5.84,
+          "liquidity_rmse": 0.4365,
+          "directional_acc_pct": 100.0
+        },
+        "h5": {
+          "horizon_swaps": 5,
+          "price_rmse_bps": 187.07,
+          "liquidity_rmse": 0.6776,
+          "directional_acc_pct": 98.69
+        },
+        "h10": {
+          "horizon_swaps": 10,
+          "price_rmse_bps": 833.08,
+          "liquidity_rmse": 0.8524,
+          "directional_acc_pct": 94.87
+        },
+        "h20": {
+          "horizon_swaps": 20,
+          "price_rmse_bps": 1264.1,
+          "liquidity_rmse": 1.1019,
+          "directional_acc_pct": 90.24
+        },
+        "h35": {
+          "horizon_swaps": 35,
+          "price_rmse_bps": 2216.25,
+          "liquidity_rmse": 1.0045,
+          "directional_acc_pct": 91.3
+        },
+        "h50": {
+          "horizon_swaps": 50,
+          "price_rmse_bps": 1801.93,
+          "liquidity_rmse": 1.3122,
+          "directional_acc_pct": 82.49
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 2549,
+          "obs_val_std_mse": 1.0476543950423336,
+          "in_tick_bps": 0.57,
+          "cliff_bps": 33.7,
+          "cascade_bps": 2188.37,
+          "cliff_std_mse": 2.0532,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 10.61,
+                "price_mae_bps": 2.21,
+                "liquidity_rmse": 0.5513,
+                "directional_acc_pct": 100.0
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 157.89,
+                "price_mae_bps": 27.45,
+                "liquidity_rmse": 0.6196,
+                "directional_acc_pct": 98.33
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 660.82,
+                "price_mae_bps": 83.19,
+                "liquidity_rmse": 0.7864,
+                "directional_acc_pct": 95.92
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 1007.02,
+                "price_mae_bps": 138.39,
+                "liquidity_rmse": 0.9655,
+                "directional_acc_pct": 92.74
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 1763.74,
+                "price_mae_bps": 215.06,
+                "liquidity_rmse": 0.8898,
+                "directional_acc_pct": 93.57
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 1178.45,
+                "price_mae_bps": 233.56,
+                "liquidity_rmse": 1.0773,
+                "directional_acc_pct": 87.6
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 5.83,
+                "price_mae_bps": 2.21,
+                "liquidity_rmse": 0.4364,
+                "directional_acc_pct": 100.0
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 187.53,
+                "price_mae_bps": 37.53,
+                "liquidity_rmse": 0.6776,
+                "directional_acc_pct": 98.69
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 829.09,
+                "price_mae_bps": 125.87,
+                "liquidity_rmse": 0.8681,
+                "directional_acc_pct": 94.87
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 1265.75,
+                "price_mae_bps": 212.97,
+                "liquidity_rmse": 1.101,
+                "directional_acc_pct": 89.81
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 2216.65,
+                "price_mae_bps": 328.95,
+                "liquidity_rmse": 0.9396,
+                "directional_acc_pct": 91.72
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 1473.6,
+                "price_mae_bps": 345.71,
+                "liquidity_rmse": 1.2375,
+                "directional_acc_pct": 82.91
+              }
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 2549,
+          "obs_val_std_mse": 1.0466272490781476,
+          "in_tick_bps": 0.59,
+          "cliff_bps": 34.35,
+          "cascade_bps": 2195.69,
+          "cliff_std_mse": 2.1234,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 10.6,
+                "price_mae_bps": 2.23,
+                "liquidity_rmse": 0.552,
+                "directional_acc_pct": 100.0
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 156.81,
+                "price_mae_bps": 27.31,
+                "liquidity_rmse": 0.6197,
+                "directional_acc_pct": 98.33
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 665.41,
+                "price_mae_bps": 86.13,
+                "liquidity_rmse": 0.7702,
+                "directional_acc_pct": 95.92
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 1004.87,
+                "price_mae_bps": 136.31,
+                "liquidity_rmse": 0.9629,
+                "directional_acc_pct": 93.15
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 1762.84,
+                "price_mae_bps": 212.7,
+                "liquidity_rmse": 0.9484,
+                "directional_acc_pct": 92.77
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 1564.54,
+                "price_mae_bps": 276.67,
+                "liquidity_rmse": 1.1604,
+                "directional_acc_pct": 86.8
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 5.85,
+                "price_mae_bps": 2.24,
+                "liquidity_rmse": 0.4366,
+                "directional_acc_pct": 100.0
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 186.45,
+                "price_mae_bps": 37.39,
+                "liquidity_rmse": 0.6777,
+                "directional_acc_pct": 98.69
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 835.09,
+                "price_mae_bps": 130.75,
+                "liquidity_rmse": 0.8448,
+                "directional_acc_pct": 94.87
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 1263.12,
+                "price_mae_bps": 209.82,
+                "liquidity_rmse": 1.0984,
+                "directional_acc_pct": 90.45
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 2215.56,
+                "price_mae_bps": 325.55,
+                "liquidity_rmse": 1.0387,
+                "directional_acc_pct": 90.45
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 1962.85,
+                "price_mae_bps": 416.62,
+                "liquidity_rmse": 1.3371,
+                "directional_acc_pct": 81.65
+              }
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 2549,
+          "obs_val_std_mse": 1.0473189023216896,
+          "in_tick_bps": 0.58,
+          "cliff_bps": 33.94,
+          "cascade_bps": 2191.08,
+          "cliff_std_mse": 2.0788,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 10.61,
+                "price_mae_bps": 2.22,
+                "liquidity_rmse": 0.5516,
+                "directional_acc_pct": 100.0
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 157.4,
+                "price_mae_bps": 27.38,
+                "liquidity_rmse": 0.6195,
+                "directional_acc_pct": 98.33
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 665.5,
+                "price_mae_bps": 86.28,
+                "liquidity_rmse": 0.7698,
+                "directional_acc_pct": 95.92
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 1005.17,
+                "price_mae_bps": 137.27,
+                "liquidity_rmse": 0.9673,
+                "directional_acc_pct": 93.15
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 1763.69,
+                "price_mae_bps": 214.67,
+                "liquidity_rmse": 0.9486,
+                "directional_acc_pct": 93.57
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 1569.93,
+                "price_mae_bps": 288.15,
+                "liquidity_rmse": 1.1613,
+                "directional_acc_pct": 87.6
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 5.84,
+                "price_mae_bps": 2.22,
+                "liquidity_rmse": 0.4365,
+                "directional_acc_pct": 100.0
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 187.23,
+                "price_mae_bps": 37.49,
+                "liquidity_rmse": 0.6774,
+                "directional_acc_pct": 98.69
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 835.07,
+                "price_mae_bps": 130.83,
+                "liquidity_rmse": 0.8444,
+                "directional_acc_pct": 94.87
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 1263.44,
+                "price_mae_bps": 211.23,
+                "liquidity_rmse": 1.1064,
+                "directional_acc_pct": 90.45
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 2216.53,
+                "price_mae_bps": 328.1,
+                "liquidity_rmse": 1.0353,
+                "directional_acc_pct": 91.72
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 1969.34,
+                "price_mae_bps": 436.25,
+                "liquidity_rmse": 1.3621,
+                "directional_acc_pct": 82.91
+              }
+            }
+          }
+        }
+      ]
+    },
+    "mlp_M_1.5M": {
+      "family": "mlp_direct",
+      "params": 3367043,
+      "obs_val_std_mse_mean": 0.1827,
+      "cliff_bps_mean": 199.68,
+      "all_trajectories_mean": {
+        "h1": {
+          "horizon_swaps": 1,
+          "price_rmse_bps": 13.58,
+          "liquidity_rmse": 0.4909,
+          "directional_acc_pct": 80.0
+        },
+        "h5": {
+          "horizon_swaps": 5,
+          "price_rmse_bps": 52.97,
+          "liquidity_rmse": 1.4361,
+          "directional_acc_pct": 76.99
+        },
+        "h10": {
+          "horizon_swaps": 10,
+          "price_rmse_bps": 115.03,
+          "liquidity_rmse": 3.3759,
+          "directional_acc_pct": 70.61
+        },
+        "h20": {
+          "horizon_swaps": 20,
+          "price_rmse_bps": 289.62,
+          "liquidity_rmse": 9.2455,
+          "directional_acc_pct": 62.1
+        },
+        "h35": {
+          "horizon_swaps": 35,
+          "price_rmse_bps": 563.35,
+          "liquidity_rmse": 21.82,
+          "directional_acc_pct": 60.78
+        },
+        "h50": {
+          "horizon_swaps": 50,
+          "price_rmse_bps": 857.89,
+          "liquidity_rmse": 35.3043,
+          "directional_acc_pct": 57.47
+        }
+      },
+      "high_vol_cliff_trajectories_mean": {
+        "h1": {
+          "horizon_swaps": 1,
+          "price_rmse_bps": 16.3,
+          "liquidity_rmse": 0.5454,
+          "directional_acc_pct": 77.87
+        },
+        "h5": {
+          "horizon_swaps": 5,
+          "price_rmse_bps": 56.97,
+          "liquidity_rmse": 1.5921,
+          "directional_acc_pct": 78.65
+        },
+        "h10": {
+          "horizon_swaps": 10,
+          "price_rmse_bps": 104.96,
+          "liquidity_rmse": 3.4208,
+          "directional_acc_pct": 72.65
+        },
+        "h20": {
+          "horizon_swaps": 20,
+          "price_rmse_bps": 223.45,
+          "liquidity_rmse": 7.9909,
+          "directional_acc_pct": 65.82
+        },
+        "h35": {
+          "horizon_swaps": 35,
+          "price_rmse_bps": 411.34,
+          "liquidity_rmse": 16.8764,
+          "directional_acc_pct": 64.76
+        },
+        "h50": {
+          "horizon_swaps": 50,
+          "price_rmse_bps": 640.08,
+          "liquidity_rmse": 27.0003,
+          "directional_acc_pct": 59.7
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 3367043,
+          "obs_val_std_mse": 0.18569253151141296,
+          "in_tick_bps": 15.48,
+          "cliff_bps": 201.96,
+          "cascade_bps": 4107.87,
+          "cliff_std_mse": 64.0451,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 14.66,
+                "price_mae_bps": 7.44,
+                "liquidity_rmse": 0.4691,
+                "directional_acc_pct": 80.54
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 51.33,
+                "price_mae_bps": 30.31,
+                "liquidity_rmse": 1.2539,
+                "directional_acc_pct": 73.64
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 115.81,
+                "price_mae_bps": 74.49,
+                "liquidity_rmse": 2.8035,
+                "directional_acc_pct": 65.71
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 259.81,
+                "price_mae_bps": 198.7,
+                "liquidity_rmse": 7.2442,
+                "directional_acc_pct": 56.45
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 487.17,
+                "price_mae_bps": 360.49,
+                "liquidity_rmse": 15.9143,
+                "directional_acc_pct": 58.23
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 739.05,
+                "price_mae_bps": 517.13,
+                "liquidity_rmse": 24.6857,
+                "directional_acc_pct": 56.4
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 17.18,
+                "price_mae_bps": 9.56,
+                "liquidity_rmse": 0.5182,
+                "directional_acc_pct": 78.91
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 58.42,
+                "price_mae_bps": 37.07,
+                "liquidity_rmse": 1.3889,
+                "directional_acc_pct": 76.47
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 116.16,
+                "price_mae_bps": 78.01,
+                "liquidity_rmse": 2.988,
+                "directional_acc_pct": 68.59
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 245.98,
+                "price_mae_bps": 177.82,
+                "liquidity_rmse": 6.6338,
+                "directional_acc_pct": 60.51
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 458.52,
+                "price_mae_bps": 322.89,
+                "liquidity_rmse": 13.171,
+                "directional_acc_pct": 63.06
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 704.82,
+                "price_mae_bps": 468.41,
+                "liquidity_rmse": 20.1193,
+                "directional_acc_pct": 58.23
+              }
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 3367043,
+          "obs_val_std_mse": 0.17829745282582846,
+          "in_tick_bps": 6.59,
+          "cliff_bps": 200.63,
+          "cascade_bps": 4087.2,
+          "cliff_std_mse": 64.6303,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 12.23,
+                "price_mae_bps": 5.53,
+                "liquidity_rmse": 0.5248,
+                "directional_acc_pct": 81.08
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 53.6,
+                "price_mae_bps": 25.93,
+                "liquidity_rmse": 1.7245,
+                "directional_acc_pct": 76.15
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 116.2,
+                "price_mae_bps": 59.89,
+                "liquidity_rmse": 3.9861,
+                "directional_acc_pct": 68.98
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 366.74,
+                "price_mae_bps": 219.5,
+                "liquidity_rmse": 11.3407,
+                "directional_acc_pct": 62.5
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 830.43,
+                "price_mae_bps": 529.32,
+                "liquidity_rmse": 28.898,
+                "directional_acc_pct": 56.63
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 1322.21,
+                "price_mae_bps": 869.56,
+                "liquidity_rmse": 49.1097,
+                "directional_acc_pct": 54.8
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 15.09,
+                "price_mae_bps": 7.43,
+                "liquidity_rmse": 0.5885,
+                "directional_acc_pct": 79.69
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 50.2,
+                "price_mae_bps": 28.36,
+                "liquidity_rmse": 1.9108,
+                "directional_acc_pct": 77.78
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 92.83,
+                "price_mae_bps": 54.37,
+                "liquidity_rmse": 3.9619,
+                "directional_acc_pct": 70.51
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 242.6,
+                "price_mae_bps": 137.5,
+                "liquidity_rmse": 9.3491,
+                "directional_acc_pct": 64.97
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 514.7,
+                "price_mae_bps": 286.75,
+                "liquidity_rmse": 21.1984,
+                "directional_acc_pct": 57.96
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 867.91,
+                "price_mae_bps": 492.03,
+                "liquidity_rmse": 36.1414,
+                "directional_acc_pct": 57.59
+              }
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 3367043,
+          "obs_val_std_mse": 0.18406223839065072,
+          "in_tick_bps": 15.78,
+          "cliff_bps": 196.44,
+          "cascade_bps": 4077.47,
+          "cliff_std_mse": 64.9027,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 13.86,
+                "price_mae_bps": 6.56,
+                "liquidity_rmse": 0.4789,
+                "directional_acc_pct": 78.38
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 53.98,
+                "price_mae_bps": 26.94,
+                "liquidity_rmse": 1.33,
+                "directional_acc_pct": 81.17
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 113.09,
+                "price_mae_bps": 63.72,
+                "liquidity_rmse": 3.3382,
+                "directional_acc_pct": 77.14
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 242.31,
+                "price_mae_bps": 160.12,
+                "liquidity_rmse": 9.1515,
+                "directional_acc_pct": 67.34
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 372.46,
+                "price_mae_bps": 278.75,
+                "liquidity_rmse": 20.6477,
+                "directional_acc_pct": 67.47
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 512.4,
+                "price_mae_bps": 385.63,
+                "liquidity_rmse": 32.1175,
+                "directional_acc_pct": 61.2
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 16.64,
+                "price_mae_bps": 8.64,
+                "liquidity_rmse": 0.5295,
+                "directional_acc_pct": 75.0
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 62.28,
+                "price_mae_bps": 32.97,
+                "liquidity_rmse": 1.4765,
+                "directional_acc_pct": 81.7
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 105.89,
+                "price_mae_bps": 60.71,
+                "liquidity_rmse": 3.3124,
+                "directional_acc_pct": 78.85
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 181.78,
+                "price_mae_bps": 113.52,
+                "liquidity_rmse": 7.9898,
+                "directional_acc_pct": 71.97
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 260.81,
+                "price_mae_bps": 190.74,
+                "liquidity_rmse": 16.2599,
+                "directional_acc_pct": 73.25
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 347.5,
+                "price_mae_bps": 260.62,
+                "liquidity_rmse": 24.7402,
+                "directional_acc_pct": 63.29
+              }
+            }
+          }
+        }
+      ]
+    },
+    "mlp_L_8M": {
+      "family": "mlp_direct",
+      "params": 28540419,
+      "obs_val_std_mse_mean": 0.1833,
+      "cliff_bps_mean": 200.89,
+      "all_trajectories_mean": {
+        "h1": {
+          "horizon_swaps": 1,
+          "price_rmse_bps": 12.83,
+          "liquidity_rmse": 0.4819,
+          "directional_acc_pct": 75.85
+        },
+        "h5": {
+          "horizon_swaps": 5,
+          "price_rmse_bps": 56.82,
+          "liquidity_rmse": 1.5936,
+          "directional_acc_pct": 77.54
+        },
+        "h10": {
+          "horizon_swaps": 10,
+          "price_rmse_bps": 147.01,
+          "liquidity_rmse": 5.3637,
+          "directional_acc_pct": 68.98
+        },
+        "h20": {
+          "horizon_swaps": 20,
+          "price_rmse_bps": 389.72,
+          "liquidity_rmse": 17.6746,
+          "directional_acc_pct": 63.85
+        },
+        "h35": {
+          "horizon_swaps": 35,
+          "price_rmse_bps": 725.75,
+          "liquidity_rmse": 41.1731,
+          "directional_acc_pct": 61.85
+        },
+        "h50": {
+          "horizon_swaps": 50,
+          "price_rmse_bps": 1130.37,
+          "liquidity_rmse": 65.5204,
+          "directional_acc_pct": 56.8
+        }
+      },
+      "high_vol_cliff_trajectories_mean": {
+        "h1": {
+          "horizon_swaps": 1,
+          "price_rmse_bps": 15.67,
+          "liquidity_rmse": 0.5228,
+          "directional_acc_pct": 74.74
+        },
+        "h5": {
+          "horizon_swaps": 5,
+          "price_rmse_bps": 63.45,
+          "liquidity_rmse": 1.6856,
+          "directional_acc_pct": 78.21
+        },
+        "h10": {
+          "horizon_swaps": 10,
+          "price_rmse_bps": 127.68,
+          "liquidity_rmse": 4.5396,
+          "directional_acc_pct": 69.66
+        },
+        "h20": {
+          "horizon_swaps": 20,
+          "price_rmse_bps": 290.88,
+          "liquidity_rmse": 13.007,
+          "directional_acc_pct": 66.45
+        },
+        "h35": {
+          "horizon_swaps": 35,
+          "price_rmse_bps": 511.85,
+          "liquidity_rmse": 30.622,
+          "directional_acc_pct": 64.76
+        },
+        "h50": {
+          "horizon_swaps": 50,
+          "price_rmse_bps": 801.33,
+          "liquidity_rmse": 49.0079,
+          "directional_acc_pct": 58.23
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 28540419,
+          "obs_val_std_mse": 0.18813684870291633,
+          "in_tick_bps": 6.16,
+          "cliff_bps": 198.17,
+          "cascade_bps": 4086.19,
+          "cliff_std_mse": 61.9394,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 12.05,
+                "price_mae_bps": 5.18,
+                "liquidity_rmse": 0.5049,
+                "directional_acc_pct": 74.05
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 42.1,
+                "price_mae_bps": 21.4,
+                "liquidity_rmse": 1.1192,
+                "directional_acc_pct": 72.8
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 85.06,
+                "price_mae_bps": 50.12,
+                "liquidity_rmse": 2.9537,
+                "directional_acc_pct": 69.39
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 188.21,
+                "price_mae_bps": 135.25,
+                "liquidity_rmse": 8.5178,
+                "directional_acc_pct": 64.52
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 291.46,
+                "price_mae_bps": 220.16,
+                "liquidity_rmse": 19.8349,
+                "directional_acc_pct": 59.04
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 361.66,
+                "price_mae_bps": 278.19,
+                "liquidity_rmse": 30.1158,
+                "directional_acc_pct": 57.6
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 14.94,
+                "price_mae_bps": 7.03,
+                "liquidity_rmse": 0.5718,
+                "directional_acc_pct": 73.44
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 50.44,
+                "price_mae_bps": 27.41,
+                "liquidity_rmse": 1.2561,
+                "directional_acc_pct": 75.16
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 97.09,
+                "price_mae_bps": 58.49,
+                "liquidity_rmse": 2.8845,
+                "directional_acc_pct": 68.59
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 178.11,
+                "price_mae_bps": 120.59,
+                "liquidity_rmse": 7.1414,
+                "directional_acc_pct": 66.24
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 254.46,
+                "price_mae_bps": 185.86,
+                "liquidity_rmse": 15.1753,
+                "directional_acc_pct": 61.15
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 290.43,
+                "price_mae_bps": 220.94,
+                "liquidity_rmse": 22.7976,
+                "directional_acc_pct": 59.49
+              }
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 28540419,
+          "obs_val_std_mse": 0.17825027009212951,
+          "in_tick_bps": 11.07,
+          "cliff_bps": 202.4,
+          "cascade_bps": 4065.09,
+          "cliff_std_mse": 65.8109,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 14.73,
+                "price_mae_bps": 7.75,
+                "liquidity_rmse": 0.4802,
+                "directional_acc_pct": 74.05
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 72.46,
+                "price_mae_bps": 40.97,
+                "liquidity_rmse": 1.7177,
+                "directional_acc_pct": 78.66
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 226.67,
+                "price_mae_bps": 136.9,
+                "liquidity_rmse": 6.6926,
+                "directional_acc_pct": 68.57
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 687.55,
+                "price_mae_bps": 444.27,
+                "liquidity_rmse": 23.0304,
+                "directional_acc_pct": 64.52
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 1429.61,
+                "price_mae_bps": 1000.79,
+                "liquidity_rmse": 52.1031,
+                "directional_acc_pct": 63.45
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 2392.26,
+                "price_mae_bps": 1765.99,
+                "liquidity_rmse": 84.4749,
+                "directional_acc_pct": 56.8
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 17.58,
+                "price_mae_bps": 10.2,
+                "liquidity_rmse": 0.5183,
+                "directional_acc_pct": 73.44
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 77.04,
+                "price_mae_bps": 47.22,
+                "liquidity_rmse": 1.7105,
+                "directional_acc_pct": 79.08
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 177.01,
+                "price_mae_bps": 111.3,
+                "liquidity_rmse": 4.967,
+                "directional_acc_pct": 69.87
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 456.79,
+                "price_mae_bps": 296.78,
+                "liquidity_rmse": 15.8959,
+                "directional_acc_pct": 70.06
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 915.92,
+                "price_mae_bps": 591.22,
+                "liquidity_rmse": 38.8458,
+                "directional_acc_pct": 68.15
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 1611.27,
+                "price_mae_bps": 1047.7,
+                "liquidity_rmse": 64.4185,
+                "directional_acc_pct": 58.23
+              }
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 28540419,
+          "obs_val_std_mse": 0.1836277159831706,
+          "in_tick_bps": 9.63,
+          "cliff_bps": 202.1,
+          "cascade_bps": 4090.53,
+          "cliff_std_mse": 64.6209,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 11.71,
+                "price_mae_bps": 5.08,
+                "liquidity_rmse": 0.4605,
+                "directional_acc_pct": 79.46
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 55.89,
+                "price_mae_bps": 28.67,
+                "liquidity_rmse": 1.944,
+                "directional_acc_pct": 81.17
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 129.31,
+                "price_mae_bps": 77.29,
+                "liquidity_rmse": 6.4449,
+                "directional_acc_pct": 68.98
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 293.39,
+                "price_mae_bps": 206.7,
+                "liquidity_rmse": 21.4755,
+                "directional_acc_pct": 62.5
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 456.18,
+                "price_mae_bps": 289.4,
+                "liquidity_rmse": 51.5812,
+                "directional_acc_pct": 63.05
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 637.2,
+                "price_mae_bps": 409.94,
+                "liquidity_rmse": 81.9705,
+                "directional_acc_pct": 56.0
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 14.5,
+                "price_mae_bps": 7.01,
+                "liquidity_rmse": 0.4784,
+                "directional_acc_pct": 77.34
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 62.86,
+                "price_mae_bps": 35.29,
+                "liquidity_rmse": 2.0902,
+                "directional_acc_pct": 80.39
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 108.95,
+                "price_mae_bps": 64.07,
+                "liquidity_rmse": 5.7672,
+                "directional_acc_pct": 70.51
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 237.74,
+                "price_mae_bps": 153.61,
+                "liquidity_rmse": 15.9838,
+                "directional_acc_pct": 63.06
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 365.17,
+                "price_mae_bps": 218.96,
+                "liquidity_rmse": 37.8449,
+                "directional_acc_pct": 64.97
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 502.28,
+                "price_mae_bps": 310.69,
+                "liquidity_rmse": 59.8075,
+                "directional_acc_pct": 56.96
+              }
+            }
+          }
+        }
+      ]
+    },
+    "transformer_M_1.5M": {
+      "family": "seq_transformer",
+      "params": 1795843,
+      "obs_val_std_mse_mean": 0.2247,
+      "cliff_bps_mean": 167.07,
+      "all_trajectories_mean": {
+        "h1": {
+          "horizon_swaps": 1,
+          "price_rmse_bps": 14.87,
+          "liquidity_rmse": 0.4025,
+          "directional_acc_pct": 95.86
+        },
+        "h5": {
+          "horizon_swaps": 5,
+          "price_rmse_bps": 40.07,
+          "liquidity_rmse": 0.5259,
+          "directional_acc_pct": 89.26
+        },
+        "h10": {
+          "horizon_swaps": 10,
+          "price_rmse_bps": 47.89,
+          "liquidity_rmse": 0.6195,
+          "directional_acc_pct": 86.12
+        },
+        "h20": {
+          "horizon_swaps": 20,
+          "price_rmse_bps": 69.13,
+          "liquidity_rmse": 0.9208,
+          "directional_acc_pct": 80.91
+        },
+        "h35": {
+          "horizon_swaps": 35,
+          "price_rmse_bps": 112.9,
+          "liquidity_rmse": 1.0813,
+          "directional_acc_pct": 78.31
+        },
+        "h50": {
+          "horizon_swaps": 50,
+          "price_rmse_bps": 173.39,
+          "liquidity_rmse": 1.2191,
+          "directional_acc_pct": 76.27
+        }
+      },
+      "high_vol_cliff_trajectories_mean": {
+        "h1": {
+          "horizon_swaps": 1,
+          "price_rmse_bps": 17.57,
+          "liquidity_rmse": 0.4272,
+          "directional_acc_pct": 96.09
+        },
+        "h5": {
+          "horizon_swaps": 5,
+          "price_rmse_bps": 48.55,
+          "liquidity_rmse": 0.5864,
+          "directional_acc_pct": 91.5
+        },
+        "h10": {
+          "horizon_swaps": 10,
+          "price_rmse_bps": 58.59,
+          "liquidity_rmse": 0.6652,
+          "directional_acc_pct": 88.68
+        },
+        "h20": {
+          "horizon_swaps": 20,
+          "price_rmse_bps": 83.78,
+          "liquidity_rmse": 0.966,
+          "directional_acc_pct": 82.59
+        },
+        "h35": {
+          "horizon_swaps": 35,
+          "price_rmse_bps": 136.07,
+          "liquidity_rmse": 1.0901,
+          "directional_acc_pct": 80.68
+        },
+        "h50": {
+          "horizon_swaps": 50,
+          "price_rmse_bps": 206.08,
+          "liquidity_rmse": 1.2061,
+          "directional_acc_pct": 77.43
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 1795843,
+          "obs_val_std_mse": 0.22426843221020568,
+          "in_tick_bps": 1.33,
+          "cliff_bps": 155.74,
+          "cascade_bps": 3917.72,
+          "cliff_std_mse": 41.1696,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 14.05,
+                "price_mae_bps": 2.93,
+                "liquidity_rmse": 0.3666,
+                "directional_acc_pct": 96.76
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 39.0,
+                "price_mae_bps": 11.9,
+                "liquidity_rmse": 0.5078,
+                "directional_acc_pct": 89.96
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 43.74,
+                "price_mae_bps": 17.82,
+                "liquidity_rmse": 0.6392,
+                "directional_acc_pct": 83.67
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 67.55,
+                "price_mae_bps": 34.39,
+                "liquidity_rmse": 0.9875,
+                "directional_acc_pct": 80.65
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 111.47,
+                "price_mae_bps": 63.99,
+                "liquidity_rmse": 1.1937,
+                "directional_acc_pct": 73.9
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 164.0,
+                "price_mae_bps": 102.32,
+                "liquidity_rmse": 1.3354,
+                "directional_acc_pct": 70.8
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 17.12,
+                "price_mae_bps": 3.82,
+                "liquidity_rmse": 0.3872,
+                "directional_acc_pct": 96.09
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 47.41,
+                "price_mae_bps": 15.9,
+                "liquidity_rmse": 0.5926,
+                "directional_acc_pct": 91.5
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 53.67,
+                "price_mae_bps": 23.23,
+                "liquidity_rmse": 0.7133,
+                "directional_acc_pct": 87.18
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 79.59,
+                "price_mae_bps": 40.91,
+                "liquidity_rmse": 1.0097,
+                "directional_acc_pct": 84.71
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 127.34,
+                "price_mae_bps": 69.4,
+                "liquidity_rmse": 1.1891,
+                "directional_acc_pct": 81.53
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 178.25,
+                "price_mae_bps": 107.5,
+                "liquidity_rmse": 1.3032,
+                "directional_acc_pct": 75.32
+              }
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 1795843,
+          "obs_val_std_mse": 0.24714136198831965,
+          "in_tick_bps": 1.5,
+          "cliff_bps": 170.81,
+          "cascade_bps": 3964.23,
+          "cliff_std_mse": 48.9056,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 15.6,
+                "price_mae_bps": 3.49,
+                "liquidity_rmse": 0.414,
+                "directional_acc_pct": 95.68
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 51.04,
+                "price_mae_bps": 13.81,
+                "liquidity_rmse": 0.5595,
+                "directional_acc_pct": 88.28
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 58.06,
+                "price_mae_bps": 19.11,
+                "liquidity_rmse": 0.5576,
+                "directional_acc_pct": 88.57
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 59.69,
+                "price_mae_bps": 26.9,
+                "liquidity_rmse": 0.7381,
+                "directional_acc_pct": 81.85
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 75.49,
+                "price_mae_bps": 37.23,
+                "liquidity_rmse": 0.7948,
+                "directional_acc_pct": 83.13
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 139.85,
+                "price_mae_bps": 55.8,
+                "liquidity_rmse": 0.8301,
+                "directional_acc_pct": 81.2
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 17.06,
+                "price_mae_bps": 4.3,
+                "liquidity_rmse": 0.4253,
+                "directional_acc_pct": 96.09
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 61.61,
+                "price_mae_bps": 18.11,
+                "liquidity_rmse": 0.5988,
+                "directional_acc_pct": 90.85
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 71.49,
+                "price_mae_bps": 25.03,
+                "liquidity_rmse": 0.5437,
+                "directional_acc_pct": 91.03
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 72.71,
+                "price_mae_bps": 35.44,
+                "liquidity_rmse": 0.7944,
+                "directional_acc_pct": 82.17
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 92.04,
+                "price_mae_bps": 48.53,
+                "liquidity_rmse": 0.8697,
+                "directional_acc_pct": 85.35
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 172.83,
+                "price_mae_bps": 73.77,
+                "liquidity_rmse": 0.9007,
+                "directional_acc_pct": 81.65
+              }
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 1795843,
+          "obs_val_std_mse": 0.20275658182886838,
+          "in_tick_bps": 2.92,
+          "cliff_bps": 174.67,
+          "cascade_bps": 3986.56,
+          "cliff_std_mse": 52.7461,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 14.95,
+                "price_mae_bps": 3.55,
+                "liquidity_rmse": 0.4268,
+                "directional_acc_pct": 95.14
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 30.17,
+                "price_mae_bps": 12.51,
+                "liquidity_rmse": 0.5104,
+                "directional_acc_pct": 89.54
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 41.86,
+                "price_mae_bps": 20.49,
+                "liquidity_rmse": 0.6617,
+                "directional_acc_pct": 86.12
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 80.15,
+                "price_mae_bps": 38.43,
+                "liquidity_rmse": 1.0369,
+                "directional_acc_pct": 80.24
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 151.75,
+                "price_mae_bps": 71.41,
+                "liquidity_rmse": 1.2555,
+                "directional_acc_pct": 77.91
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 216.33,
+                "price_mae_bps": 108.42,
+                "liquidity_rmse": 1.4917,
+                "directional_acc_pct": 76.8
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 18.52,
+                "price_mae_bps": 4.91,
+                "liquidity_rmse": 0.4692,
+                "directional_acc_pct": 96.09
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 36.63,
+                "price_mae_bps": 16.82,
+                "liquidity_rmse": 0.5679,
+                "directional_acc_pct": 92.16
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 50.6,
+                "price_mae_bps": 26.96,
+                "liquidity_rmse": 0.7386,
+                "directional_acc_pct": 87.82
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 99.04,
+                "price_mae_bps": 53.31,
+                "liquidity_rmse": 1.0939,
+                "directional_acc_pct": 80.89
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 188.83,
+                "price_mae_bps": 100.81,
+                "liquidity_rmse": 1.2114,
+                "directional_acc_pct": 75.16
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 267.16,
+                "price_mae_bps": 148.49,
+                "liquidity_rmse": 1.4145,
+                "directional_acc_pct": 75.32
+              }
+            }
+          }
+        }
+      ]
+    },
+    "transformer_L_8M": {
+      "family": "seq_transformer",
+      "params": 9234435,
+      "obs_val_std_mse_mean": 0.2413,
+      "cliff_bps_mean": 168.03,
+      "all_trajectories_mean": {
+        "h1": {
+          "horizon_swaps": 1,
+          "price_rmse_bps": 13.57,
+          "liquidity_rmse": 0.4563,
+          "directional_acc_pct": 88.11
+        },
+        "h5": {
+          "horizon_swaps": 5,
+          "price_rmse_bps": 53.92,
+          "liquidity_rmse": 0.5559,
+          "directional_acc_pct": 80.2
+        },
+        "h10": {
+          "horizon_swaps": 10,
+          "price_rmse_bps": 67.02,
+          "liquidity_rmse": 0.8533,
+          "directional_acc_pct": 74.01
+        },
+        "h20": {
+          "horizon_swaps": 20,
+          "price_rmse_bps": 108.5,
+          "liquidity_rmse": 1.6711,
+          "directional_acc_pct": 70.43
+        },
+        "h35": {
+          "horizon_swaps": 35,
+          "price_rmse_bps": 235.75,
+          "liquidity_rmse": 3.0851,
+          "directional_acc_pct": 68.01
+        },
+        "h50": {
+          "horizon_swaps": 50,
+          "price_rmse_bps": 502.5,
+          "liquidity_rmse": 5.1481,
+          "directional_acc_pct": 65.2
+        }
+      },
+      "high_vol_cliff_trajectories_mean": {
+        "h1": {
+          "horizon_swaps": 1,
+          "price_rmse_bps": 15.91,
+          "liquidity_rmse": 0.4957,
+          "directional_acc_pct": 89.85
+        },
+        "h5": {
+          "horizon_swaps": 5,
+          "price_rmse_bps": 66.26,
+          "liquidity_rmse": 0.5706,
+          "directional_acc_pct": 82.79
+        },
+        "h10": {
+          "horizon_swaps": 10,
+          "price_rmse_bps": 80.46,
+          "liquidity_rmse": 0.8149,
+          "directional_acc_pct": 77.78
+        },
+        "h20": {
+          "horizon_swaps": 20,
+          "price_rmse_bps": 124.87,
+          "liquidity_rmse": 1.5551,
+          "directional_acc_pct": 75.37
+        },
+        "h35": {
+          "horizon_swaps": 35,
+          "price_rmse_bps": 263.74,
+          "liquidity_rmse": 2.8196,
+          "directional_acc_pct": 71.55
+        },
+        "h50": {
+          "horizon_swaps": 50,
+          "price_rmse_bps": 528.69,
+          "liquidity_rmse": 4.7587,
+          "directional_acc_pct": 68.14
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 9234435,
+          "obs_val_std_mse": 0.23954338128989933,
+          "in_tick_bps": 3.58,
+          "cliff_bps": 175.92,
+          "cascade_bps": 3952.26,
+          "cliff_std_mse": 52.4291,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 13.45,
+                "price_mae_bps": 4.73,
+                "liquidity_rmse": 0.4603,
+                "directional_acc_pct": 91.89
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 42.25,
+                "price_mae_bps": 25.23,
+                "liquidity_rmse": 0.6175,
+                "directional_acc_pct": 71.55
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 70.76,
+                "price_mae_bps": 50.09,
+                "liquidity_rmse": 0.9992,
+                "directional_acc_pct": 62.86
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 168.77,
+                "price_mae_bps": 119.55,
+                "liquidity_rmse": 2.1902,
+                "directional_acc_pct": 62.1
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 459.33,
+                "price_mae_bps": 306.95,
+                "liquidity_rmse": 4.7941,
+                "directional_acc_pct": 56.63
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 1025.15,
+                "price_mae_bps": 703.88,
+                "liquidity_rmse": 8.845,
+                "directional_acc_pct": 55.6
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 15.66,
+                "price_mae_bps": 5.89,
+                "liquidity_rmse": 0.5006,
+                "directional_acc_pct": 92.97
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 49.57,
+                "price_mae_bps": 30.26,
+                "liquidity_rmse": 0.5712,
+                "directional_acc_pct": 73.2
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 79.66,
+                "price_mae_bps": 56.63,
+                "liquidity_rmse": 0.8904,
+                "directional_acc_pct": 64.74
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 184.58,
+                "price_mae_bps": 134.03,
+                "liquidity_rmse": 2.0591,
+                "directional_acc_pct": 65.61
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 504.41,
+                "price_mae_bps": 339.45,
+                "liquidity_rmse": 4.6824,
+                "directional_acc_pct": 57.96
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 1053.05,
+                "price_mae_bps": 713.16,
+                "liquidity_rmse": 8.5643,
+                "directional_acc_pct": 57.59
+              }
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 9234435,
+          "obs_val_std_mse": 0.2634749699573379,
+          "in_tick_bps": 2.82,
+          "cliff_bps": 156.95,
+          "cascade_bps": 3914.97,
+          "cliff_std_mse": 40.3788,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 12.46,
+                "price_mae_bps": 4.09,
+                "liquidity_rmse": 0.463,
+                "directional_acc_pct": 91.35
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 67.09,
+                "price_mae_bps": 16.96,
+                "liquidity_rmse": 0.5156,
+                "directional_acc_pct": 87.87
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 70.07,
+                "price_mae_bps": 22.94,
+                "liquidity_rmse": 0.76,
+                "directional_acc_pct": 79.18
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 84.91,
+                "price_mae_bps": 42.65,
+                "liquidity_rmse": 1.3544,
+                "directional_acc_pct": 77.42
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 126.87,
+                "price_mae_bps": 73.99,
+                "liquidity_rmse": 2.1318,
+                "directional_acc_pct": 71.08
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 244.65,
+                "price_mae_bps": 140.0,
+                "liquidity_rmse": 3.0669,
+                "directional_acc_pct": 68.0
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 14.0,
+                "price_mae_bps": 5.12,
+                "liquidity_rmse": 0.5046,
+                "directional_acc_pct": 92.19
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 83.58,
+                "price_mae_bps": 22.41,
+                "liquidity_rmse": 0.5438,
+                "directional_acc_pct": 90.2
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 86.85,
+                "price_mae_bps": 28.78,
+                "liquidity_rmse": 0.7312,
+                "directional_acc_pct": 83.97
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 101.63,
+                "price_mae_bps": 50.11,
+                "liquidity_rmse": 1.2299,
+                "directional_acc_pct": 84.08
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 147.87,
+                "price_mae_bps": 80.12,
+                "liquidity_rmse": 1.8232,
+                "directional_acc_pct": 76.43
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 276.22,
+                "price_mae_bps": 146.5,
+                "liquidity_rmse": 2.6392,
+                "directional_acc_pct": 71.52
+              }
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 9234435,
+          "obs_val_std_mse": 0.22087030017466644,
+          "in_tick_bps": 2.05,
+          "cliff_bps": 171.21,
+          "cascade_bps": 3952.09,
+          "cliff_std_mse": 49.1519,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 14.81,
+                "price_mae_bps": 4.44,
+                "liquidity_rmse": 0.4455,
+                "directional_acc_pct": 81.08
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 52.41,
+                "price_mae_bps": 13.99,
+                "liquidity_rmse": 0.5347,
+                "directional_acc_pct": 81.17
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 60.24,
+                "price_mae_bps": 22.66,
+                "liquidity_rmse": 0.8008,
+                "directional_acc_pct": 80.0
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 71.83,
+                "price_mae_bps": 34.51,
+                "liquidity_rmse": 1.4688,
+                "directional_acc_pct": 71.77
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 121.06,
+                "price_mae_bps": 67.71,
+                "liquidity_rmse": 2.3293,
+                "directional_acc_pct": 76.31
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 237.69,
+                "price_mae_bps": 124.79,
+                "liquidity_rmse": 3.5324,
+                "directional_acc_pct": 72.0
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 18.06,
+                "price_mae_bps": 6.0,
+                "liquidity_rmse": 0.4819,
+                "directional_acc_pct": 84.38
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 65.64,
+                "price_mae_bps": 19.48,
+                "liquidity_rmse": 0.5967,
+                "directional_acc_pct": 84.97
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 74.86,
+                "price_mae_bps": 29.86,
+                "liquidity_rmse": 0.8232,
+                "directional_acc_pct": 84.62
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 88.41,
+                "price_mae_bps": 43.5,
+                "liquidity_rmse": 1.3762,
+                "directional_acc_pct": 76.43
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 138.94,
+                "price_mae_bps": 78.75,
+                "liquidity_rmse": 1.9532,
+                "directional_acc_pct": 80.25
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 256.81,
+                "price_mae_bps": 129.65,
+                "liquidity_rmse": 3.0725,
+                "directional_acc_pct": 75.32
+              }
+            }
+          }
+        }
+      ]
+    },
+    "jepa_M_1.5M": {
+      "family": "latent_jepa",
+      "params": 985155,
+      "obs_val_std_mse_mean": 0.356,
+      "cliff_bps_mean": 184.54,
+      "all_trajectories_mean": {
+        "h1": {
+          "horizon_swaps": 1,
+          "price_rmse_bps": 10.49,
+          "liquidity_rmse": 0.5683,
+          "directional_acc_pct": 68.11
+        },
+        "h5": {
+          "horizon_swaps": 5,
+          "price_rmse_bps": 31.13,
+          "liquidity_rmse": 1.3329,
+          "directional_acc_pct": 77.41
+        },
+        "h10": {
+          "horizon_swaps": 10,
+          "price_rmse_bps": 54.33,
+          "liquidity_rmse": 2.2924,
+          "directional_acc_pct": 79.86
+        },
+        "h20": {
+          "horizon_swaps": 20,
+          "price_rmse_bps": 86.88,
+          "liquidity_rmse": 3.8429,
+          "directional_acc_pct": 75.81
+        },
+        "h35": {
+          "horizon_swaps": 35,
+          "price_rmse_bps": 140.39,
+          "liquidity_rmse": 5.8694,
+          "directional_acc_pct": 71.75
+        },
+        "h50": {
+          "horizon_swaps": 50,
+          "price_rmse_bps": 217.4,
+          "liquidity_rmse": 7.9051,
+          "directional_acc_pct": 72.93
+        }
+      },
+      "high_vol_cliff_trajectories_mean": {
+        "h1": {
+          "horizon_swaps": 1,
+          "price_rmse_bps": 12.86,
+          "liquidity_rmse": 0.6008,
+          "directional_acc_pct": 75.26
+        },
+        "h5": {
+          "horizon_swaps": 5,
+          "price_rmse_bps": 37.4,
+          "liquidity_rmse": 1.5533,
+          "directional_acc_pct": 82.14
+        },
+        "h10": {
+          "horizon_swaps": 10,
+          "price_rmse_bps": 64.29,
+          "liquidity_rmse": 2.6625,
+          "directional_acc_pct": 82.9
+        },
+        "h20": {
+          "horizon_swaps": 20,
+          "price_rmse_bps": 104.48,
+          "liquidity_rmse": 4.447,
+          "directional_acc_pct": 80.89
+        },
+        "h35": {
+          "horizon_swaps": 35,
+          "price_rmse_bps": 169.06,
+          "liquidity_rmse": 6.7458,
+          "directional_acc_pct": 74.1
+        },
+        "h50": {
+          "horizon_swaps": 50,
+          "price_rmse_bps": 260.42,
+          "liquidity_rmse": 9.0929,
+          "directional_acc_pct": 74.47
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 985155,
+          "obs_val_std_mse": 0.34498330616618117,
+          "in_tick_bps": 5.15,
+          "cliff_bps": 182.89,
+          "cascade_bps": 3970.99,
+          "cliff_std_mse": 59.6033,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 10.58,
+                "price_mae_bps": 4.31,
+                "liquidity_rmse": 0.6573,
+                "directional_acc_pct": 66.49
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 34.0,
+                "price_mae_bps": 16.35,
+                "liquidity_rmse": 1.9318,
+                "directional_acc_pct": 79.92
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 70.64,
+                "price_mae_bps": 35.46,
+                "liquidity_rmse": 3.4017,
+                "directional_acc_pct": 81.63
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 115.39,
+                "price_mae_bps": 62.6,
+                "liquidity_rmse": 5.6689,
+                "directional_acc_pct": 77.42
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 184.3,
+                "price_mae_bps": 103.33,
+                "liquidity_rmse": 8.6123,
+                "directional_acc_pct": 72.69
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 276.02,
+                "price_mae_bps": 148.92,
+                "liquidity_rmse": 11.5693,
+                "directional_acc_pct": 72.4
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 12.97,
+                "price_mae_bps": 5.51,
+                "liquidity_rmse": 0.7164,
+                "directional_acc_pct": 75.0
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 41.15,
+                "price_mae_bps": 21.67,
+                "liquidity_rmse": 2.2647,
+                "directional_acc_pct": 83.01
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 85.29,
+                "price_mae_bps": 46.19,
+                "liquidity_rmse": 3.9496,
+                "directional_acc_pct": 83.97
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 140.93,
+                "price_mae_bps": 82.6,
+                "liquidity_rmse": 6.4996,
+                "directional_acc_pct": 81.53
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 224.83,
+                "price_mae_bps": 139.19,
+                "liquidity_rmse": 9.846,
+                "directional_acc_pct": 73.89
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 333.19,
+                "price_mae_bps": 197.24,
+                "liquidity_rmse": 13.2199,
+                "directional_acc_pct": 70.25
+              }
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 985155,
+          "obs_val_std_mse": 0.3579592416066665,
+          "in_tick_bps": 3.9,
+          "cliff_bps": 184.76,
+          "cascade_bps": 3980.88,
+          "cliff_std_mse": 59.3358,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 10.29,
+                "price_mae_bps": 4.75,
+                "liquidity_rmse": 0.4766,
+                "directional_acc_pct": 69.19
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 27.88,
+                "price_mae_bps": 13.69,
+                "liquidity_rmse": 0.5672,
+                "directional_acc_pct": 76.15
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 35.05,
+                "price_mae_bps": 19.6,
+                "liquidity_rmse": 0.7617,
+                "directional_acc_pct": 78.37
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 53.35,
+                "price_mae_bps": 32.37,
+                "liquidity_rmse": 1.1161,
+                "directional_acc_pct": 78.63
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 77.0,
+                "price_mae_bps": 52.79,
+                "liquidity_rmse": 1.5083,
+                "directional_acc_pct": 72.29
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 122.59,
+                "price_mae_bps": 77.29,
+                "liquidity_rmse": 1.8835,
+                "directional_acc_pct": 75.2
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 12.64,
+                "price_mae_bps": 6.21,
+                "liquidity_rmse": 0.4859,
+                "directional_acc_pct": 75.0
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 33.45,
+                "price_mae_bps": 17.17,
+                "liquidity_rmse": 0.6054,
+                "directional_acc_pct": 81.05
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 39.2,
+                "price_mae_bps": 21.71,
+                "liquidity_rmse": 0.7894,
+                "directional_acc_pct": 82.69
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 59.66,
+                "price_mae_bps": 34.71,
+                "liquidity_rmse": 1.1626,
+                "directional_acc_pct": 84.71
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 86.27,
+                "price_mae_bps": 55.82,
+                "liquidity_rmse": 1.5029,
+                "directional_acc_pct": 77.07
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 139.52,
+                "price_mae_bps": 81.53,
+                "liquidity_rmse": 1.8896,
+                "directional_acc_pct": 81.65
+              }
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 985155,
+          "obs_val_std_mse": 0.36491512963431255,
+          "in_tick_bps": 5.23,
+          "cliff_bps": 185.97,
+          "cascade_bps": 3984.19,
+          "cliff_std_mse": 61.2798,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 10.61,
+                "price_mae_bps": 4.27,
+                "liquidity_rmse": 0.571,
+                "directional_acc_pct": 68.65
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 31.51,
+                "price_mae_bps": 15.56,
+                "liquidity_rmse": 1.4997,
+                "directional_acc_pct": 76.15
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 57.31,
+                "price_mae_bps": 30.1,
+                "liquidity_rmse": 2.7137,
+                "directional_acc_pct": 79.59
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 91.91,
+                "price_mae_bps": 52.68,
+                "liquidity_rmse": 4.7437,
+                "directional_acc_pct": 71.37
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 159.87,
+                "price_mae_bps": 90.25,
+                "liquidity_rmse": 7.4877,
+                "directional_acc_pct": 70.28
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 253.58,
+                "price_mae_bps": 133.24,
+                "liquidity_rmse": 10.2624,
+                "directional_acc_pct": 71.2
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 12.96,
+                "price_mae_bps": 5.37,
+                "liquidity_rmse": 0.6002,
+                "directional_acc_pct": 75.78
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 37.61,
+                "price_mae_bps": 19.76,
+                "liquidity_rmse": 1.7899,
+                "directional_acc_pct": 82.35
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 68.39,
+                "price_mae_bps": 37.91,
+                "liquidity_rmse": 3.2485,
+                "directional_acc_pct": 82.05
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 112.84,
+                "price_mae_bps": 69.99,
+                "liquidity_rmse": 5.6787,
+                "directional_acc_pct": 76.43
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 196.07,
+                "price_mae_bps": 121.15,
+                "liquidity_rmse": 8.8884,
+                "directional_acc_pct": 71.34
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 308.55,
+                "price_mae_bps": 178.39,
+                "liquidity_rmse": 12.1693,
+                "directional_acc_pct": 71.52
+              }
+            }
+          }
+        }
+      ]
+    },
+    "jepa_L_8M": {
+      "family": "latent_jepa",
+      "params": 1561155,
+      "obs_val_std_mse_mean": 0.3551,
+      "cliff_bps_mean": 188.05,
+      "all_trajectories_mean": {
+        "h1": {
+          "horizon_swaps": 1,
+          "price_rmse_bps": 10.49,
+          "liquidity_rmse": 0.5293,
+          "directional_acc_pct": 68.47
+        },
+        "h5": {
+          "horizon_swaps": 5,
+          "price_rmse_bps": 32.51,
+          "liquidity_rmse": 1.0288,
+          "directional_acc_pct": 79.22
+        },
+        "h10": {
+          "horizon_swaps": 10,
+          "price_rmse_bps": 49.9,
+          "liquidity_rmse": 1.7228,
+          "directional_acc_pct": 77.41
+        },
+        "h20": {
+          "horizon_swaps": 20,
+          "price_rmse_bps": 84.27,
+          "liquidity_rmse": 3.1387,
+          "directional_acc_pct": 73.25
+        },
+        "h35": {
+          "horizon_swaps": 35,
+          "price_rmse_bps": 146.01,
+          "liquidity_rmse": 5.1398,
+          "directional_acc_pct": 69.21
+        },
+        "h50": {
+          "horizon_swaps": 50,
+          "price_rmse_bps": 225.24,
+          "liquidity_rmse": 7.262,
+          "directional_acc_pct": 70.27
+        }
+      },
+      "high_vol_cliff_trajectories_mean": {
+        "h1": {
+          "horizon_swaps": 1,
+          "price_rmse_bps": 12.76,
+          "liquidity_rmse": 0.5435,
+          "directional_acc_pct": 73.7
+        },
+        "h5": {
+          "horizon_swaps": 5,
+          "price_rmse_bps": 38.65,
+          "liquidity_rmse": 1.1482,
+          "directional_acc_pct": 81.48
+        },
+        "h10": {
+          "horizon_swaps": 10,
+          "price_rmse_bps": 57.72,
+          "liquidity_rmse": 1.9275,
+          "directional_acc_pct": 79.06
+        },
+        "h20": {
+          "horizon_swaps": 20,
+          "price_rmse_bps": 96.31,
+          "liquidity_rmse": 3.4864,
+          "directional_acc_pct": 77.71
+        },
+        "h35": {
+          "horizon_swaps": 35,
+          "price_rmse_bps": 168.42,
+          "liquidity_rmse": 5.6467,
+          "directional_acc_pct": 70.7
+        },
+        "h50": {
+          "horizon_swaps": 50,
+          "price_rmse_bps": 261.74,
+          "liquidity_rmse": 8.0514,
+          "directional_acc_pct": 70.88
+        }
+      },
+      "runs": [
+        {
+          "seed": 101,
+          "params": 1561155,
+          "obs_val_std_mse": 0.3767138754460716,
+          "in_tick_bps": 7.54,
+          "cliff_bps": 192.34,
+          "cascade_bps": 4000.72,
+          "cliff_std_mse": 64.6708,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 10.92,
+                "price_mae_bps": 5.08,
+                "liquidity_rmse": 0.5631,
+                "directional_acc_pct": 79.46
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 36.81,
+                "price_mae_bps": 21.85,
+                "liquidity_rmse": 1.0739,
+                "directional_acc_pct": 81.17
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 55.65,
+                "price_mae_bps": 37.73,
+                "liquidity_rmse": 1.88,
+                "directional_acc_pct": 74.69
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 101.54,
+                "price_mae_bps": 75.21,
+                "liquidity_rmse": 3.457,
+                "directional_acc_pct": 73.39
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 167.14,
+                "price_mae_bps": 128.05,
+                "liquidity_rmse": 5.4785,
+                "directional_acc_pct": 66.27
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 251.19,
+                "price_mae_bps": 186.77,
+                "liquidity_rmse": 7.4387,
+                "directional_acc_pct": 66.0
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 13.2,
+                "price_mae_bps": 6.24,
+                "liquidity_rmse": 0.5633,
+                "directional_acc_pct": 84.38
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 42.74,
+                "price_mae_bps": 25.89,
+                "liquidity_rmse": 1.2068,
+                "directional_acc_pct": 81.05
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 62.07,
+                "price_mae_bps": 42.41,
+                "liquidity_rmse": 2.1072,
+                "directional_acc_pct": 76.92
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 111.3,
+                "price_mae_bps": 82.61,
+                "liquidity_rmse": 3.8717,
+                "directional_acc_pct": 78.98
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 185.26,
+                "price_mae_bps": 141.98,
+                "liquidity_rmse": 6.1044,
+                "directional_acc_pct": 68.15
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 283.1,
+                "price_mae_bps": 207.17,
+                "liquidity_rmse": 8.2889,
+                "directional_acc_pct": 67.72
+              }
+            }
+          }
+        },
+        {
+          "seed": 202,
+          "params": 1561155,
+          "obs_val_std_mse": 0.33049064639131714,
+          "in_tick_bps": 4.97,
+          "cliff_bps": 186.41,
+          "cascade_bps": 3987.95,
+          "cliff_std_mse": 60.5478,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 10.06,
+                "price_mae_bps": 4.78,
+                "liquidity_rmse": 0.4815,
+                "directional_acc_pct": 64.32
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 28.7,
+                "price_mae_bps": 15.12,
+                "liquidity_rmse": 0.5971,
+                "directional_acc_pct": 79.92
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 40.21,
+                "price_mae_bps": 23.06,
+                "liquidity_rmse": 0.7414,
+                "directional_acc_pct": 81.63
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 61.33,
+                "price_mae_bps": 39.17,
+                "liquidity_rmse": 1.1094,
+                "directional_acc_pct": 74.19
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 93.24,
+                "price_mae_bps": 63.6,
+                "liquidity_rmse": 1.4909,
+                "directional_acc_pct": 72.69
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 133.83,
+                "price_mae_bps": 88.18,
+                "liquidity_rmse": 1.7718,
+                "directional_acc_pct": 74.8
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 12.28,
+                "price_mae_bps": 6.1,
+                "liquidity_rmse": 0.4985,
+                "directional_acc_pct": 69.53
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 34.1,
+                "price_mae_bps": 18.74,
+                "liquidity_rmse": 0.6048,
+                "directional_acc_pct": 83.01
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 46.83,
+                "price_mae_bps": 26.69,
+                "liquidity_rmse": 0.7384,
+                "directional_acc_pct": 82.69
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 71.39,
+                "price_mae_bps": 45.9,
+                "liquidity_rmse": 1.0384,
+                "directional_acc_pct": 80.25
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 107.07,
+                "price_mae_bps": 73.33,
+                "liquidity_rmse": 1.3074,
+                "directional_acc_pct": 75.8
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 155.31,
+                "price_mae_bps": 103.46,
+                "liquidity_rmse": 1.6429,
+                "directional_acc_pct": 76.58
+              }
+            }
+          }
+        },
+        {
+          "seed": 303,
+          "params": 1561155,
+          "obs_val_std_mse": 0.3579565443776375,
+          "in_tick_bps": 6.15,
+          "cliff_bps": 185.41,
+          "cascade_bps": 3986.45,
+          "cliff_std_mse": 60.9692,
+          "real_flow": {
+            "n_trajectories_all": 250,
+            "n_trajectories_high_vol_cliff": 158,
+            "all_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 10.5,
+                "price_mae_bps": 5.2,
+                "liquidity_rmse": 0.5434,
+                "directional_acc_pct": 61.62
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 32.03,
+                "price_mae_bps": 17.15,
+                "liquidity_rmse": 1.4155,
+                "directional_acc_pct": 76.57
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 53.83,
+                "price_mae_bps": 30.83,
+                "liquidity_rmse": 2.5471,
+                "directional_acc_pct": 75.92
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 89.94,
+                "price_mae_bps": 55.09,
+                "liquidity_rmse": 4.8498,
+                "directional_acc_pct": 72.18
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 177.65,
+                "price_mae_bps": 106.64,
+                "liquidity_rmse": 8.45,
+                "directional_acc_pct": 68.67
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 290.69,
+                "price_mae_bps": 162.12,
+                "liquidity_rmse": 12.5755,
+                "directional_acc_pct": 70.0
+              }
+            },
+            "high_vol_cliff_trajectories": {
+              "h1": {
+                "horizon_swaps": 1,
+                "price_rmse_bps": 12.8,
+                "price_mae_bps": 6.59,
+                "liquidity_rmse": 0.5687,
+                "directional_acc_pct": 67.19
+              },
+              "h5": {
+                "horizon_swaps": 5,
+                "price_rmse_bps": 39.1,
+                "price_mae_bps": 22.35,
+                "liquidity_rmse": 1.633,
+                "directional_acc_pct": 80.39
+              },
+              "h10": {
+                "horizon_swaps": 10,
+                "price_rmse_bps": 64.25,
+                "price_mae_bps": 38.44,
+                "liquidity_rmse": 2.9368,
+                "directional_acc_pct": 77.56
+              },
+              "h20": {
+                "horizon_swaps": 20,
+                "price_rmse_bps": 106.23,
+                "price_mae_bps": 69.75,
+                "liquidity_rmse": 5.549,
+                "directional_acc_pct": 73.89
+              },
+              "h35": {
+                "horizon_swaps": 35,
+                "price_rmse_bps": 212.92,
+                "price_mae_bps": 138.57,
+                "liquidity_rmse": 9.5284,
+                "directional_acc_pct": 68.15
+              },
+              "h50": {
+                "horizon_swaps": 50,
+                "price_rmse_bps": 346.81,
+                "price_mae_bps": 208.94,
+                "liquidity_rmse": 14.2225,
+                "directional_acc_pct": 68.35
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "unconditional_volatility_forecast": {
+    "horizon_swaps": 20,
+    "n_oot_samples": 15016,
+    "ewma_persistence": {
+      "vol_rmse_bps": 118.64,
+      "excursion_rmse_bps": 114.02,
+      "liq_depletion_rmse": 1.8106,
+      "spearman_vol": 0.8295,
+      "spearman_excursion": 0.7575,
+      "spearman_liq_depletion": 0.0,
+      "top10pct_air_pocket_recall_pct": 57.72
+    },
+    "history_only_forecaster_mean": {
+      "vol_rmse_bps": 116.08,
+      "excursion_rmse_bps": 95.7167,
+      "liq_depletion_rmse": 1.619,
+      "spearman_vol": 0.8237,
+      "spearman_excursion": 0.7101,
+      "spearman_liq_depletion": 0.0198,
+      "top10pct_air_pocket_recall_pct": 46.1167
+    },
+    "spatial_ticklens_forecaster_mean": {
+      "vol_rmse_bps": 119.4467,
+      "excursion_rmse_bps": 105.7867,
+      "liq_depletion_rmse": 1.6038,
+      "spearman_vol": 0.716,
+      "spearman_excursion": 0.6305,
+      "spearman_liq_depletion": 0.144,
+      "top10pct_air_pocket_recall_pct": 33.4867
+    },
+    "history_only_runs": [
+      {
+        "vol_rmse_bps": 116.47,
+        "excursion_rmse_bps": 94.92,
+        "liq_depletion_rmse": 1.6304,
+        "spearman_vol": 0.8295,
+        "spearman_excursion": 0.7106,
+        "spearman_liq_depletion": 0.0197,
+        "top10pct_air_pocket_recall_pct": 47.4
+      },
+      {
+        "vol_rmse_bps": 118.78,
+        "excursion_rmse_bps": 97.51,
+        "liq_depletion_rmse": 1.6368,
+        "spearman_vol": 0.8144,
+        "spearman_excursion": 0.7002,
+        "spearman_liq_depletion": -0.0405,
+        "top10pct_air_pocket_recall_pct": 44.01
+      },
+      {
+        "vol_rmse_bps": 112.99,
+        "excursion_rmse_bps": 94.72,
+        "liq_depletion_rmse": 1.5898,
+        "spearman_vol": 0.8273,
+        "spearman_excursion": 0.7195,
+        "spearman_liq_depletion": 0.0802,
+        "top10pct_air_pocket_recall_pct": 46.94
+      }
+    ],
+    "spatial_ticklens_runs": [
+      {
+        "vol_rmse_bps": 116.48,
+        "excursion_rmse_bps": 97.59,
+        "liq_depletion_rmse": 1.6179,
+        "spearman_vol": 0.76,
+        "spearman_excursion": 0.6857,
+        "spearman_liq_depletion": 0.1214,
+        "top10pct_air_pocket_recall_pct": 41.54
+      },
+      {
+        "vol_rmse_bps": 121.16,
+        "excursion_rmse_bps": 101.48,
+        "liq_depletion_rmse": 1.574,
+        "spearman_vol": 0.7262,
+        "spearman_excursion": 0.6304,
+        "spearman_liq_depletion": 0.2258,
+        "top10pct_air_pocket_recall_pct": 53.93
+      },
+      {
+        "vol_rmse_bps": 120.7,
+        "excursion_rmse_bps": 118.29,
+        "liq_depletion_rmse": 1.6194,
+        "spearman_vol": 0.6617,
+        "spearman_excursion": 0.5754,
+        "spearman_liq_depletion": 0.0848,
+        "top10pct_air_pocket_recall_pct": 4.99
+      }
+    ]
+  }
+}
